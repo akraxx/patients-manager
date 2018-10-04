@@ -1,0 +1,71 @@
+version: "3"
+
+services:
+  #######################################
+  # Reverse proxy (Traefik)
+  #######################################
+  traefik:
+    image: "traefik:v1.7"
+    restart: always
+    command: -c /dev/null --web --docker --logLevel=DEBUG
+    ports:
+      - "${PORT:-80}:80"
+      - "${RPROXY_PORT:-8888}:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=false"
+
+  #######################################
+  # IAM (Keycloak) with its database
+  #######################################
+  keycloak:
+    image: "jboss/keycloak:4.5.0.Final"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/auth/"]
+      interval: 5s
+      timeout: 2s
+      retries: 15
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+    labels:
+      - "traefik.port=8080"
+      - "traefik.frontend.rule=PathPrefix:/auth"
+    depends_on:
+    - postgres
+  postgres:
+    image: "postgres:11-alpine"
+    restart: always
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+
+  #######################################
+  # Patients manager - WEB
+  #######################################
+  patients-manager-web:
+    build:
+      context: frontend
+    labels:
+    - "traefik.port=80"
+    - "traefik.frontend.rule=PathPrefix:/"
+
+
+networks:
+  keycloak-network:
+  reverse-proxy:
+
+volumes:
+  postgres_data:
+      driver: local
