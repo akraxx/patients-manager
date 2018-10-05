@@ -13,8 +13,8 @@ import { KeycloakConfig } from 'keycloak-angular';
 // Add here your keycloak setup infos
 const keycloakConfig: KeycloakConfig = {
   url: 'http://localhost/auth/',
-  realm: 'master',
-  clientId: 'patients-manager-web',
+  realm: 'patients-manager',
+  clientId: 'frontend',
 };
 
 export const environment = {

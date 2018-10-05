@@ -2,416 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97ff1d3d-d3f3-41cd-90d3-6ed530ccea8f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.env" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/docker-compose.yml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/.dockerignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/Dockerfile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/src/app/utils/app-init.ts" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" afterPath="$PROJECT_DIR$/frontend/.editorconfig" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/frontend/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.stylelintrc.json" afterPath="$PROJECT_DIR$/frontend/.stylelintrc.json" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" afterPath="$PROJECT_DIR$/frontend/CHANGELOG.md" />
-      <change beforePath="$PROJECT_DIR$/CODE_OF_CONDUCT.md" afterPath="$PROJECT_DIR$/frontend/CODE_OF_CONDUCT.md" />
-      <change beforePath="$PROJECT_DIR$/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/frontend/CONTRIBUTING.md" />
-      <change beforePath="$PROJECT_DIR$/DEV_DOCS.md" afterPath="$PROJECT_DIR$/frontend/DEV_DOCS.md" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" afterPath="$PROJECT_DIR$/frontend/LICENSE" />
-      <change beforePath="$PROJECT_DIR$/angular.json" afterPath="$PROJECT_DIR$/frontend/angular.json" />
-      <change beforePath="$PROJECT_DIR$/e2e/tsconfig.e2e.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/karma.conf.js" afterPath="$PROJECT_DIR$/frontend/karma.conf.js" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/frontend/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/frontend/package.json" />
-      <change beforePath="$PROJECT_DIR$/protractor.conf.js" afterPath="$PROJECT_DIR$/frontend/protractor.conf.js" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/core.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/.gitkeep" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/data.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/earning.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/electricity.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/layout.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/orders-chart.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/orders-profit-chart.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/periods.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/player.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/profit-bar-animation-chart.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/profit-chart.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/smart-table.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/state.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/traffic-bar.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/traffic-list.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/user-activity.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/users.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/module-import-guard.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/utils/.gitkeep" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/utils/analytics.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/footer/footer.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/footer/footer.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/header/header.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/header/header.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/header/header.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/index.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/layout-direction-switcher/layout-direction-switcher.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/search-input/search-input.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/search-input/search-input.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/switcher/switcher.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/switcher/switcher.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/theme-settings/theme-settings.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/theme-settings/theme-settings.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/theme-switcher/theme-switcher.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/theme-switcher/theme-switcher.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/theme-switcher/theme-switcher.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/theme-switcher/themes-switcher-list/theme-switcher-list.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/theme-switcher/themes-switcher-list/themes-switcher-list.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/tiny-mce/tiny-mce.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/directives/.gitkeep" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/index.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/one-column/one-column.layout.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/one-column/one-column.layout.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/sample/sample.layout.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/sample/sample.layout.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/three-columns/three-columns.layout.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/three-columns/three-columns.layout.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/two-columns/two-columns.layout.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/layouts/two-columns/two-columns.layout.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/pipes/.gitkeep" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/pipes/capitalize.pipe.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/pipes/index.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/pipes/number-with-commas.pipe.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/pipes/plural.pipe.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/pipes/round.pipe.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/pipes/timing.pipe.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/bootstrap-rtl.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/font-size.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/pace.theme.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/styles.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/theme.corporate.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/theme.cosmic.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/theme.default.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/styles/themes.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/theme.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs-bar-horizontal.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs-bar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs-line.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs-multiple-xaxis.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs-pie.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs-radar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/chartjs/chartjs.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/charts-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/charts.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/charts.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3-advanced-pie.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3-area-stack.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3-bar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3-line.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3-pie.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3-polar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/d3/d3.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts-area-stack.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts-bar-animation.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts-bar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts-line.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts-multiple-xaxis.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts-pie.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts-radar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/charts/echarts/echarts.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/components-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/components.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/components.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/notifications/notifications.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/notifications/notifications.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/notifications/notifications.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/tree/tree.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/tree/tree.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/components/tree/tree.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/contacts/contacts.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/contacts/contacts.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/contacts/contacts.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/electricity/electricity-chart/electricity-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/electricity/electricity.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/electricity/electricity.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/electricity/electricity.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/kitten/kitten.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/kitten/kitten.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/kitten/kitten.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/player/player.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/player/player.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/player/player.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/room-selector/room-selector.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/room-selector/room-selector.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/room-selector/room-selector.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/rooms.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/rooms/rooms.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/security-cameras/security-cameras.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/security-cameras/security-cameras.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/security-cameras/security-cameras.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/solar/solar.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/solar/solar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/status-card/status-card.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/status-card/status-card.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/team/team.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/team/team.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/team/team.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/temperature/temperature-dragger/temperature-dragger.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/temperature/temperature-dragger/temperature-dragger.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/temperature/temperature-dragger/temperature-dragger.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/temperature/temperature.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/temperature/temperature.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/temperature/temperature.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/traffic/traffic-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/traffic/traffic.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/traffic/traffic.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/weather/weather.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/weather/weather.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/weather/weather.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/chart-panel-header/chart-panel-header.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/chart-panel-header/chart-panel-header.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/chart-panel-header/chart-panel-header.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/chart-panel-summary/chart-panel-summary.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/chart-panel-summary/chart-panel-summary.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/charts-panel.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/charts-panel.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/charts-panel.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/charts/charts-common.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/charts/orders-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/charts-panel/charts/profit-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/country-orders/chart/country-orders-chart.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/country-orders/chart/country-orders-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/country-orders/country-orders.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/country-orders/country-orders.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/country-orders/map/country-orders-map.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/country-orders/map/country-orders-map.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/country-orders/map/country-orders-map.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/e-commerce.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/e-commerce.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/e-commerce.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/back-side/earning-card-back.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/back-side/earning-card-back.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/back-side/earning-card-back.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/back-side/earning-pie-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/earning-card.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/earning-card.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/earning-card.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/front-side/earning-card-front.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/front-side/earning-card-front.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/front-side/earning-card-front.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/earning-card/front-side/earning-live-update-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/legend-chart/enum.legend-item-color.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/legend-chart/legend-chart.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/legend-chart/legend-chart.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/legend-chart/legend-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/back-side/stats-area-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/back-side/stats-card-back.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/back-side/stats-card-back.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/back-side/stats-card-back.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/front-side/stats-bar-animation-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/front-side/stats-card-front.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/front-side/stats-card-front.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/front-side/stats-card-front.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/profit-card.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/profit-card.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/profit-card/profit-card.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/progress-section/progress-section.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/progress-section/progress-section.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/progress-section/progress-section.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/slide-out/slide-out.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/slide-out/slide-out.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/slide-out/slide-out.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/back-side/traffic-back-card.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/back-side/traffic-back-card.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/back-side/traffic-back-card.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/back-side/traffic-bar-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/front-side/traffic-bar/traffic-bar.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/front-side/traffic-bar/traffic-bar.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/front-side/traffic-bar/traffic-bar.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/front-side/traffic-front-card.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/front-side/traffic-front-card.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/front-side/traffic-front-card.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/traffic-cards-header/traffic-cards-header.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/traffic-cards-header/traffic-cards-header.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/traffic-cards-header/traffic-cards-header.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/traffic-reveal-card.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/traffic-reveal-card.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/traffic-reveal-card/traffic-reveal-card.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/user-activity/user-activity.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/user-activity/user-activity.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-analytics-chart/visitors-analytics-chart.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-analytics-chart/visitors-analytics-chart.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-analytics.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-analytics.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-analytics.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-statistics/visitors-statistics.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-statistics/visitors-statistics.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/e-commerce/visitors-analytics/visitors-statistics/visitors-statistics.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/editors/ckeditor/ckeditor.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/editors/ckeditor/ckeditor.loader.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/editors/editors-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/editors/editors.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/editors/editors.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/editors/tiny-mce/tiny-mce.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/form-inputs/form-inputs.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/form-inputs/form-inputs.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/form-inputs/form-inputs.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/form-layouts/form-layouts.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/form-layouts/form-layouts.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/form-layouts/form-layouts.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/forms-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/forms.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/forms/forms.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/bubble/bubble-map.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/bubble/bubble-map.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/gmaps/gmaps.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/gmaps/gmaps.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/leaflet/leaflet.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/leaflet/leaflet.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/maps-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/maps.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/maps.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/entity/Location.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/map/map.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/map/map.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/map/map.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/search-map.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/search-map.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/search/search.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/maps/search-map/search/search.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/miscellaneous/miscellaneous-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/miscellaneous/miscellaneous.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/miscellaneous/miscellaneous.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/miscellaneous/not-found/not-found.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/miscellaneous/not-found/not-found.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/miscellaneous/not-found/not-found.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/pages-menu.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/pages-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/pages.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/pages.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/tables/smart-table/smart-table.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/tables/smart-table/smart-table.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/tables/tables-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/tables/tables.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/tables/tables.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/action-groups/action-groups.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/action-groups/action-groups.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/action-groups/action-groups.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/block-level-buttons/block-level-buttons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/block-level-buttons/block-level-buttons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/button-groups/button-groups.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/button-groups/button-groups.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/button-groups/button-groups.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/buttons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/buttons.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/buttons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/buttons.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/default-buttons/default-buttons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/default-buttons/default-buttons.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/default-buttons/default-buttons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/dropdown-buttons/dropdown-button.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/dropdown-buttons/dropdown-button.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/dropdown-buttons/dropdown-button.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/hero-buttons/hero-buttons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/hero-buttons/hero-buttons.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/hero-buttons/hero-buttons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/icon-buttons/icon-buttons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/icon-buttons/icon-buttons.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/icon-buttons/icon-buttons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/labeled-actions-group/labeled-actions-group.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/labeled-actions-group/labeled-actions-group.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/labeled-actions-group/labeled-actions-group.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/shape-buttons/shape-buttons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/shape-buttons/shape-buttons.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/shape-buttons/shape-buttons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/size-buttons/size-buttons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/size-buttons/size-buttons.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/buttons/size-buttons/size-buttons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/grid/grid.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/grid/grid.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/grid/grid.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/icons/icons.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/icons/icons.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/icons/icons.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/modals/modal/modal.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/modals/modal/modal.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/modals/modals.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/modals/modals.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/modals/modals.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/popovers/popover-examples.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/popovers/popovers.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/popovers/popovers.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/popovers/popovers.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/search-fields/search-fields.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/search-fields/search-fields.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/tabs/tabs.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/tabs/tabs.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/tabs/tabs.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/typography/typography.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/typography/typography.component.scss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/typography/typography.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/ui-features-routing.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/ui-features.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/ui-features/ui-features.module.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/.gitkeep" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/alan.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/camera1.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/camera2.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/camera3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/camera4.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/cover1.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/cover2.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/cover3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/eva.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/jack.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/kate.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/kitten-corporate.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/kitten-cosmic.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/kitten-default.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/lee.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/nick.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/square_pattern.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/square_pattern_cosmic.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/team.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/leaflet-countries/countries.geo.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/map/world.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/content.inline.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/content.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce.eot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/fonts/tinymce.woff" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/img/anchor.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/img/loader.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/img/object.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/img/trans.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/skin.ie7.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/assets/skins/lightgray/skin.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/favicon.ico" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/favicon.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig.app.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig.spec.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/typings.d.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" afterPath="$PROJECT_DIR$/frontend/tslint.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/backend/.babelrc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/backend/.dockerignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/backend/Dockerfile" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docker-compose-production.yml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/proxy.conf.json" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" afterPath="$PROJECT_DIR$/docker-compose.yml" />
+      <change beforePath="$PROJECT_DIR$/frontend/angular.json" afterPath="$PROJECT_DIR$/frontend/angular.json" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/environments/environment.prod.ts" afterPath="$PROJECT_DIR$/frontend/src/environments/environment.prod.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/environments/environment.ts" afterPath="$PROJECT_DIR$/frontend/src/environments/environment.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -426,95 +27,81 @@
       <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+            <state relative-caret-position="289">
+              <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/app.module.ts">
+      <file leaf-file-name="angular.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/angular.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="73" column="10" lean-forward="false" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="16" column="71" lean-forward="false" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app-init.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/utils/app-init.ts">
+      <file leaf-file-name="docker-compose-production.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-compose-production.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="environment.prod.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/environments/environment.prod.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+            <state relative-caret-position="289">
+              <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="keycloak.service.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/node_modules/keycloak-angular/lib/core/services/keycloak.service.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1164">
-              <caret line="137" column="30" lean-forward="false" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="keycloak-options.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/node_modules/keycloak-angular/lib/core/interfaces/keycloak-options.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/main.ts">
+      <file leaf-file-name=".dockerignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/.dockerignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="angular.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/angular.json">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="77" column="51" lean-forward="true" selection-start-line="77" selection-start-column="51" selection-end-line="77" selection-end-column="51" />
-              <folding />
+            <state relative-caret-position="102">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -522,8 +109,18 @@
       <file leaf-file-name="environment.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/environments/environment.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+            <state relative-caret-position="170">
+              <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="proxy.conf.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/proxy.conf.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -547,11 +144,19 @@
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/frontend/Dockerfile" />
         <option value="$PROJECT_DIR$/frontend/.dockerignore" />
-        <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/frontend/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/frontend/src/app/utils/app-init.ts" />
-        <option value="$PROJECT_DIR$/frontend/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/backend/.babelrc" />
+        <option value="$PROJECT_DIR$/backend/server.js" />
         <option value="$PROJECT_DIR$/frontend/src/environments/environment.prod.ts" />
+        <option value="$PROJECT_DIR$/frontend/src/environments/environment.ts" />
+        <option value="$PROJECT_DIR$/frontend/proxy.conf.json" />
+        <option value="$PROJECT_DIR$/frontend/angular.json" />
+        <option value="$PROJECT_DIR$/docker-compose-production.yml" />
+        <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/backend/package.json" />
+        <option value="$PROJECT_DIR$/backend/Dockerfile" />
+        <option value="$PROJECT_DIR$/backend/src/index.js" />
       </list>
     </option>
   </component>
@@ -564,6 +169,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/backend/node_modules" />
     <handled-path value="$PROJECT_DIR$/frontend/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
@@ -605,6 +211,17 @@
             <path>
               <item name="patients-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="patients-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patients-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patients-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="patients-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="patients-manager" type="462c0819:PsiDirectoryNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -619,7 +236,12 @@
     <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/backend" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/src" />
       <recent name="$PROJECT_DIR$/frontend" />
     </key>
   </component>
@@ -737,16 +359,15 @@
       <option name="presentableId" value="Default" />
       <updated>1538647553344</updated>
       <workItem from="1538647562560" duration="616000" />
-      <workItem from="1538648199811" duration="8729000" />
+      <workItem from="1538648199811" duration="13074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9345000" />
+    <option name="totallyTimeSpent" value="13690000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2180" y="22" width="1920" height="1044" extended-state="6" />
-    <editor active="true" />
+    <frame x="1920" y="16" width="1920" height="1044" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -762,7 +383,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2524013" sideWeight="0.49429038" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2524013" sideWeight="0.49429038" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -837,14 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/.dockerignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -866,7 +479,7 @@
         <state relative-caret-position="255">
           <caret line="16" column="71" lean-forward="false" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -887,13 +500,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/utils/app-init.ts">
+    <entry file="file://$PROJECT_DIR$/backend/.babelrc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -905,27 +516,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/utils/app-init.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/environments/environment.prod.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/environments/environment.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="119">
+          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#51#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -934,16 +531,98 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/environments/environment.prod.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="13" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/environments/environment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/proxy.conf.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/angular.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="77" column="51" lean-forward="true" selection-start-line="77" selection-start-column="51" selection-end-line="77" selection-end-column="51" />
+        <state relative-caret-position="578">
+          <caret line="73" column="10" lean-forward="false" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/.dockerignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose-production.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

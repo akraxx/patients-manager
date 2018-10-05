@@ -51,16 +51,6 @@ services:
       POSTGRES_USER: keycloak
       POSTGRES_PASSWORD: password
 
-  #######################################
-  # Patients manager - WEB
-  #######################################
-  patients-manager-web:
-    build:
-      context: frontend
-    labels:
-    - "traefik.port=80"
-    - "traefik.frontend.rule=PathPrefix:/"
-
 
 networks:
   keycloak-network:

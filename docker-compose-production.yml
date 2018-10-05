@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  #######################################
+  # Patients manager
+  #######################################
+  patients-manager-web:
+    build:
+      context: frontend
+    labels:
+    - "traefik.port=80"
+    - "traefik.frontend.rule=PathPrefix:/"
+  patients-manager-api:
+    build:
+      context: backend
+    labels:
+    - "traefik.port=4000"
+    - "traefik.frontend.rule=PathPrefix:/api"
