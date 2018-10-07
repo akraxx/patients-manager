@@ -1,0 +1,25 @@
+<div class="form-group row">
+  <label class="col-sm-2 col-form-label">{{ antecedent.title }}: </label>
+  <div class="col-sm-10 controls">
+    <div *ngIf="showInput || antecedent.value != ''"
+         class="input-group input-group-sm">
+                              <span class="input-group-prepend">
+                                <button class="btn input-group-text"
+                                        title="Antécédent important"
+                                        [ngClass]="{'btn-danger': antecedent.important}"
+                                        (click)="antecedent.important = !antecedent.important">
+                                  <i class="fa fa-exclamation-triangle"></i>
+                                </button>
+                              </span>
+      <input type="text" class="form-control" [ngClass]="{'form-control-danger': antecedent.important}" [(ngModel)]="antecedent.value">
+      <span class="input-group-append">
+                                <button class="btn btn-warning input-group-text" (click)="removeAntecedent()">
+                                  <i class="fa fa-trash-alt"></i>
+                                </button>
+                              </span>
+    </div>
+    <div *ngIf="!showInput" class="">
+      <button class="btn btn-primary btn-xs" (click)="showInput = !showInput">+</button>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Patients',
+    icon: 'fa fa-user-md',
+    expanded: true,
+    children: [
+      {
+        title: 'Liste',
+        link: '/pages/patients/list',
+        pathMatch: '/pages/patients',
+      },
+      {
+        title: 'Nouveau',
+        link: '/pages/patients/new',
+      }
+    ],
+  },
+  {
     title: 'IoT Dashboard',
     icon: 'nb-home',
     link: '/pages/iot-dashboard',
@@ -79,46 +95,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       }, {
         title: 'Notifications',
         link: '/pages/components/notifications',
-      },
-    ],
-  },
-  {
-    title: 'Maps',
-    icon: 'nb-location',
-    children: [
-      {
-        title: 'Google Maps',
-        link: '/pages/maps/gmaps',
-      },
-      {
-        title: 'Leaflet Maps',
-        link: '/pages/maps/leaflet',
-      },
-      {
-        title: 'Bubble Maps',
-        link: '/pages/maps/bubble',
-      },
-      {
-        title: 'Search Maps',
-        link: '/pages/maps/searchmap',
-      },
-    ],
-  },
-  {
-    title: 'Charts',
-    icon: 'nb-bar-chart',
-    children: [
-      {
-        title: 'Echarts',
-        link: '/pages/charts/echarts',
-      },
-      {
-        title: 'Charts.js',
-        link: '/pages/charts/chartjs',
-      },
-      {
-        title: 'D3',
-        link: '/pages/charts/d3',
       },
     ],
   },

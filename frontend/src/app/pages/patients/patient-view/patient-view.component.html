@@ -1,0 +1,395 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        MARIE Maximilien - 26 ans (23/12/1991)
+      </nb-card-header>
+      <nb-card-body>
+        <nb-tabset>
+          <nb-tab tabTitle="Détails">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 right-col-border">
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Nom :</label>
+                          <input type="text" placeholder="Nom" class="form-control"/>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Prénom :</label>
+                          <input type="text" placeholder="Prénom" class="form-control"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-group col-sm-6">
+                        <span class="input-group-addon fa-icon"><i class="fa fa-calendar"></i></span>
+                        <input type="text"
+                               placeholder="Date de naissance"
+                               class="form-control"
+                               bsDatepicker
+                               [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY', containerClass: 'theme-blue' }"/>
+                      </div>
+                      <div class="demo-radio col-sm-6">
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="customRadio">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description"><i class="fa fa-mars"></i> Homme</span>
+                        </label>
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="customRadio">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description"><i class="fa fa-venus"></i> Femme</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-group col-sm-6">
+                        <span class="input-group-addon fa-icon"><i class="fa fa-mobile"></i></span>
+                        <input type="text" placeholder="Téléphone Mobile" class="form-control"/>
+                      </div>
+                      <div class="input-group col-sm-6">
+                        <span class="input-group-addon fa-icon"><i class="fa fa-phone"></i></span>
+                        <input type="text" placeholder="Téléphone Fixe" class="form-control"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-group col-sm-8">
+                        <span class="input-group-addon fa-icon"><i class="fa fa-at"></i></span>
+                        <input type="email" placeholder="Email" class="form-control"/>
+                      </div>
+                      <div class="demo-checkboxes col-sm-4">
+                        <nb-checkbox class="custom-control">Décédé(e)</nb-checkbox>
+                      </div>
+                    </div>
+                    <p>Adresse :</p>
+                    <div class="input-group">
+                      <span class="input-group-addon fa-icon"><i class="fa fa-map-marker-alt"></i></span>
+                      <input type="text" placeholder="Adresse" class="form-control"/>
+                    </div>
+                    <div class="row">
+                      <div class="input-group col-sm-4">
+                        <span class="input-group-addon fa-icon"><i class="fa fa-map-marker"></i></span>
+                        <input type="text" placeholder="Code postal" class="form-control"/>
+                      </div>
+                      <div class="input-group col-sm-8">
+                        <span class="input-group-addon fa-icon"><i class="fa fa-map-marker"></i></span>
+                        <input type="text" placeholder="Ville" class="form-control"/>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </div>
+                <div class="col-md-6">
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="maritalStatus">Statut marital :</label>
+                          <select id="maritalStatus" name="maritalStatus" class="form-control">
+                            <option>Non précié</option>
+                            <option>Marié(e)</option>
+                            <option>Célibataire</option>
+                            <option>En couple</option>
+                            <option>Pacsé(e)</option>
+                            <option>Divorcé(e)</option>
+                            <option>Veuf(ve)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="numberChildren">Nombre d'enfants :</label>
+                          <input type="number" id="numberChildren" name="numberChildren" value="0"
+                                 class="form-control"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="job">Profession / Scolarité :</label>
+                          <input type="text" id="job" name="job" placeholder="Profession" class="form-control"/>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="hobbies">Loisirs :</label>
+                          <input type="text" id="hobbies" name="hobbies" placeholder="Loisirs" class="form-control"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="doctor">Médecin traitant :</label>
+                          <input type="text" id="doctor" name="doctor" placeholder="Médecin traitant"
+                                 class="form-control"/>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="mutual-health">Mutuelle :</label>
+                          <input type="text" id="mutual-health" name="mutual-health" placeholder="Mutuelle santé"
+                                 class="form-control"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="social-security">Numéro Sécurité Sociale :</label>
+                          <input type="text" id="social-security" name="social-security"
+                                 placeholder="Numéro sécurité sociale" class="form-control"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="sender">Envoyé par :</label>
+                          <input type="text" id="sender" name="sender" placeholder="Envoyé par" class="form-control"/>
+                        </div>
+                      </div>
+                      <div class="demo-radio col-sm-6">
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="customRadio">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description"> Droitier</span>
+                        </label>
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="customRadio">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Gaucher</span>
+                        </label>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="remarks">Remarques :</label>
+                    <textarea rows="5" placeholder="Remarques" id="remarks" name="remarks"
+                              class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="Antécédents" [badgeText]="getNumberOfAntecedents()" badgeStatus="danger">
+            <form>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <nb-card-body>
+                      <div *ngFor="let category of antecedentCategories; let isEven = even">
+                        <div *ngIf="isEven">
+                          <h4>{{ category.title }}</h4>
+                          <hr>
+                          <ngx-patient-antecedent *ngFor="let antecedent of category.antecedents"
+                                                  [antecedent]="antecedent">
+                          </ngx-patient-antecedent>
+                        </div>
+                      </div>
+                    </nb-card-body>
+                  </div>
+                  <div class="col-md-6">
+                    <nb-card-body>
+                      <div *ngFor="let category of antecedentCategories; let isOdd = odd">
+                        <div *ngIf="isOdd">
+                          <h4>{{ category.title }}</h4>
+                          <hr>
+                          <ngx-patient-antecedent *ngFor="let antecedent of category.antecedents"
+                                                  [antecedent]="antecedent">
+                          </ngx-patient-antecedent>
+                        </div>
+                      </div>
+                    </nb-card-body>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </nb-tab>
+          <nb-tab tabTitle="Consultations" badgeText="2" badgeStatus="info">
+            <div class="row">
+              <div class="col-md-12">
+                3
+              </div>
+            </div>
+          </nb-tab>
+        </nb-tabset>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>Using the Grid</nb-card-header>
+      <nb-card-body>
+        <form>
+          <div class="form-group row">
+            <label for="inputEmail1" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword2" class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3">Radios</label>
+            <div class="col-sm-9">
+              <div class="form-check">
+                <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="gridRadios" checked>
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Option one is this and that&mdash;be sure to include why it's great</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="gridRadios">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Option two can be something else and selecting it will deselect option one</span>
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" name="gridRadios" disabled>
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Option three is disabled</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>Form without labels</nb-card-header>
+      <nb-card-body>
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Recipients">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Subject">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Send</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>Basic form</nb-card-header>
+      <nb-card-body>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <nb-checkbox>Check me out</nb-checkbox>
+          </div>
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>Block form</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName">First Name</label>
+              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputLastName">Last Name</label>
+              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputEmail">Email</label>
+              <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputWebsite">Website</label>
+              <input type="text" class="form-control" id="inputWebsite" placeholder="Website">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>Horizontal form</nb-card-header>
+      <nb-card-body>
+        <form class="form-horizontal">
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 form-control-label">Email</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 form-control-label">Password</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <div class="checkbox">
+                <nb-checkbox>Remember me</nb-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" class="btn btn-warning">Sign in</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

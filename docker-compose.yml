@@ -50,7 +50,16 @@ services:
       POSTGRES_DB: keycloak
       POSTGRES_USER: keycloak
       POSTGRES_PASSWORD: password
-
+  mongodb:
+    image: "mongo:4"
+    restart: always
+    ports:
+    - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
 networks:
   keycloak-network:
@@ -58,4 +67,6 @@ networks:
 
 volumes:
   postgres_data:
-      driver: local
+    driver: local
+  mongodb_data:
+    driver: local
