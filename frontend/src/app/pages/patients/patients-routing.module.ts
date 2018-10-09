@@ -4,8 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PatientsComponent } from './patients.component';
 import { PatientsListComponent } from './patients-list/patients-list.component';
 import { PatientNewComponent} from './patient-new/patient-new.component';
-import {PatientViewComponent} from "./patient-view/patient-view.component";
-import {AntecedentModalComponent} from "./patient-new/antecedent-modal/antecedent-modal.component";
+import {PatientViewComponent} from './patient-view/patient-view.component';
 
 const routes: Routes = [{
   path: '',

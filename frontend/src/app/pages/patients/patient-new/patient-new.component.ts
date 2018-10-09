@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {AntecedentModalComponent} from "./antecedent-modal/antecedent-modal.component";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngx-patient-new',

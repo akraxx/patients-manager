@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap';
 import {AntecedentCategory} from "./patient-antecedent/patient-antecedent.component";
+import {Patient, Sexe} from "../patient.model";
 
 @Component({
   selector: 'ngx-patient-view',
@@ -10,6 +11,10 @@ import {AntecedentCategory} from "./patient-antecedent/patient-antecedent.compon
 })
 export class PatientViewComponent implements OnInit, OnDestroy {
   id: number;
+  bsValue: Date;
+  private patient: Patient = new Patient();
+  private sexe = Sexe;
+  private sexeValues = Object.values(this.sexe);
   private sub: any;
 
   private antecedentCategories: AntecedentCategory[];
@@ -174,6 +179,17 @@ export class PatientViewComponent implements OnInit, OnDestroy {
     });
 
     return numberOfFilledAntecedents + '';
+  }
+
+  getAge() {
+    if (this.patient.birthdate){
+      const timeDiff = Math.abs(Date.now() - this.patient.birthdate.getTime());
+      // Used Math.floor instead of Math.ceil
+      // so 26 years and 140 days would be considered as 26, not 27.
+      return Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
+    } else {
+      return '';
+    }
   }
 
 }
