@@ -1,4 +1,4 @@
-import {Antecedent} from "./patient-view/patient-antecedent/patient-antecedent.component";
+import {Antecedent} from './patient-view/patient-antecedent/patient-antecedent.component';
 
 export enum Sexe {
   F = 'Femme',
@@ -32,16 +32,16 @@ export class Patient {
   zipCode: number;
   city: string;
   deceased: boolean;
-  sexe: Sexe;
-  maritalStatus: MaritalStatus;
+  sexe: string = 'M';
+  maritalStatus: string = 'NA';
   children: number;
-  profession: string;
+  job: string;
   hobbies: string;
   doctor: string;
   complementaryHealth: string;
   socialSecurityNumber: string;
   sentBy: string;
-  handOrientation: HandOrientation;
+  handOrientation: string = 'Right';
   remarks: string;
   antecedents: Antecedent[];
 }

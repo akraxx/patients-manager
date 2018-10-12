@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap';
-import {AntecedentCategory} from "./patient-antecedent/patient-antecedent.component";
-import {Patient, Sexe} from "../patient.model";
+import {AntecedentCategory} from './patient-antecedent/patient-antecedent.component';
+import {HandOrientation, MaritalStatus, Patient, Sexe} from '../patient.model';
 
 @Component({
   selector: 'ngx-patient-view',
@@ -12,9 +12,10 @@ import {Patient, Sexe} from "../patient.model";
 export class PatientViewComponent implements OnInit, OnDestroy {
   id: number;
   bsValue: Date;
-  private patient: Patient = new Patient();
-  private sexe = Sexe;
-  private sexeValues = Object.values(this.sexe);
+  patient: Patient = new Patient();
+  sexe = Sexe;
+  handOrientation = HandOrientation;
+  maritalStatuses = MaritalStatus;
   private sub: any;
 
   private antecedentCategories: AntecedentCategory[];
@@ -39,8 +40,8 @@ export class PatientViewComponent implements OnInit, OnDestroy {
             title: 'Traitement médical',
             important: false,
             value: '',
-          }
-        ]
+          },
+        ],
       }, {
         title: 'Antécédents traumas',
         antecedents: [
@@ -78,7 +79,7 @@ export class PatientViewComponent implements OnInit, OnDestroy {
             title: 'Autres',
             important: false,
             value: '',
-          }
+          },
         ]
       }, {
         title: 'Antécédents familiaux',
@@ -182,7 +183,7 @@ export class PatientViewComponent implements OnInit, OnDestroy {
   }
 
   getAge() {
-    if (this.patient.birthdate){
+    if (this.patient.birthdate) {
       const timeDiff = Math.abs(Date.now() - this.patient.birthdate.getTime());
       // Used Math.floor instead of Math.ceil
       // so 26 years and 140 days would be considered as 26, not 27.

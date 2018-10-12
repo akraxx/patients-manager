@@ -7,21 +7,25 @@
       <nb-card-body>
         <nb-tabset>
           <nb-tab tabTitle="Détails">
+            <form #patientForm="ngForm">
             <div class="container">
               <div class="row">
                 <div class="col-md-6 right-col-border">
                   <nb-card-body>
                     <div class="row">
                       <div class="col-sm-6">
+                        <pre>
+                          {{patientForm.form.dirty}}
+                        </pre>
                         <div class="form-group">
                           <label>Nom :</label>
-                          <input type="text" placeholder="Nom" class="form-control" [(ngModel)]="patient.lastName"/>
+                          <input type="text" placeholder="Nom" name="lastName" class="form-control" [(ngModel)]="patient.lastName" #spy/>
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Prénom :</label>
-                          <input type="text" placeholder="Prénom" class="form-control" [(ngModel)]="patient.firstName"/>
+                          <input type="text" placeholder="Prénom" name="firstName" class="form-control" [(ngModel)]="patient.firstName" #spy/>
                         </div>
                       </div>
                     </div>
@@ -57,7 +61,7 @@
                     <div class="row">
                       <div class="input-group col-sm-8">
                         <span class="input-group-addon fa-icon"><i class="fa fa-at"></i></span>
-                        <input type="email" placeholder="Email" class="form-control"/>
+                        <input type="email" placeholder="Email" class="form-control" [(ngModel)]="patient.mail"/>
                       </div>
                       <div class="demo-checkboxes col-sm-4">
                         <nb-checkbox class="custom-control" [(ngModel)]="patient.deceased">Décédé(e)</nb-checkbox>
@@ -86,14 +90,9 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label for="maritalStatus">Statut marital :</label>
-                          <select id="maritalStatus" name="maritalStatus" class="form-control">
-                            <option>Non précié</option>
-                            <option>Marié(e)</option>
-                            <option>Célibataire</option>
-                            <option>En couple</option>
-                            <option>Pacsé(e)</option>
-                            <option>Divorcé(e)</option>
-                            <option>Veuf(ve)</option>
+                          <select id="maritalStatus" name="maritalStatus" class="form-control" [(ngModel)]="patient.maritalStatus">
+                            <option *ngFor="let maritalStatus of maritalStatuses | keyvalue"
+                                    [value]="maritalStatus.key" [selected]="maritalStatus == patient.maritalStatus">{{maritalStatus.value}}</option>
                           </select>
                         </div>
                       </div>
@@ -101,6 +100,7 @@
                         <div class="form-group">
                           <label for="numberChildren">Nombre d'enfants :</label>
                           <input type="number" id="numberChildren" name="numberChildren" value="0"
+                                 [(ngModel)]="patient.children"
                                  class="form-control"/>
                         </div>
                       </div>
@@ -109,13 +109,15 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label for="job">Profession / Scolarité :</label>
-                          <input type="text" id="job" name="job" placeholder="Profession" class="form-control"/>
+                          <input type="text" id="job" name="job" placeholder="Profession"
+                                 [(ngModel)]="patient.job" class="form-control"/>
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label for="hobbies">Loisirs :</label>
-                          <input type="text" id="hobbies" name="hobbies" placeholder="Loisirs" class="form-control"/>
+                          <input type="text" id="hobbies" name="hobbies" placeholder="Loisirs"
+                                 [(ngModel)]="patient.hobbies" class="form-control"/>
                         </div>
                       </div>
                     </div>
@@ -124,14 +126,14 @@
                         <div class="form-group">
                           <label for="doctor">Médecin traitant :</label>
                           <input type="text" id="doctor" name="doctor" placeholder="Médecin traitant"
-                                 class="form-control"/>
+                                 [(ngModel)]="patient.doctor" class="form-control"/>
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label for="mutual-health">Mutuelle :</label>
-                          <input type="text" id="mutual-health" name="mutual-health" placeholder="Mutuelle santé"
-                                 class="form-control"/>
+                          <label for="complementary-health">Mutuelle :</label>
+                          <input type="text" id="complementary-health" name="complementary-health" placeholder="Mutuelle santé"
+                                 [(ngModel)]="patient.complementaryHealth" class="form-control"/>
                         </div>
                       </div>
                     </div>
@@ -140,7 +142,7 @@
                         <div class="form-group">
                           <label for="social-security">Numéro Sécurité Sociale :</label>
                           <input type="text" id="social-security" name="social-security"
-                                 placeholder="Numéro sécurité sociale" class="form-control"/>
+                                 [(ngModel)]="patient.socialSecurityNumber" placeholder="Numéro sécurité sociale" class="form-control"/>
                         </div>
                       </div>
                     </div>
@@ -148,19 +150,16 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label for="sender">Envoyé par :</label>
-                          <input type="text" id="sender" name="sender" placeholder="Envoyé par" class="form-control"/>
+                          <input type="text" id="sender" name="sender" placeholder="Envoyé par"
+                                 [(ngModel)]="patient.sentBy" class="form-control"/>
                         </div>
                       </div>
                       <div class="demo-radio col-sm-6">
-                        <label class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" name="customRadio">
+                        <label class="custom-control custom-radio" *ngFor="let choice of handOrientation | keyvalue">
+                          <input type="radio" class="custom-control-input" name="customRadio"
+                                 [value]="choice.key" [(ngModel)]="patient.handOrientation">
                           <span class="custom-control-indicator"></span>
-                          <span class="custom-control-description"> Droitier</span>
-                        </label>
-                        <label class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" name="customRadio">
-                          <span class="custom-control-indicator"></span>
-                          <span class="custom-control-description">Gaucher</span>
+                          <span class="custom-control-description">{{ choice.value }}</span>
                         </label>
                       </div>
                     </div>
@@ -171,12 +170,16 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="remarks">Remarques :</label>
-                    <textarea rows="5" placeholder="Remarques" id="remarks" name="remarks"
+                    <textarea rows="5" placeholder="Remarques" id="remarks" name="remarks" [(ngModel)]="patient.remarks"
                               class="form-control"></textarea>
                   </div>
                 </div>
+                <button type="submit"  [disabled]="!patientForm.form.dirty">
+
+                  Save</button>
               </div>
             </div>
+            </form>
           </nb-tab>
           <nb-tab tabTitle="Antécédents" [badgeText]="getNumberOfAntecedents()" badgeStatus="danger">
             <form>
