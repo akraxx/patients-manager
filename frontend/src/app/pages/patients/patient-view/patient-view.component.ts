@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap';
 import {AntecedentCategory} from './patient-antecedent/patient-antecedent.component';
@@ -11,7 +11,8 @@ import {HandOrientation, MaritalStatus, Patient, Sexe} from '../patient.model';
 })
 export class PatientViewComponent implements OnInit, OnDestroy {
   id: number;
-  bsValue: Date;
+
+  @ViewChild('patientForm') patientForm: ElementRef;
   patient: Patient = new Patient();
   sexe = Sexe;
   handOrientation = HandOrientation;
