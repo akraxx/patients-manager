@@ -17,11 +17,11 @@ defaultEntryPoints = ["https","http"]
 [docker]
 endpoint = "unix:///var/run/docker.sock"
 watch = true
-exposedByDefault = false
+exposedByDefault = true
 
 [acme]
 email = "contact@mmarie.fr"
-storage = "acme.json"
+storage = "/acme.json"
 entryPoint = "https"
 onHostRule = true
 [[acme.domains]]
