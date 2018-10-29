@@ -8,8 +8,8 @@ services:
   - docker
 
 script:
-  - docker build --tag patients-manager-api backend
-  - docker build --tag patients-manager-web frontend
+  - docker build --tag patients-manager-api --cache-from $DOCKER_USERNAME/patients-manager-api:latest backend
+  - docker build --tag patients-manager-web --cache-from $DOCKER_USERNAME/patients-manager-web:latest frontend
 
 after_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

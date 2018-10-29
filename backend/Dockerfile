@@ -1,28 +1,29 @@
-###############################################################################
-# Step 1 : Builder image
-#
+# STEP 1 build static website
 FROM node:10.11-alpine as builder
+RUN apk update && apk add --no-cache git
 
-# Define working directory and copy source
-WORKDIR /home/node/app
-COPY . .
-# Install dependencies and build whatever you have to build
-# (babel, grunt, webpack, etc.)
-RUN npm install && npm run build
+# Create app directory
+WORKDIR /app
+
+# Install app dependencies
+COPY package.json package-lock.json  /app/
+RUN cd /app && npm set progress=false && npm install
+
+# Copy project files into the docker image
+COPY .  /app
+RUN cd /app && npm run build
 
 ###############################################################################
 # Step 2 : Run image
 #
 FROM node:10.11-alpine
 ENV NODE_ENV=production
-WORKDIR /home/node/app
+WORKDIR /app
 
-# Install deps for production only
-COPY ./package* ./
-RUN npm install && \
-    npm cache clean --force
 # Copy builded source from the upper builder stage
-COPY --from=builder /home/node/app/build ./build
+COPY --from=builder /app /app
+
+RUN ls -lrth /app
 
 # Expose ports (for orchestrators and dynamic reverse proxies)
 EXPOSE 4000
