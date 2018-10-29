@@ -17,7 +17,7 @@ services:
       - "${PWD}/acme.json:/acme.json"
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
-      - "traefik.enable=false"
+      - "traefik.enable=true"
 
   #######################################
   # IAM (Keycloak) with its database
@@ -42,7 +42,6 @@ services:
     labels:
       - "traefik.port=8080"
       - "traefik.frontend.rule=PathPrefix:/auth"
-      - "traefik.docker.network=reverse-proxy"
       - "traefik.enable=true"
     depends_on:
     - postgres
