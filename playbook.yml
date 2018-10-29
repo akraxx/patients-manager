@@ -1,9 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: yes
   connection: local
-  tasks:
-    - command: whoami
-      register: whoami
-    - debug:
-        var: whoami.stdout
+  roles:
+    - geerlingguy.docker

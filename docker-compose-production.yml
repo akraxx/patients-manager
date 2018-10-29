@@ -1,13 +1,66 @@
 version: "3"
 
 services:
+  #######################################
+  # Reverse proxy (Traefik)
+  #######################################
   traefik:
     image: "traefik:v1.7"
     restart: always
     command: -c /treafik.toml
+    ports:
+      - "443:443"
+      - "80:80"
+      - "8080:8080"
     volumes:
       - "${PWD}/traefik.toml:/traefik.toml"
+      - "${PWD}/acme.json:/acme.json"
       - "/var/run/docker.sock:/var/run/docker.sock"
+    labels:
+      - "traefik.enable=false"
+
+  #######################################
+  # IAM (Keycloak) with its database
+  #######################################
+  keycloak:
+    image: "jboss/keycloak:4.4.0.Final"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/auth/"]
+      interval: 25s
+      timeout: 25s
+      retries: 15
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      KEYCLOAK_HOSTNAME: ${KEYCLOAK_HOSTNAME}
+    labels:
+      - "traefik.port=8080"
+      - "traefik.frontend.rule=PathPrefix:/auth"
+      - "traefik.docker.network=reverse-proxy"
+      - "traefik.enable=true"
+    depends_on:
+    - postgres
+  postgres:
+    image: "postgres:11-alpine"
+    restart: always
+    container_name: postgres
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+  mongodb:
+    image: "mongo:4"
+    restart: always
+    volumes:
+      - /data/mongodb:/data/db
 
   #######################################
   # Patients manager
@@ -24,5 +77,5 @@ services:
     labels:
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"
-  mongodb:
-    ports:
+    depends_on:
+    - mongodb
