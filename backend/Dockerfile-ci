@@ -1,0 +1,12 @@
+FROM node:10.11-alpine
+ENV NODE_ENV=production
+WORKDIR /app
+
+# Copy builded source from the upper builder stage
+COPY . /app
+
+# Expose ports (for orchestrators and dynamic reverse proxies)
+EXPOSE 4000
+
+# Start the app
+CMD npm start
