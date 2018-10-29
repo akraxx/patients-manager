@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - "10.11"
 
 sudo: false
 dist: trusty
@@ -11,6 +13,10 @@ cache:
   bundler: true
   directories:
     - $HOME/docker
+    - $HOME/.npm
+
+before_script:
+  - npm install -g @angular/cli
 
 before_cache:
   # Save tagged docker images
@@ -23,8 +29,11 @@ before_install:
   - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
 
 script:
+  - npm ci --prefix backend
+  - npm ci --prefix frontend
   - docker build --tag patients-manager-api:latest backend
   - docker build --tag patients-manager-web:latest frontend
+  - ls -lrth $HOME/.npm
 
 after_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
