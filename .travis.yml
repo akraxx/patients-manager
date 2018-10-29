@@ -29,7 +29,7 @@ before_install:
   - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
 
 script:
-  - npm ci --prefix backend
+  - npm i --prefix backend
   - npm run build --prefix backend
   - npm ci --prefix frontend
   - npm run build:prod --prefix frontend
