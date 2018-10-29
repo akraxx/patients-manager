@@ -8,6 +8,7 @@ import {Observable, Subject} from 'rxjs/Rx';
 import {ComponentCanDeactivate} from '../../../@core/utils/pending-changes.guard';
 import 'style-loader!angular2-toaster/toaster.css';
 import {ToasterService} from 'angular2-toaster';
+import {moment} from "ngx-bootstrap/chronos/test/chain";
 
 @Component({
   selector: 'ngx-patient-view',
@@ -16,7 +17,7 @@ import {ToasterService} from 'angular2-toaster';
 })
 export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
   id: string;
-
+  dateFormat: string;
   @ViewChild('patientForm') patientForm: ElementRef;
   patient: Patient = new Patient();
   sexe = Sexe;
@@ -35,6 +36,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               private patientService: PatientService,
               private toasterService: ToasterService) {
     this.localeService.use('fr');
+
+    this.dateFormat = moment.ISO_8601;
 
     this.templateAntecedents = [
       {
@@ -174,6 +177,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
                   this.patient.antecedents.push(antecedent);
                 }
               });
+            this.patient.birthDate = new Date(this.patient.birthDate);
           },
           error => {
             this.toasterService.pop('error', 'Impossible de récupérer le patient.', error.error.message);
@@ -234,17 +238,6 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
     }
 
     return numberOfFilledAntecedents + '';
-  }
-
-  getAge() {
-    if (this.patient.birthDate) {
-      const timeDiff = Math.abs(Date.now() - new Date(this.patient.birthDate).getTime());
-      // Used Math.floor instead of Math.ceil
-      // so 26 years and 140 days would be considered as 26, not 27.
-      return Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
-    } else {
-      return '';
-    }
   }
 
 }

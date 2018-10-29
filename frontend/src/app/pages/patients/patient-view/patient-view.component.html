@@ -4,7 +4,7 @@
     <nb-card>
       <nb-card-header>
         {{patient.lastName | uppercase}} {{patient.firstName | titlecase}} -
-        {{getAge()}} ans ({{ patient.birthDate | date:'mediumDate' }})
+        {{ patient.birthDate | age }} ans ({{ patient.birthDate | date:'mediumDate' }})
         <span class="float-right">
           <button class="btn btn-xs" [ngClass]="{'btn-success': !patientSaved}"
                   [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving" [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i *ngIf="!patientSaving">Sauvegarder</i></button>
@@ -44,7 +44,7 @@
                                bsDatepicker
                                [(ngModel)]="patient.birthDate"
                                (ngModelChange)="patientChanged()"
-                               [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY', containerClass: 'theme-blue' }" #spy/>
+                               [bsConfig]="{ dateInputFormat: 'DD MMM YYYY', containerClass: 'theme-blue' }" #spy/>
                       </div>
                       <div class="demo-radio col-sm-6">
                         <label class="custom-control custom-radio" *ngFor="let choice of sexe | keyvalue">
@@ -228,19 +228,6 @@
         <button class="btn" [ngClass]="{'btn-success': !patientSaved}"
                 [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving" [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i *ngIf="!patientSaving">Sauvegarder</i></button>
       </nb-card-footer>
-    </nb-card>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <nb-card>
-      <nb-card-header>Using the Grid</nb-card-header>
-      <nb-card-body>
-        <code>
-          <pre>{{patient | json }}</pre>
-        </code>
-      </nb-card-body>
     </nb-card>
   </div>
 </div>
