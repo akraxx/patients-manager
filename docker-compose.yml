@@ -7,6 +7,8 @@ services:
   traefik:
     image: "traefik:v1.7"
     restart: always
+    networks:
+    - reverse-proxy
     command: -c /dev/null --web --docker --logLevel=DEBUG
     ports:
       - "${PORT:-80}:80"
@@ -20,12 +22,15 @@ services:
   # IAM (Keycloak) with its database
   #######################################
   keycloak:
-    image: "jboss/keycloak:4.5.0.Final"
+    image: "jboss/keycloak:4.4.0.Final"
     restart: always
+    networks:
+    - reverse-proxy
+    - default
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/auth/"]
-      interval: 5s
-      timeout: 2s
+      interval: 25s
+      timeout: 25s
       retries: 15
     environment:
       DB_VENDOR: POSTGRES
@@ -38,7 +43,11 @@ services:
     labels:
       - "traefik.port=8080"
       - "traefik.frontend.rule=PathPrefix:/auth"
+      - "traefik.docker.network=reverse-proxy"
+      - "traefik.enable=true"
     depends_on:
+    - postgres
+    links:
     - postgres
   postgres:
     image: "postgres:11-alpine"
@@ -53,8 +62,6 @@ services:
   mongodb:
     image: "mongo:4"
     restart: always
-    ports:
-    - "27017:27017"
     volumes:
       - mongodb_data:/data/db
 

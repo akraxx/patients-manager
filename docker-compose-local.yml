@@ -1,26 +1,32 @@
 version: "3"
 
 services:
-  traefik:
-    image: "traefik:v1.7"
-    restart: always
-    command: -c /treafik.toml
-    volumes:
-      - "${PWD}/traefik.toml:/traefik.toml"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-
   #######################################
   # Patients manager
   #######################################
   patients-manager-web:
-    image: "akraxx/patients-manager-web:latest"
+    build:
+      context: frontend
+    networks:
+    - reverse-proxy
+    - default
     labels:
+    - "traefik.docker.network=reverse-proxy"
+    - "traefik.enable=true"
     - "traefik.port=80"
     - "traefik.frontend.rule=PathPrefix:/"
   patients-manager-api:
-    image: "akraxx/patients-manager-api:latest"
+    build:
+      context: backend
+    networks:
+    - reverse-proxy
+    - default
+    links:
+      - mongodb
     environment:
       MONGO_HOST: mongodb
     labels:
+    - "traefik.docker.network=reverse-proxy"
+    - "traefik.enable=true"
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"
