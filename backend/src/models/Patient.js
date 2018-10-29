@@ -1,5 +1,24 @@
 var mongoose = require('mongoose');
 
+var AntecedentSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    important: {
+        type: Boolean,
+        required: true
+    },
+    value: {
+        type: String,
+        required: false
+    }
+});
+
 var PatientSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -9,12 +28,33 @@ var PatientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    numberOfChildren: {
-        type: Number,
-        required: true,
-        min: [0, 'Children can be less than 0']
+    birthDate: {
+        type: Date,
+        required: true
     },
-    updated_date: {type: Date, default: Date.now},
+    sexe: {
+        type: String,
+        required: true
+    },
+    createdAt: {type: Date, default: Date.now},
+    mobilePhone: String,
+    phone: String,
+    mail: String,
+    address: String,
+    zipCode: String,
+    city: String,
+    deceased: Boolean,
+    maritalStatus: String,
+    children: Number,
+    job: String,
+    hobbies: String,
+    doctor: String,
+    complementaryHealth: String,
+    socialSecurityNumber: String,
+    sentBy: String,
+    handOrientation: String,
+    remarks: String,
+    antecedents: [AntecedentSchema]
 });
 
 module.exports = mongoose.model('Patient', PatientSchema);

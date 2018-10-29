@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {PatientService} from '../../../@core/services/patient.service';
+import {ToasterService} from 'angular2-toaster';
+import {Patient} from '../patient.model';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'ngx-patients-list',
@@ -6,7 +10,31 @@ import { Component } from '@angular/core';
   templateUrl: './patients-list.component.html',
 })
 export class PatientsListComponent {
+  patientSearch: string;
+  patients: Patient[];
 
-  starRate = 2;
-  heartRate = 4;
+  constructor(private patientService: PatientService,
+              private toasterService: ToasterService) {
+  }
+
+  searchPatients() {
+    this.processPatients(this.patientService.getPatients());
+  }
+
+  searchPatientsByName(name: string) {
+    this.processPatients(this.patientService.searchPatientByName(name));
+  }
+
+  processPatients(patientsObservable: Observable<Patient[]>) {
+    patientsObservable.subscribe((patients) => {
+        this.patients = patients;
+      },
+      error => {
+        this.toasterService.pop('error',
+          'Impossible de chercher les patients avec le nom ' + name,
+          error.error.message);
+      });
+  }
+
+
 }

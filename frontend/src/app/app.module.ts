@@ -43,8 +43,8 @@ registerLocaleData(localeFr, 'fr');
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService]
-    }
+      deps: [KeycloakService],
+    },
   ],
 })
 export class AppModule {

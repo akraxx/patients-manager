@@ -7,11 +7,12 @@
                                 <button class="btn input-group-text"
                                         title="Antécédent important"
                                         [ngClass]="{'btn-danger': antecedent.important}"
-                                        (click)="antecedent.important = !antecedent.important">
+                                        (click)="antecedent.important = !antecedent.important; antecedentChanged();">
                                   <i class="fa fa-exclamation-triangle"></i>
                                 </button>
                               </span>
-      <input type="text" class="form-control" [ngClass]="{'form-control-danger': antecedent.important}" [(ngModel)]="antecedent.value">
+      <input type="text" class="form-control" [ngClass]="{'form-control-danger': antecedent.important}"
+             (ngModelChange)="antecedentChanged()" [(ngModel)]="antecedent.value">
       <span class="input-group-append">
                                 <button class="btn btn-warning input-group-text" (click)="removeAntecedent()">
                                   <i class="fa fa-trash-alt"></i>

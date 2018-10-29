@@ -17,18 +17,40 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use('/api/patients', apiRouter);
 
-mongoose.connect('mongodb://localhost/patientsManager');
-const connection = mongoose.connection;
+const MONGOHOST = process.env.MONGO_HOST || 'localhost';
+const MONGOPORT = process.env.MONGO_PORT || 27017;
 
-connection.once('open', () => {
-    console.log('MongoDB database connection established successfully!');
+const dbURI = 'mongodb://'+MONGOHOST+':'+MONGOPORT+'/patientsManager';
+
+const db = mongoose.connection;
+
+db.on('connecting', function() {
+    console.log('connecting to MongoDB...');
 });
+
+db.on('error', function(error) {
+    console.error('Error in MongoDb connection: ' + error);
+    mongoose.disconnect();
+});
+db.on('connected', function() {
+    console.log('MongoDB connected!');
+});
+db.once('open', function() {
+    console.log('MongoDB connection opened!');
+});
+db.on('reconnected', function () {
+    console.log('MongoDB reconnected!');
+});
+db.on('disconnected', function() {
+    console.log('MongoDB disconnected!');
+    setTimeout(function() {mongoose.connect(dbURI, {auto_reconnect:true}) }, 5000);
+});
+mongoose.connect(dbURI, {auto_reconnect:true});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
 });
-
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -37,14 +59,14 @@ app.use(function(err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+    console.error(err);
     if (err.name === 'ValidationError') {
-        console.error('Error Validating!', err);
         res.status(422).json(err);
+    } else {
+        // render the error page
+        res.status(err.status || 500).json(err);
+        res.send(err.status);
     }
-
-    // render the error page
-    res.status(err.status || 500);
-    res.send(err.status);
 });
 
 module.exports = app;

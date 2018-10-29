@@ -21,10 +21,10 @@ export enum HandOrientation {
 }
 
 export class Patient {
-  id: number;
+  _id: string;
   firstName: string;
   lastName: string;
-  birthdate: Date;
+  birthDate: Date;
   mobilePhone: string;
   phone: string;
   mail: string;
@@ -44,4 +44,5 @@ export class Patient {
   handOrientation: string = 'Right';
   remarks: string;
   antecedents: Antecedent[];
+  createdAt: Date;
 }

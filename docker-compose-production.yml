@@ -13,6 +13,8 @@ services:
   patients-manager-api:
     build:
       context: backend
+    environment:
+      MONGO_HOST: mongodb
     labels:
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"
