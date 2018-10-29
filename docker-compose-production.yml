@@ -24,3 +24,5 @@ services:
     labels:
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"
+  mongodb:
+    ports:
