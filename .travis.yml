@@ -9,7 +9,7 @@ services:
 
 script:
   - docker build --tag patients-manager-api backend
-  - docker build --tag patients-manager-web backend
+  - docker build --tag patients-manager-web frontend
 
 after_script:
   - docker images
