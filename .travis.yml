@@ -23,8 +23,8 @@ before_install:
   - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
 
 script:
-  - docker build --tag patients-manager-api backend
-  - docker build --tag patients-manager-web frontend
+  - docker build --tag patients-manager-api:latest backend
+  - docker build --tag patients-manager-web:latest frontend
 
 after_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
