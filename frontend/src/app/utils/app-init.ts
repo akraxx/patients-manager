@@ -6,8 +6,8 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
     return (): Promise<any> => keycloak.init({
       config: environment.keycloak, initOptions: {
         onLoad: 'login-required',
-        checkLoginIframe: false
-      }
+        checkLoginIframe: false,
+      },
     });
   } else {
     return (): Promise<any> => new Promise((resolve) => {

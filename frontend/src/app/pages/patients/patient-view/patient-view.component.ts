@@ -8,7 +8,6 @@ import {Observable, Subject} from 'rxjs/Rx';
 import {ComponentCanDeactivate} from '../../../@core/utils/pending-changes.guard';
 import 'style-loader!angular2-toaster/toaster.css';
 import {ToasterService} from 'angular2-toaster';
-import {moment} from "ngx-bootstrap/chronos/test/chain";
 
 @Component({
   selector: 'ngx-patient-view',
@@ -17,7 +16,6 @@ import {moment} from "ngx-bootstrap/chronos/test/chain";
 })
 export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
   id: string;
-  dateFormat: string;
   @ViewChild('patientForm') patientForm: ElementRef;
   patient: Patient = new Patient();
   sexe = Sexe;
@@ -36,8 +34,6 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               private patientService: PatientService,
               private toasterService: ToasterService) {
     this.localeService.use('fr');
-
-    this.dateFormat = moment.ISO_8601;
 
     this.templateAntecedents = [
       {
