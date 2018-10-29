@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local
+  tasks:
+    - command: whoami
+      register: whoami
+    - debug:
+        var: whoami.stdout
