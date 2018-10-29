@@ -30,9 +30,9 @@ before_install:
 
 script:
   - npm ci --prefix backend
-  - npm run build
+  - npm run build --prefix backend
   - npm ci --prefix frontend
-  - npm run build:prod
+  - npm run build:prod --prefix frontend
   - docker build --tag patients-manager-api:latest backend
   - docker build --tag patients-manager-web:latest frontend
   - ls -lrth $HOME/.npm
