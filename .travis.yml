@@ -12,4 +12,9 @@ script:
   - docker build --tag patients-manager-web frontend
 
 after_script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker images
+  - docker tag patients-manager-api $DOCKER_USERNAME/patients-manager-api
+  - docker tag patients-manager-web $DOCKER_USERNAME/patients-manager-web
+  - docker push $DOCKER_USERNAME/patients-manager-api
+  - docker push $DOCKER_USERNAME/patients-manager-web
