@@ -33,11 +33,11 @@ script:
   - npm i
   - npm run build
   - ls -lrth
+  - docker build --tag patients-manager-api -f Dockerfile-ci .
   - cd ../frontend
   - npm ci
   - npm run build:prod
-  - docker build --tag patients-manager-api -f backend/Dockerfile-ci backend
-  - docker build --tag patients-manager-web -f frontend/Dockerfile-ci frontend
+  - docker build --tag patients-manager-web -f Dockerfile-ci .
 
 after_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
