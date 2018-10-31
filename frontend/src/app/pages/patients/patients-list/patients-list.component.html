@@ -49,7 +49,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let patient of patients" [routerLink]="['/pages/patients', patient._id]" style="cursor:pointer;">
+          <tr *ngFor="let patient of patients | paginate: { itemsPerPage: 10, currentPage: page }" [routerLink]="['/pages/patients', patient._id]" style="cursor:pointer;">
             <td>{{patient.lastName}}</td>
             <td>{{patient.firstName}}</td>
             <td>{{patient.birthDate | age}} ans ({{patient.birthDate | date:'longDate'}})</td>
@@ -57,6 +57,20 @@
             <td><i class="fa fa-eye"></i></td>
           </tr>
           </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="5">
+              <div class="text-center">
+                <pagination-controls
+                  autoHide="true"
+                  responsive="true"
+                  previousLabel="Précédent"
+                  nextLabel="Suivant"
+                  (pageChange)="page = $event"></pagination-controls>
+              </div>
+            </td>
+          </tr>
+          </tfoot>
         </table>
       </nb-card-body>
     </nb-card>

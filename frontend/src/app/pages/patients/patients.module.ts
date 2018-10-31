@@ -10,6 +10,7 @@ import {PendingChangesGuard} from '../../@core/utils/pending-changes.guard';
 import {GroupByPipe} from '../../@core/pipes/group-by.directive';
 import {AgePipe} from '../../@core/pipes/age.directive';
 import {MiscellaneousModule} from '../miscellaneous/miscellaneous.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {MiscellaneousModule} from '../miscellaneous/miscellaneous.module';
     BsDatepickerModule.forRoot(),
     ToasterModule.forRoot(),
     MiscellaneousModule,
+    NgxPaginationModule,
   ],
   declarations: [
     ...routedComponents,

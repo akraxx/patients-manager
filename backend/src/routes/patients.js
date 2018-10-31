@@ -2,15 +2,28 @@ var express = require('express');
 var router = express.Router();
 var Patient = require('../models/Patient');
 
+function sortTypeToNumber(sortType) {
+    if (sortType === 'desc') {
+        return -1;
+    }  else {
+        return 1;
+    }
+}
+
 /* GET PATIENT BOOKS */
 router.get('/', function (req, res, next) {
-    console.log(req.query);
     let operator = "$or";
     let filters = [];
 
+    let specialFilters = ['sort', 'sortType'];
+
     Object.keys(req.query).forEach(function (key) {
-        var filterRegex = {"$regex": new RegExp('^' + req.query[key].toLowerCase(), 'i')};
-        filters.push({[key]: filterRegex})
+        if (specialFilters.indexOf(key) < 0) {
+            var filterRegex = {"$regex": new RegExp(req.query[key].toLowerCase(), 'i')};
+            filters.push({[key]: filterRegex})
+        } else {
+            console.info(key, 'can not be used as search parameter')
+        }
     });
 
     let condition = {};
@@ -18,10 +31,17 @@ router.get('/', function (req, res, next) {
         condition = {[operator]: filters}
     }
 
-    console.log(condition);
+    let sort = {'createdAt': -1};
+    if (req.query.sort) {
+        if (req.query.sortType) {
+            sort = {[req.query.sort]: sortTypeToNumber(req.query.sortType)}
+        }
+    }
 
+    console.log(sort);
     Patient.find(condition)
-        .sort({'createdAt': -1})
+        .collation({ locale: "fr", strength: 1 })
+        .sort(sort)
         .exec(function (err, patients) {
             if (err) return next(err);
             res.json(patients);

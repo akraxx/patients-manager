@@ -8,8 +8,12 @@ export class PatientService {
 
   constructor(private http: HttpClient) {}
 
-  getPatients(): Observable<Patient[]> {
-    return this.http.get<Patient[]>(`/api/patients`);
+  getPatients(sort: string = 'lastName', sortType: string = 'desc'): Observable<Patient[]> {
+    const params = new HttpParams()
+      .set('sortType', sortType)
+      .set('sort', sort);
+
+    return this.http.get<Patient[]>(`/api/patients`, {params: params});
   }
 
   addPatient(patient: Patient): Observable<Patient> {
@@ -26,10 +30,11 @@ export class PatientService {
 
   searchPatientByName(name: string): Observable<Patient[]> {
     const params = new HttpParams()
+      .set('sort', 'lastName')
+      .set('sortType', 'asc')
       .set('firstName', name)
       .set('lastName', name);
 
     return this.http.get<Patient[]>(`/api/patients`, {params: params});
   }
-
 }

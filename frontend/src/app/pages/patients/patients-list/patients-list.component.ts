@@ -13,6 +13,7 @@ import {NbTabComponent} from '@nebular/theme/components/tabset/tabset.component'
 export class PatientsListComponent {
   patientSearch: string;
   patients: Patient[];
+  page: number = 1;
 
   constructor(private patientService: PatientService,
               private toasterService: ToasterService) {
@@ -39,7 +40,9 @@ export class PatientsListComponent {
 
   tabChanged(tab: NbTabComponent) {
     if (tab.tabTitle === 'Tous') {
-      this.processPatients(this.patientService.getPatients());
+      this.processPatients(this.patientService.getPatients('lastName', 'asc'));
+    } else if (tab.tabTitle === 'Derniers enregistrés') {
+      this.processPatients(this.patientService.getPatients('createdAt', 'desc'));
     } else {
       this.patients = [];
     }
