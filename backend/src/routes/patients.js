@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Patient = require('../models/Patient');
 
-
 /* GET PATIENT BOOKS */
 router.get('/', function (req, res, next) {
     console.log(req.query);

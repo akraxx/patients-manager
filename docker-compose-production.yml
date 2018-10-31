@@ -73,6 +73,7 @@ services:
     image: "akraxx/patients-manager-api:latest"
     environment:
       MONGO_HOST: mongodb
+      KEYCLOAK_HOST: https://manager.ingridlhotellier.fr
     labels:
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"

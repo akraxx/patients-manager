@@ -1,0 +1,6 @@
+{
+  "realm": "patients-manager",
+  "auth-server-url": "http://localhost/auth",
+  "clientId": "frontend",
+  "bearerOnly": true
+}
