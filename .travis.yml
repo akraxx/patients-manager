@@ -33,8 +33,8 @@ script:
   - npm run build --prefix backend
   - npm ci --prefix frontend
   - npm run build:prod --prefix frontend
-  - docker build --tag patients-manager-api:latest -f backend/Dockerfile-ci backend
-  - docker build --tag patients-manager-web:latest -f frontend/Dockerfile-ci frontend
+  - docker build --tag patients-manager-api -f backend/Dockerfile-ci backend
+  - docker build --tag patients-manager-web -f frontend/Dockerfile-ci frontend
   - ls -lrth $HOME/.npm
 
 after_script:
