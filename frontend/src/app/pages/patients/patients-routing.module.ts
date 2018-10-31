@@ -6,6 +6,7 @@ import { PatientsListComponent } from './patients-list/patients-list.component';
 import { PatientNewComponent} from './patient-new/patient-new.component';
 import {PatientViewComponent} from './patient-view/patient-view.component';
 import {PendingChangesGuard} from '../../@core/utils/pending-changes.guard';
+import {NotFoundComponent} from '../miscellaneous/not-found/not-found.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +21,13 @@ const routes: Routes = [{
     path: ':id',
     component: PatientViewComponent,
     canDeactivate: [PendingChangesGuard],
+  }, {
+    path: '',
+    redirectTo: 'list',
+    pathMatch: 'full',
+  }, {
+    path: '**',
+    component: NotFoundComponent,
   }],
 }];
 

@@ -3,6 +3,7 @@ import {PatientService} from '../../../@core/services/patient.service';
 import {ToasterService} from 'angular2-toaster';
 import {Patient} from '../patient.model';
 import {Observable} from 'rxjs/Rx';
+import {NbTabComponent} from '@nebular/theme/components/tabset/tabset.component';
 
 @Component({
   selector: 'ngx-patients-list',
@@ -36,5 +37,12 @@ export class PatientsListComponent {
       });
   }
 
+  tabChanged(tab: NbTabComponent) {
+    if (tab.tabTitle === 'Tous') {
+      this.processPatients(this.patientService.getPatients());
+    } else {
+      this.patients = [];
+    }
+  }
 
 }

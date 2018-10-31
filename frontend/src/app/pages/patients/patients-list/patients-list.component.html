@@ -9,7 +9,7 @@
         <div class="text-center">
           <button class="btn btn-primary pull-right" [routerLink]="['/pages/patients/new']"><i class="fa fa-plus"></i> Ajouter un nouveau patient</button>
         </div>
-        <nb-tabset>
+        <nb-tabset (changeTab)="tabChanged($event)">
           <nb-tab tabTitle="Recherche">
 
             <div class="container">

@@ -39,6 +39,7 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
       KEYCLOAK_HOSTNAME: ${KEYCLOAK_HOSTNAME}
+      PROXY_ADDRESS_FORWARDING: "true"
     labels:
       - "traefik.port=8080"
       - "traefik.frontend.rule=PathPrefix:/auth"

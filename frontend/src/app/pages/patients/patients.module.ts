@@ -9,6 +9,7 @@ import {ToasterModule} from 'angular2-toaster';
 import {PendingChangesGuard} from '../../@core/utils/pending-changes.guard';
 import {GroupByPipe} from '../../@core/pipes/group-by.directive';
 import {AgePipe} from '../../@core/pipes/age.directive';
+import {MiscellaneousModule} from '../miscellaneous/miscellaneous.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {AgePipe} from '../../@core/pipes/age.directive';
     PatientsRoutingModule,
     BsDatepickerModule.forRoot(),
     ToasterModule.forRoot(),
+    MiscellaneousModule,
   ],
   declarations: [
     ...routedComponents,

@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 import {NbMenuService, NbSidebarService} from '@nebular/theme';
-import {AnalyticsService} from '../../../@core/utils/analytics.service';
 import {LayoutService} from '../../../@core/data/layout.service';
 import {KeycloakService} from 'keycloak-angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -21,8 +21,8 @@ export class HeaderComponent implements OnInit {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private keycloakService: KeycloakService,
-              private analyticsService: AnalyticsService,
-              private layoutService: LayoutService) {
+              private layoutService: LayoutService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -47,17 +47,15 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
-  toggleSettings(): boolean {
-    this.sidebarService.toggle(false, 'settings-sidebar');
-
-    return false;
-  }
-
   goToHome() {
     this.menuService.navigateHome();
   }
 
   startSearch() {
-    this.analyticsService.trackEvent('startSearch');
+    this.router.navigate(['/pages/patients/list']);
+  }
+
+  newPatient() {
+    this.router.navigate(['/pages/patients/new']);
   }
 }
