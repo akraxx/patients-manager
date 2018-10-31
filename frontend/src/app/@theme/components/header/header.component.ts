@@ -4,6 +4,7 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { LayoutService } from '../../../@core/data/layout.service';
+import {KeycloakService} from "keycloak-angular";
 
 @Component({
   selector: 'ngx-header',
@@ -20,14 +21,27 @@ export class HeaderComponent implements OnInit {
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private userService: UserService,
+              private keycloakService: KeycloakService,
               private analyticsService: AnalyticsService,
               private layoutService: LayoutService) {
   }
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.nick);
+    this.user = this.keycloakService.getUsername();
+
+    this.menuService.onItemClick().subscribe(( event ) => {
+      this.onItemSelection(event.item.title);
+    })
+  }
+
+  onItemSelection( title ) {
+    if ( title === 'Log out' ) {
+      // Do something on Log out
+      this.keycloakService.logout('https://ingridlhotellier.fr');
+    } else if ( title === 'Profile' ) {
+      // Do something on Profile
+      console.log('Profile Clicked ')
+    }
   }
 
   toggleSidebar(): boolean {

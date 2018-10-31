@@ -29,15 +29,14 @@ before_install:
   - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
 
 script:
-  - cd backend
-  - npm i
-  - npm run build
-  - ls -lrth
-  - docker build --tag patients-manager-api -f Dockerfile-ci .
-  - cd ../frontend
-  - npm ci
-  - npm run build:prod
-  - docker build --tag patients-manager-web -f Dockerfile-ci .
+  - npm ci --prefix backend
+  - npm run build --prefix backend
+  - ls -lrth backend
+  - npm ci --prefix frontend
+  - npm run build:prod --prefix frontend
+  - docker build --tag patients-manager-api -f backend/Dockerfile-ci backend
+  - docker build --tag patients-manager-web -f frontend/Dockerfile-ci frontend
+  - ls -lrth $HOME/.npm
 
 after_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
