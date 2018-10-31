@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
-import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
-import { AnalyticsService } from '../../../@core/utils/analytics.service';
-import { LayoutService } from '../../../@core/data/layout.service';
-import {KeycloakService} from "keycloak-angular";
+import {NbMenuService, NbSidebarService} from '@nebular/theme';
+import {AnalyticsService} from '../../../@core/utils/analytics.service';
+import {LayoutService} from '../../../@core/data/layout.service';
+import {KeycloakService} from 'keycloak-angular';
 
 @Component({
   selector: 'ngx-header',
@@ -17,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Log out' }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -31,16 +30,13 @@ export class HeaderComponent implements OnInit {
 
     this.menuService.onItemClick().subscribe(( event ) => {
       this.onItemSelection(event.item.title);
-    })
+    });
   }
 
   onItemSelection( title ) {
     if ( title === 'Log out' ) {
       // Do something on Log out
       this.keycloakService.logout('https://ingridlhotellier.fr');
-    } else if ( title === 'Profile' ) {
-      // Do something on Profile
-      console.log('Profile Clicked ')
     }
   }
 
