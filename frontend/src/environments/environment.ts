@@ -18,6 +18,6 @@ const keycloakConfig: KeycloakConfig = {
 };
 
 export const environment = {
-  production: true,
+  production: false,
   keycloak: keycloakConfig,
 };

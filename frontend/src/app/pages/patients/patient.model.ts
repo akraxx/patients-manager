@@ -20,6 +20,26 @@ export enum HandOrientation {
   Left = 'Gaucher',
 }
 
+export enum PaymentType {
+  None = 'Aucun',
+  Check = 'Chèque',
+  Cash = 'Liquide',
+}
+
+export class Consultation {
+  id: number;
+  title: string = '';
+  content: string;
+  paymentType: string = 'None';
+  clearedCheck: boolean = null;
+  checkNumber: string;
+  description: string = `
+    <h1>Tests Medicaux</h1><p></p><h1>Tra&icirc;tement</h1><p></p><h1>Pour la prochaine s&eacute;ance</h1><p></p>
+  `;
+  date: Date = new Date();
+  isOpen: boolean = false;
+}
+
 export class Patient {
   _id: string;
   firstName: string;
@@ -44,5 +64,6 @@ export class Patient {
   handOrientation: string = 'Right';
   remarks: string;
   antecedents: Antecedent[];
+  consultations: Consultation[];
   createdAt: Date;
 }

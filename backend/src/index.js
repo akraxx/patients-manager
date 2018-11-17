@@ -10,6 +10,7 @@ const router = express.Router();
 const MONGOHOST = process.env.MONGO_HOST || 'localhost';
 const MONGOPORT = process.env.MONGO_PORT || 27017;
 const KEYCLOAKHOST = process.env.KEYCLOAK_HOST || 'http://localhost';
+const PRODUCTION = process.env.PRODUCTION || false;
 
 const dbURI = 'mongodb://'+MONGOHOST+':'+MONGOPORT+'/patientsManager';
 
@@ -23,20 +24,22 @@ i18n.configure({
 app.use(i18n.init);
 app.use(morgan('combined'));
 app.use(bodyParser.json());
-app.use(jwt({
-    // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
-    secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `${KEYCLOAKHOST}/auth/realms/patients-manager/protocol/openid-connect/certs`
-    }),
+if (PRODUCTION) {
+    app.use(jwt({
+        // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
+        secret: jwksRsa.expressJwtSecret({
+            cache: true,
+            rateLimit: true,
+            jwksRequestsPerMinute: 5,
+            jwksUri: `${KEYCLOAKHOST}/auth/realms/patients-manager/protocol/openid-connect/certs`
+        }),
 
-    // Validate the audience and the issuer.
-    audience: 'frontend',
-    issuer: `${KEYCLOAKHOST}/auth/realms/patients-manager`,
-    algorithms: [ 'RS256' ]
-}));
+        // Validate the audience and the issuer.
+        audience: 'frontend',
+        issuer: `${KEYCLOAKHOST}/auth/realms/patients-manager`,
+        algorithms: ['RS256']
+    }));
+}
 app.use(router);
 const apiRouter = require('./routes/patients');
 app.use('/api/patients', apiRouter);

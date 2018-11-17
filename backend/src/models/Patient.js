@@ -19,6 +19,17 @@ var AntecedentSchema = new mongoose.Schema({
     }
 });
 
+var ConsultationSchema = new mongoose.Schema({
+    id: Number,
+    title: String,
+    content: String,
+    paymentType: String,
+    clearedCheck: Boolean,
+    checkNumber: String,
+    clinicalTests: String,
+    date: Date
+});
+
 var PatientSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -54,7 +65,8 @@ var PatientSchema = new mongoose.Schema({
     sentBy: String,
     handOrientation: String,
     remarks: String,
-    antecedents: [AntecedentSchema]
+    antecedents: [AntecedentSchema],
+    consultations: [ConsultationSchema]
 });
 
 module.exports = mongoose.model('Patient', PatientSchema);

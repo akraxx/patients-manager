@@ -1,198 +1,213 @@
 <toaster-container></toaster-container>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="patient">
     <nb-card>
       <nb-card-header>
         {{patient.lastName | uppercase}} {{patient.firstName | titlecase}} -
         {{ patient.birthDate | age }} ans ({{ patient.birthDate | date:'mediumDate' }})
         <span class="float-right">
           <button class="btn btn-xs" [ngClass]="{'btn-success': !patientSaved}"
-                  [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving" [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i *ngIf="!patientSaving">Sauvegarder</i></button>
+                  [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving"
+                                                                              [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i
+            *ngIf="!patientSaving">Sauvegarder</i></button>
         </span>
       </nb-card-header>
       <nb-card-body>
         <nb-tabset>
           <nb-tab tabTitle="Détails">
             <form #patientForm="ngForm">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6 right-col-border">
-                  <nb-card-body>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Nom :</label>
-                          <input type="text" placeholder="Nom" name="lastName" class="form-control"
-                                 [(ngModel)]="patient.lastName" (ngModelChange)="patientChanged()" #spy/>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 right-col-border">
+                    <nb-card-body>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Nom :</label>
+                            <input type="text" placeholder="Nom" name="lastName" class="form-control"
+                                   [(ngModel)]="patient.lastName" (ngModelChange)="patientChanged()" #spy/>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>Prénom :</label>
+                            <input type="text" placeholder="Prénom" name="firstName" class="form-control"
+                                   [(ngModel)]="patient.firstName" (ngModelChange)="patientChanged()" #spy/>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Prénom :</label>
-                          <input type="text" placeholder="Prénom" name="firstName" class="form-control"
-                                 [(ngModel)]="patient.firstName" (ngModelChange)="patientChanged()" #spy/>
+                      <div class="row">
+                        <div class="input-group col-sm-6">
+                          <span class="input-group-addon fa-icon"><i class="fa fa-calendar"></i></span>
+                          <input type="text"
+                                 name="birthDate"
+                                 placeholder="Date de naissance"
+                                 class="form-control"
+                                 bsDatepicker
+                                 [(ngModel)]="patient.birthDate"
+                                 (ngModelChange)="patientChanged()"
+                                 [bsConfig]="{ dateInputFormat: 'DD MMM YYYY', containerClass: 'theme-blue' }" #spy/>
+                        </div>
+                        <div class="demo-radio col-sm-6">
+                          <label class="custom-control custom-radio" *ngFor="let choice of sexe | keyvalue">
+                            <input type="radio" class="custom-control-input" name="sexe"
+                                   [value]="choice.key" [(ngModel)]="patient.sexe" (ngModelChange)="patientChanged()"
+                                   #spy>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{ choice.value }}</span>
+                          </label>
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-group col-sm-6">
-                        <span class="input-group-addon fa-icon"><i class="fa fa-calendar"></i></span>
-                        <input type="text"
-                               name="birthDate"
-                               placeholder="Date de naissance"
-                               class="form-control"
-                               bsDatepicker
-                               [(ngModel)]="patient.birthDate"
-                               (ngModelChange)="patientChanged()"
-                               [bsConfig]="{ dateInputFormat: 'DD MMM YYYY', containerClass: 'theme-blue' }" #spy/>
+                      <div class="row">
+                        <div class="input-group col-sm-6">
+                          <span class="input-group-addon fa-icon"><i class="fa fa-mobile"></i></span>
+                          <input type="text" placeholder="Téléphone Mobile" class="form-control"
+                                 [(ngModel)]="patient.mobilePhone" (ngModelChange)="patientChanged()" name="mobile"
+                                 #spy/>
+                        </div>
+                        <div class="input-group col-sm-6">
+                          <span class="input-group-addon fa-icon"><i class="fa fa-phone"></i></span>
+                          <input type="text" placeholder="Téléphone Fixe" class="form-control"
+                                 [(ngModel)]="patient.phone" (ngModelChange)="patientChanged()" name="phone" #spy/>
+                        </div>
                       </div>
-                      <div class="demo-radio col-sm-6">
-                        <label class="custom-control custom-radio" *ngFor="let choice of sexe | keyvalue">
-                          <input type="radio" class="custom-control-input" name="sexe"
-                                 [value]="choice.key" [(ngModel)]="patient.sexe" (ngModelChange)="patientChanged()" #spy>
-                          <span class="custom-control-indicator"></span>
-                          <span class="custom-control-description">{{ choice.value }}</span>
-                        </label>
+                      <div class="row">
+                        <div class="input-group col-sm-8">
+                          <span class="input-group-addon fa-icon"><i class="fa fa-at"></i></span>
+                          <input type="email" placeholder="Email" class="form-control"
+                                 [(ngModel)]="patient.mail" (ngModelChange)="patientChanged()" name="email" #spy/>
+                        </div>
+                        <div class="demo-checkboxes col-sm-4">
+                          <input type="checkbox" class="form-control"
+                                 [(ngModel)]="patient.deceased" (ngModelChange)="patientChanged()" name="deceased"
+                                 #spy/>
+                          <label style="padding-top: 10px;">Décédé(e)</label>
+                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-group col-sm-6">
-                        <span class="input-group-addon fa-icon"><i class="fa fa-mobile"></i></span>
-                        <input type="text" placeholder="Téléphone Mobile" class="form-control"
-                               [(ngModel)]="patient.mobilePhone" (ngModelChange)="patientChanged()" name="mobile" #spy/>
+                      <p>Adresse :</p>
+                      <div class="input-group">
+                        <span class="input-group-addon fa-icon"><i class="fa fa-map-marker-alt"></i></span>
+                        <input type="text" placeholder="Adresse" class="form-control" name="address"
+                               [(ngModel)]="patient.address" (ngModelChange)="patientChanged()" #spy/>
                       </div>
-                      <div class="input-group col-sm-6">
-                        <span class="input-group-addon fa-icon"><i class="fa fa-phone"></i></span>
-                        <input type="text" placeholder="Téléphone Fixe" class="form-control"
-                               [(ngModel)]="patient.phone" (ngModelChange)="patientChanged()" name="phone" #spy/>
+                      <div class="row">
+                        <div class="input-group col-sm-4">
+                          <span class="input-group-addon fa-icon"><i class="fa fa-map-marker"></i></span>
+                          <input type="text" placeholder="Code postal" class="form-control" name="zipCode"
+                                 [(ngModel)]="patient.zipCode" (ngModelChange)="patientChanged()" #spy/>
+                        </div>
+                        <div class="input-group col-sm-8">
+                          <span class="input-group-addon fa-icon"><i class="fa fa-map-marker"></i></span>
+                          <input type="text" placeholder="Ville" class="form-control" name="city"
+                                 [(ngModel)]="patient.city" (ngModelChange)="patientChanged()" #spy/>
+                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-group col-sm-8">
-                        <span class="input-group-addon fa-icon"><i class="fa fa-at"></i></span>
-                        <input type="email" placeholder="Email" class="form-control"
-                               [(ngModel)]="patient.mail" (ngModelChange)="patientChanged()" name="email" #spy/>
+                    </nb-card-body>
+                  </div>
+                  <div class="col-md-6">
+                    <nb-card-body>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="maritalStatus">Statut marital :</label>
+                            <select id="maritalStatus" name="maritalStatus" class="form-control"
+                                    [(ngModel)]="patient.maritalStatus" (ngModelChange)="patientChanged()" #spy>
+                              <option *ngFor="let maritalStatus of maritalStatuses | keyvalue"
+                                      [value]="maritalStatus.key" [selected]="maritalStatus == patient.maritalStatus">
+                                {{maritalStatus.value}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="numberChildren">Nombre d'enfants :</label>
+                            <input type="number" id="numberChildren" name="numberChildren" value="0"
+                                   [(ngModel)]="patient.children" (ngModelChange)="patientChanged()"
+                                   class="form-control" #spy/>
+                          </div>
+                        </div>
                       </div>
-                      <div class="demo-checkboxes col-sm-4">
-                        <input type="checkbox" class="form-control"
-                               [(ngModel)]="patient.deceased" (ngModelChange)="patientChanged()" name="deceased" #spy />
-                        <label style="padding-top: 10px;">Décédé(e)</label>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="job">Profession / Scolarité :</label>
+                            <input type="text" id="job" name="job" placeholder="Profession"
+                                   [(ngModel)]="patient.job" (ngModelChange)="patientChanged()" class="form-control"
+                                   #spy/>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="hobbies">Loisirs :</label>
+                            <input type="text" id="hobbies" name="hobbies" placeholder="Loisirs"
+                                   [(ngModel)]="patient.hobbies" (ngModelChange)="patientChanged()" class="form-control"
+                                   #spy/>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <p>Adresse :</p>
-                    <div class="input-group">
-                      <span class="input-group-addon fa-icon"><i class="fa fa-map-marker-alt"></i></span>
-                      <input type="text" placeholder="Adresse" class="form-control" name="address"
-                             [(ngModel)]="patient.address" (ngModelChange)="patientChanged()" #spy/>
-                    </div>
-                    <div class="row">
-                      <div class="input-group col-sm-4">
-                        <span class="input-group-addon fa-icon"><i class="fa fa-map-marker"></i></span>
-                        <input type="text" placeholder="Code postal" class="form-control" name="zipCode"
-                               [(ngModel)]="patient.zipCode" (ngModelChange)="patientChanged()" #spy/>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="doctor">Médecin traitant :</label>
+                            <input type="text" id="doctor" name="doctor" placeholder="Médecin traitant"
+                                   [(ngModel)]="patient.doctor" (ngModelChange)="patientChanged()" class="form-control"
+                                   #spy/>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="complementary-health">Mutuelle :</label>
+                            <input type="text" id="complementary-health" name="complementary-health"
+                                   placeholder="Mutuelle santé"
+                                   [(ngModel)]="patient.complementaryHealth" (ngModelChange)="patientChanged()"
+                                   class="form-control" #spy/>
+                          </div>
+                        </div>
                       </div>
-                      <div class="input-group col-sm-8">
-                        <span class="input-group-addon fa-icon"><i class="fa fa-map-marker"></i></span>
-                        <input type="text" placeholder="Ville" class="form-control" name="city"
-                               [(ngModel)]="patient.city" (ngModelChange)="patientChanged()" #spy/>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="social-security">Numéro Sécurité Sociale :</label>
+                            <input type="text" id="social-security" name="social-security"
+                                   [(ngModel)]="patient.socialSecurityNumber" (ngModelChange)="patientChanged()"
+                                   placeholder="Numéro sécurité sociale" class="form-control" #spy/>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </nb-card-body>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="sender">Envoyé par :</label>
+                            <input type="text" id="sender" name="sender" placeholder="Envoyé par"
+                                   [(ngModel)]="patient.sentBy" (ngModelChange)="patientChanged()" class="form-control"
+                                   #spy/>
+                          </div>
+                        </div>
+                        <div class="demo-radio col-sm-6">
+                          <label class="custom-control custom-radio" *ngFor="let choice of handOrientation | keyvalue">
+                            <input type="radio" class="custom-control-input" name="hand-orientation"
+                                   [value]="choice.key" [(ngModel)]="patient.handOrientation"
+                                   (ngModelChange)="patientChanged()" #spy>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{ choice.value }}</span>
+                          </label>
+                        </div>
+                      </div>
+                    </nb-card-body>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <nb-card-body>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="maritalStatus">Statut marital :</label>
-                          <select id="maritalStatus" name="maritalStatus" class="form-control"
-                                  [(ngModel)]="patient.maritalStatus" (ngModelChange)="patientChanged()" #spy>
-                            <option *ngFor="let maritalStatus of maritalStatuses | keyvalue"
-                                    [value]="maritalStatus.key" [selected]="maritalStatus == patient.maritalStatus">{{maritalStatus.value}}</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="numberChildren">Nombre d'enfants :</label>
-                          <input type="number" id="numberChildren" name="numberChildren" value="0"
-                                 [(ngModel)]="patient.children" (ngModelChange)="patientChanged()"
-                                 class="form-control" #spy/>
-                        </div>
-                      </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="remarks">Remarques :</label>
+                      <textarea rows="5" placeholder="Remarques" id="remarks" name="remarks"
+                                [(ngModel)]="patient.remarks" (ngModelChange)="patientChanged()"
+                                class="form-control" #spy></textarea>
                     </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="job">Profession / Scolarité :</label>
-                          <input type="text" id="job" name="job" placeholder="Profession"
-                                 [(ngModel)]="patient.job" (ngModelChange)="patientChanged()" class="form-control" #spy/>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="hobbies">Loisirs :</label>
-                          <input type="text" id="hobbies" name="hobbies" placeholder="Loisirs"
-                                 [(ngModel)]="patient.hobbies" (ngModelChange)="patientChanged()" class="form-control" #spy/>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="doctor">Médecin traitant :</label>
-                          <input type="text" id="doctor" name="doctor" placeholder="Médecin traitant"
-                                 [(ngModel)]="patient.doctor" (ngModelChange)="patientChanged()" class="form-control" #spy/>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="complementary-health">Mutuelle :</label>
-                          <input type="text" id="complementary-health" name="complementary-health" placeholder="Mutuelle santé"
-                                 [(ngModel)]="patient.complementaryHealth" (ngModelChange)="patientChanged()" class="form-control" #spy/>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <label for="social-security">Numéro Sécurité Sociale :</label>
-                          <input type="text" id="social-security" name="social-security"
-                                 [(ngModel)]="patient.socialSecurityNumber" (ngModelChange)="patientChanged()" placeholder="Numéro sécurité sociale" class="form-control" #spy/>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="sender">Envoyé par :</label>
-                          <input type="text" id="sender" name="sender" placeholder="Envoyé par"
-                                 [(ngModel)]="patient.sentBy" (ngModelChange)="patientChanged()" class="form-control" #spy/>
-                        </div>
-                      </div>
-                      <div class="demo-radio col-sm-6">
-                        <label class="custom-control custom-radio" *ngFor="let choice of handOrientation | keyvalue">
-                          <input type="radio" class="custom-control-input" name="hand-orientation"
-                                 [value]="choice.key" [(ngModel)]="patient.handOrientation" (ngModelChange)="patientChanged()" #spy>
-                          <span class="custom-control-indicator"></span>
-                          <span class="custom-control-description">{{ choice.value }}</span>
-                        </label>
-                      </div>
-                    </div>
-                  </nb-card-body>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="remarks">Remarques :</label>
-                    <textarea rows="5" placeholder="Remarques" id="remarks" name="remarks"
-                              [(ngModel)]="patient.remarks" (ngModelChange)="patientChanged()"
-                              class="form-control" #spy></textarea>
                   </div>
                 </div>
               </div>
-            </div>
             </form>
           </nb-tab>
           <nb-tab tabTitle="Antécédents" [badgeText]="getNumberOfAntecedents()" badgeStatus="danger">
@@ -215,18 +230,114 @@
               </div>
             </form>
           </nb-tab>
-          <nb-tab tabTitle="Consultations" badgeText="2" badgeStatus="info">
-            <div class="row">
-              <div class="col-md-12">
-                3
+          <nb-tab tabTitle="Consultations" badgeText="{{patient.consultations.length}}" badgeStatus="info">
+            <nb-card-body>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="space"></div>
+                  <div class="text-center">
+                    <button class="btn btn-primary pull-right" (click)="newConsultation()">
+                      <i class="fa fa-plus"></i> Nouvelle consultation
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div class="spacer"></div>
+              <div class="row">
+                <div class="col-md-12">
+                  <accordion>
+                    <nb-card *ngFor="let group of patient.consultations; let i = index" class="card-{{i}}">
+                      <accordion-group [panelClass]="'panel-click'" [isOpen]="group.isOpen">
+                        <nb-card-header class="pointer" accordion-heading>
+                          <div class="pull-left float-left">
+                            {{group.date | date:'longDate'}} : {{group.title}} {{group.isOpen}}
+                          </div>
+                          <span class="float-right pull-right">
+                            <i class="fa fa-euro-sign"></i> :
+                            <i class="fa" [ngClass]="getConsultationPaymentClass(group)"></i>
+                          </span>
+                        </nb-card-header>
+                        <div class="row">
+                          <div class="col-md-7">
+                            <div class="form-group">
+                              <input type="text" placeholder="Motif de consultation" name="consultationReason"
+                                     class="form-control"
+                                     [(ngModel)]="group.title" (ngModelChange)="patientChanged()" #spy/>
+                            </div>
+                          </div>
+                          <div class="col-md-5">
+                            <div class="input-group">
+                              <span class="input-group-addon fa-icon"><i class="fa fa-calendar"></i></span>
+                              <input type="text"
+                                     name="consultationDate"
+                                     placeholder="Date de consultation"
+                                     class="form-control"
+                                     bsDatepicker
+                                     [(ngModel)]="group.date"
+                                     (ngModelChange)="patientChanged()"
+                                     [bsConfig]="{ dateInputFormat: 'DD MMM YYYY', containerClass: 'theme-blue' }"
+                                     #spy/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="paymentType">Moyen de paiement :</label>
+                              <select id="paymentType" name="paymentType" class="form-control"
+                                      [(ngModel)]="group.paymentType" (ngModelChange)="patientChanged()" #spy>
+                                <option *ngFor="let paymentType of paymentTypes | keyvalue"
+                                        [value]="paymentType.key" [selected]="paymentType.value == group.paymentType">
+                                  {{paymentType.value}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6" *ngIf="group.paymentType === 'Check'">
+                            <div class="form-group">
+                              <label for="paymentType">Numéro de chèque :</label>
+                              <input type="text" placeholder="Numéro de chèque" name="checkNumber" class="form-control"
+                                     [(ngModel)]="group.checkNumber" (ngModelChange)="patientChanged()" #spy/>
+                            </div>
+                          </div>
+                          <div class="col-md-2" *ngIf="group.paymentType === 'Check'">
+                            <div class="form-group">
+                              <label for="paymentType">Rapproché :</label>
+                              <input type="checkbox" class="form-control"
+                                     [(ngModel)]="group.clearedCheck" (ngModelChange)="patientChanged()"
+                                     name="paymentProblem" #spy/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <label>Tests cliniques :</label>
+                            <ckeditor (ngModelChange)="patientChanged()" [(ngModel)]="group.description" [config]="{ extraPlugins: 'divarea',
+                            height: '320',
+                            language: 'fr',
+                            removePlugins: 'maximize,about'}"></ckeditor>
+                          </div>
+                        </div>
+                        <div class="spacer"></div>
+                        <div class="row">
+                          <div class="col-md-12 text-center">
+                            <button class="btn btn-danger" (click)="removeConsultation(group)">Supprimer</button>
+                          </div>
+                        </div>
+                      </accordion-group>
+                    </nb-card>
+                  </accordion>
+                </div>
+              </div>
+            </nb-card-body>
           </nb-tab>
         </nb-tabset>
       </nb-card-body>
       <nb-card-footer class="text-center">
         <button class="btn" [ngClass]="{'btn-success': !patientSaved}"
-                [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving" [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i *ngIf="!patientSaving">Sauvegarder</i></button>
+                [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving"
+                                                                            [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i
+          *ngIf="!patientSaving">Sauvegarder</i></button>
       </nb-card-footer>
     </nb-card>
   </div>

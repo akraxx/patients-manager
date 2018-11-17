@@ -2,12 +2,17 @@ import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from 
 import {ActivatedRoute} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap';
 import {Antecedent} from './patient-antecedent/patient-antecedent.component';
-import {HandOrientation, MaritalStatus, Patient, Sexe} from '../patient.model';
+import {Consultation, HandOrientation, MaritalStatus, Patient, PaymentType, Sexe} from '../patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
 import {Observable, Subject} from 'rxjs/Rx';
 import {ComponentCanDeactivate} from '../../../@core/utils/pending-changes.guard';
 import 'style-loader!angular2-toaster/toaster.css';
 import {ToasterService} from 'angular2-toaster';
+import '../../editors/ckeditor/ckeditor.loader';
+import 'ckeditor';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalConfirmComponent} from '../../ui-features/modals/modal-confirm/modal-confirm.component';
+
 
 @Component({
   selector: 'ngx-patient-view',
@@ -21,6 +26,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   sexe = Sexe;
   handOrientation = HandOrientation;
   maritalStatuses = MaritalStatus;
+  paymentTypes = PaymentType;
+
   private sub: any;
 
   templateAntecedents: Antecedent[];
@@ -32,7 +39,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   constructor(private route: ActivatedRoute,
               private localeService: BsLocaleService,
               private patientService: PatientService,
-              private toasterService: ToasterService) {
+              private toasterService: ToasterService,
+              private modalService: NgbModal) {
     this.localeService.use('fr');
 
     this.templateAntecedents = [
@@ -174,6 +182,15 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
                 }
               });
             this.patient.birthDate = new Date(this.patient.birthDate);
+
+            if (!this.patient.consultations) {
+              this.patient.consultations = [];
+            }
+            this.patient.consultations
+              .forEach(consultation => {
+                consultation.date = new Date(consultation.date);
+                consultation.isOpen = false;
+              });
           },
           error => {
             this.toasterService.pop('error', 'Impossible de récupérer le patient.', error.error.message);
@@ -234,6 +251,49 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
     }
 
     return numberOfFilledAntecedents + '';
+  }
+
+  getConsultationPaymentClass(consultation: Consultation) {
+    let color: string = 'text-danger';
+    let icon: string = 'fa-times';
+    if (consultation.paymentType === 'Check') {
+      icon = 'fa-money-check';
+      if (consultation.clearedCheck) {
+        color = 'text-success';
+      } else {
+        color = 'text-warning';
+      }
+    } else if (consultation.paymentType === 'Cash') {
+      icon = 'fa-money-bill';
+      color = 'text-success';
+    }
+
+    return `${color} ${icon}`;
+  }
+
+  newConsultation() {
+    const consultation = new Consultation();
+    consultation.id = this.patient.consultations.length;
+    consultation.isOpen = true;
+    this.patient.consultations.unshift(consultation);
+    this.patientChanged();
+  }
+
+  removeConsultation(consultation: Consultation) {
+    const modal = this.modalService.open(ModalConfirmComponent, {size: 'lg', container: 'nb-layout'});
+    modal.componentInstance.modalHeader = 'Supprimer la consultation';
+    modal.componentInstance.modalContent = `
+      Êtes vous sur de vouloir supprimer la consultation effectuée sur
+      ${this.patient.firstName} ${this.patient.lastName} à la date du ${consultation.date} ?
+    `;
+    modal.componentInstance.confirmationLabel = 'Supprimer';
+
+    modal.result.then(result => {
+      if (result) {
+        this.patient.consultations.splice(this.patient.consultations.indexOf(consultation), 1);
+        this.patientChanged();
+      }
+    });
   }
 
 }

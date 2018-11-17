@@ -11,8 +11,9 @@
                                   <i class="fa fa-exclamation-triangle"></i>
                                 </button>
                               </span>
-      <input type="text" class="form-control" [ngClass]="{'form-control-danger': antecedent.important}"
+      <textarea type="text" class="form-control" [ngClass]="{'form-control-danger': antecedent.important}"
              (ngModelChange)="antecedentChanged()" [(ngModel)]="antecedent.value">
+      </textarea>
       <span class="input-group-append">
                                 <button class="btn btn-warning input-group-text" (click)="removeAntecedent()">
                                   <i class="fa fa-trash-alt"></i>

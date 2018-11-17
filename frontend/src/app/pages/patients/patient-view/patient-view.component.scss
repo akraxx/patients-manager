@@ -1,5 +1,4 @@
 @import '../../../@theme/styles/themes';
-
 @import '../../../@theme/styles/themes';
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
@@ -13,6 +12,7 @@
   nb-tab {
     overflow: visible;
   }
+
   .input-group {
     margin-bottom: 1rem;
   }
@@ -121,5 +121,15 @@
       font-size: 0.75rem;
     }
   }
+
+  nb-card-header {
+    &.pointer {
+      cursor: pointer;
+    }
+  }
+
 }
+
+
+
 
