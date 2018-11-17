@@ -38,6 +38,7 @@ export class Consultation {
   `;
   date: Date = new Date();
   isOpen: boolean = false;
+  osteopath: string;
 }
 
 export class Patient {
@@ -66,4 +67,7 @@ export class Patient {
   antecedents: Antecedent[];
   consultations: Consultation[];
   createdAt: Date;
+  updatedAt: Date;
+  createdBy: string;
+  updatedBy: string;
 }

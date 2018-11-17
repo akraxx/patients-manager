@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Patient, Sexe} from '../patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
 import {BsLocaleService} from 'ngx-bootstrap';
@@ -6,25 +6,30 @@ import {ToasterConfig, ToasterService} from 'angular2-toaster';
 
 import 'style-loader!angular2-toaster/toaster.css';
 import {Router} from '@angular/router';
+import {KeycloakService} from 'keycloak-angular';
 
 @Component({
   selector: 'ngx-patient-new',
   styleUrls: ['./patient-new.component.scss'],
   templateUrl: './patient-new.component.html',
 })
-export class PatientNewComponent {
+export class PatientNewComponent implements OnInit {
   sexe = Sexe;
   patient: Patient = new Patient();
   config: ToasterConfig;
+  loggedUser: string = 'unknown';
 
   constructor(private patientService: PatientService,
               private localeService: BsLocaleService,
               private toasterService: ToasterService,
+              private keycloakService: KeycloakService,
               private router: Router) {
     this.localeService.use('fr');
   }
 
   savePatient() {
+    this.patient.createdBy = this.loggedUser;
+    this.patient.updatedBy = this.loggedUser;
     this.patientService.addPatient(this.patient)
       .subscribe(
         result => {
@@ -41,5 +46,11 @@ export class PatientNewComponent {
 
   resetForm() {
     this.patient = new Patient();
+  }
+
+  ngOnInit(): void {
+    if (this.keycloakService.isLoggedIn()) {
+      this.loggedUser = this.keycloakService.getUsername();
+    }
   }
 }

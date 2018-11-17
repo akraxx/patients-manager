@@ -3,14 +3,22 @@
   <div class="col-md-12" *ngIf="patient">
     <nb-card>
       <nb-card-header>
-        {{patient.lastName | uppercase}} {{patient.firstName | titlecase}} -
-        {{ patient.birthDate | age }} ans ({{ patient.birthDate | date:'mediumDate' }})
-        <span class="float-right">
+        <div class="float-left">
+          <div>{{patient.lastName | uppercase}} {{patient.firstName | titlecase}} -
+            {{ patient.birthDate | age }} ans ({{ patient.birthDate | date:'mediumDate' }})
+          </div>
+          <div class="tiny">Créé le {{patient.createdAt|date:'medium'}} par {{patient.createdBy}}, Edité le {{patient.updatedAt|date:'medium'}} par
+            {{patient.updatedBy}}
+          </div>
+        </div>
+        <div class="float-right">
           <button class="btn btn-xs" [ngClass]="{'btn-success': !patientSaved}"
                   [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving"
                                                                               [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i
             *ngIf="!patientSaving">Sauvegarder</i></button>
-        </span>
+        </div>
+
+
       </nb-card-header>
       <nb-card-body>
         <nb-tabset>
@@ -250,7 +258,7 @@
                       <accordion-group [panelClass]="'panel-click'" [isOpen]="group.isOpen">
                         <nb-card-header class="pointer" accordion-heading>
                           <div class="pull-left float-left">
-                            {{group.date | date:'longDate'}} : {{group.title}} {{group.isOpen}}
+                            Le {{group.date | date:'longDate'}} par {{group.osteopath}} : {{group.title}}
                           </div>
                           <span class="float-right pull-right">
                             <i class="fa fa-euro-sign"></i> :
@@ -311,7 +319,6 @@
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <label>Tests cliniques :</label>
                             <ckeditor (ngModelChange)="patientChanged()" [(ngModel)]="group.description" [config]="{ extraPlugins: 'divarea',
                             height: '320',
                             language: 'fr',

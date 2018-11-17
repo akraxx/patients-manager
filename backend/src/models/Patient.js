@@ -26,8 +26,9 @@ var ConsultationSchema = new mongoose.Schema({
     paymentType: String,
     clearedCheck: Boolean,
     checkNumber: String,
-    clinicalTests: String,
-    date: Date
+    description: String,
+    date: Date,
+    osteopath: String,
 });
 
 var PatientSchema = new mongoose.Schema({
@@ -47,7 +48,8 @@ var PatientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    createdAt: {type: Date, default: Date.now},
+    createdBy: String,
+    updatedBy: String,
     mobilePhone: String,
     phone: String,
     mail: String,
@@ -67,6 +69,6 @@ var PatientSchema = new mongoose.Schema({
     remarks: String,
     antecedents: [AntecedentSchema],
     consultations: [ConsultationSchema]
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Patient', PatientSchema);

@@ -70,7 +70,7 @@ router.post('/', function (req, res, next) {
 
 /* UPDATE PATIENT */
 router.put('/:id', function (req, res, next) {
-    Patient.findByIdAndUpdate(req.params.id, req.body, {runValidators: true}, function (err) {
+    Patient.update({ _id: req.params.id }, { $set: req.body}, {runValidators: true, new: false}, function (err) {
         if (err) return next(err);
         Patient.findById(req.params.id, function (err, post) {
             if (err) return next(err);

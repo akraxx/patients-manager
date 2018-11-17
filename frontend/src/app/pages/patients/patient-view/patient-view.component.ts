@@ -12,6 +12,7 @@ import '../../editors/ckeditor/ckeditor.loader';
 import 'ckeditor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ModalConfirmComponent} from '../../ui-features/modals/modal-confirm/modal-confirm.component';
+import {KeycloakService} from 'keycloak-angular';
 
 
 @Component({
@@ -22,11 +23,12 @@ import {ModalConfirmComponent} from '../../ui-features/modals/modal-confirm/moda
 export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
   id: string;
   @ViewChild('patientForm') patientForm: ElementRef;
-  patient: Patient = new Patient();
+  patient: Patient;
   sexe = Sexe;
   handOrientation = HandOrientation;
   maritalStatuses = MaritalStatus;
   paymentTypes = PaymentType;
+  loggedUser: string = 'unknown';
 
   private sub: any;
 
@@ -40,7 +42,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               private localeService: BsLocaleService,
               private patientService: PatientService,
               private toasterService: ToasterService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private keycloakService: KeycloakService) {
     this.localeService.use('fr');
 
     this.templateAntecedents = [
@@ -94,12 +97,6 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
       },
       {
         title: 'Luxation',
-        category: 'Antécédents traumas',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Accident voiture',
         category: 'Antécédents traumas',
         important: false,
         value: '',
@@ -203,8 +200,13 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
     this.patientUpdate
       .debounceTime(5000)
       .subscribe((patient: Patient) => {
+        patient.updatedBy = this.loggedUser;
         this.savePatient(patient);
       });
+
+    if (this.keycloakService.isLoggedIn()) {
+      this.loggedUser = this.keycloakService.getUsername();
+    }
   }
 
   savePatient(patient: Patient) {
@@ -274,6 +276,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   newConsultation() {
     const consultation = new Consultation();
     consultation.id = this.patient.consultations.length;
+    consultation.osteopath = this.loggedUser;
     consultation.isOpen = true;
     this.patient.consultations.unshift(consultation);
     this.patientChanged();
