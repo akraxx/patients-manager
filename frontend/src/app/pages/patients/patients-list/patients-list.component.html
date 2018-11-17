@@ -3,7 +3,7 @@
   <div class="col-md-12">
     <nb-card>
       <nb-card-header>
-        Liste des patients
+        Liste des patients {{loggedUser}}
       </nb-card-header>
       <nb-card-body>
         <div class="text-center">
@@ -31,7 +31,7 @@
               </div>
             </div>
           </nb-tab>
-          <nb-tab tabTitle="Derniers consultés">
+          <nb-tab tabTitle="Mes patients">
           </nb-tab>
           <nb-tab tabTitle="Derniers enregistrés">
           </nb-tab>
@@ -44,6 +44,7 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Age</th>
+            <th>Dernière consultation</th>
             <th>Date de création</th>
             <th>Visionner</th>
           </tr>
@@ -53,6 +54,7 @@
             <td>{{patient.lastName}}</td>
             <td>{{patient.firstName}}</td>
             <td>{{patient.birthDate | age}} ans ({{patient.birthDate | date:'longDate'}})</td>
+            <td>{{getLastConsultationDate(patient) | date:'longDate'}}</td>
             <td>{{patient.createdAt | date:'medium'}}</td>
             <td><i class="fa fa-eye"></i></td>
           </tr>

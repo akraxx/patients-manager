@@ -49,8 +49,11 @@ export class PatientNewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.keycloakService.isLoggedIn()) {
-      this.loggedUser = this.keycloakService.getUsername();
-    }
+    this.keycloakService.isLoggedIn()
+      .then(result => {
+        if (result) {
+          this.loggedUser = this.keycloakService.getUsername();
+        }
+      });
   }
 }

@@ -204,9 +204,12 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
         this.savePatient(patient);
       });
 
-    if (this.keycloakService.isLoggedIn()) {
-      this.loggedUser = this.keycloakService.getUsername();
-    }
+    this.keycloakService.isLoggedIn()
+      .then(result => {
+        if (result) {
+          this.loggedUser = this.keycloakService.getUsername();
+        }
+      });
   }
 
   savePatient(patient: Patient) {

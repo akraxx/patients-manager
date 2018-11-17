@@ -30,6 +30,16 @@ export class PatientService {
     return this.http.get<Patient>(`/api/patients/${id}`);
   }
 
+  searchPatientByOsteopath(osteopath: string): Observable<Patient[]> {
+    const params = new HttpParams()
+      .set('sort', 'lastName')
+      .set('sortType', 'asc')
+      .set('createdBy', osteopath)
+      .set('consultations.osteopath', osteopath);
+
+    return this.http.get<Patient[]>(`/api/patients`, {params: params});
+  }
+
   searchPatientByName(name: string): Observable<Patient[]> {
     const params = new HttpParams()
       .set('sort', 'lastName')
