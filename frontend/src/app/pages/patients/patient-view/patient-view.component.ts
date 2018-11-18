@@ -217,7 +217,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
     this.patientService.updatePatient(this.id, patient)
       .finally(() => this.patientSaving = false)
       .subscribe(
-        () => {
+        p => {
+          this.patient.updatedAt = p.updatedAt;
           this.patientSaved = true;
         },
         error => {

@@ -21,8 +21,6 @@ export class PatientService {
   }
 
   updatePatient(id: string, patient: Patient): Observable<Patient> {
-    patient.createdAt = undefined;
-    patient.updatedAt = undefined;
     return this.http.put<Patient>(`/api/patients/${id}`, patient);
   }
 
