@@ -42,4 +42,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# patients-manager
 .env
+acme.json
+playbook.retry
