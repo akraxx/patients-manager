@@ -9,9 +9,6 @@ services:
       context: frontend
     volumes:
     - "${PWD}/frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
-    networks:
-    - reverse-proxy
-    - default
     labels:
     - "traefik.docker.network=reverse-proxy"
     - "traefik.enable=true"
@@ -20,9 +17,6 @@ services:
   patients-manager-api:
     build:
       context: backend
-    networks:
-    - reverse-proxy
-    - default
     links:
       - mongodb
     environment:
