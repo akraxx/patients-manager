@@ -39,9 +39,11 @@ script:
   - ls -lrth $HOME/.npm
 
 after_script:
+  - DOCKER_TAG=$TRAVIS_BRANCH
+  - if [[ $TRAVIS_BRANCH == "master" ]]; then DOCKER_TAG="latest"; fi
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker images
-  - docker tag patients-manager-api $DOCKER_USERNAME/patients-manager-api:$TRAVIS_BRANCH || travis_terminate 1;
-  - docker tag patients-manager-web $DOCKER_USERNAME/patients-manager-web:$TRAVIS_BRANCH || travis_terminate 1;
-  - docker push $DOCKER_USERNAME/patients-manager-api:$TRAVIS_BRANCH || travis_terminate 1;
-  - docker push $DOCKER_USERNAME/patients-manager-web:$TRAVIS_BRANCH || travis_terminate 1;
+  - docker tag patients-manager-api $DOCKER_USERNAME/patients-manager-api:$DOCKER_TAG || travis_terminate 1;
+  - docker tag patients-manager-web $DOCKER_USERNAME/patients-manager-web:$DOCKER_TAG || travis_terminate 1;
+  - docker push $DOCKER_USERNAME/patients-manager-api:$DOCKER_TAG || travis_terminate 1;
+  - docker push $DOCKER_USERNAME/patients-manager-web:$DOCKER_TAG || travis_terminate 1;

@@ -17,6 +17,6 @@ deploy-local: 	## deploy using docker images locally built
 
 deploy-production: ## deploy using docker images from docker hub
 	./scripts/set-version.sh
-	docker-compose -f docker-compose.yml -f docker-compose-production.yml up -d
+	VERSION=$(cat .version) docker-compose -f docker-compose.yml -f docker-compose-production.yml up -d
 
 
