@@ -66,14 +66,14 @@ services:
   # Patients manager
   #######################################
   patients-manager-web:
-    image: "akraxx/patients-manager-web:latest"
+    image: "akraxx/patients-manager-web:${VERSION}"
     volumes:
       - "${PWD}/frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
     labels:
     - "traefik.port=80"
     - "traefik.frontend.rule=PathPrefix:/"
   patients-manager-api:
-    image: "akraxx/patients-manager-api:latest"
+    image: "akraxx/patients-manager-api:${VERSION}"
     environment:
       MONGO_HOST: mongodb
       KEYCLOAK_HOST: https://manager.ingridlhotellier.fr
