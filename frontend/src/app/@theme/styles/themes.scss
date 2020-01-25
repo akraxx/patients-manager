@@ -99,3 +99,7 @@ $nb-themes: nb-register-theme((
 .spacer {
   margin-top: 10px;
 }
+
+.menu-items.expanded, [_nghost-c2] .menu-item>.menu-items.expanded {
+  max-height: 900px !important;
+}
