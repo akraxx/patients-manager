@@ -78,6 +78,11 @@ services:
       MONGO_HOST: mongodb
       KEYCLOAK_HOST: https://manager.ingridlhotellier.fr
       PRODUCTION: "true"
+      ASSETS_PATH: /app/data/
+      MAIL_SERVER: ${MAIL_SERVER}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USER: ${MAIL_USER}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
     volumes:
       - "${PWD}/backend/data:/app/data"
     labels:
