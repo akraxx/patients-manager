@@ -13,7 +13,6 @@ import 'ckeditor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ModalConfirmComponent} from '../../ui-features/modals/modal-confirm/modal-confirm.component';
 import {KeycloakService} from 'keycloak-angular';
-import {DatePipe} from '@angular/common';
 import {PatientInvoiceModalComponent} from './patient-invoice-modal/patient-invoice-modal.component';
 
 
@@ -45,8 +44,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               private patientService: PatientService,
               private toasterService: ToasterService,
               private modalService: NgbModal,
-              private keycloakService: KeycloakService,
-              private datepipe: DatePipe) {
+              private keycloakService: KeycloakService) {
     this.localeService.use('fr');
 
     this.templateAntecedents = [
