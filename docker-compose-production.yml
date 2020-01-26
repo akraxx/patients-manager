@@ -78,6 +78,8 @@ services:
       MONGO_HOST: mongodb
       KEYCLOAK_HOST: https://manager.ingridlhotellier.fr
       PRODUCTION: "true"
+    volumes:
+      - "${PWD}/backend/data:/app/data"
     labels:
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"
