@@ -20,4 +20,6 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: false,
   keycloak: keycloakConfig,
+  version: 'local',
+  buildDate: new Date(),
 };

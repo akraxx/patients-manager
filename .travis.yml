@@ -27,8 +27,14 @@ before_cache:
 before_install:
   # Load cached docker images
   - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
+  - BUILD_DATE=$(date --iso-8601=seconds)
+  - VERSION=`git symbolic-ref -q --short HEAD || git describe --tags --exact-match`
+  - sed -i "s/{VERSION_HOLDER}/$VERSION/g" frontend/src/environments/environment.prod.ts
+  - sed -i "s/{BUILD_DATE_HOLDER}/$BUILD_DATE/g" frontend/src/environments/environment.prod.ts
+  - cat frontend/src/environments/environment.prod.ts
 
 script:
+  - cat frontend/src/environments/environment.prod.ts
   - npm ci --prefix backend || travis_terminate 1;
   - npm run build --prefix backend || travis_terminate 1;
   - ls -lrth backend || travis_terminate 1;
