@@ -101,7 +101,8 @@ router.get('/:id/consultations/:consultationId/invoice', function (req, res, nex
     let consultationId = +req.params.consultationId;
 
     getConsultation(patientId, consultationId, next, res, function (patient, consultation) {
-        ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH, "ingrid-lhotellier.html.ejs"), {
+        ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH,
+            getEscapedOsteopathName(consultation.osteopath)+".html.ejs"), {
                 patient: patient,
                 consultation: consultation,
                 assetsPath: "file://" + INVOICES_ASSETS_PATH
@@ -138,7 +139,8 @@ router.post('/:id/consultations/:consultationId/invoice', function (req, res, ne
     let consultationId = +req.params.consultationId;
 
     getConsultation(patientId, consultationId, next, res, function (patient, consultation) {
-        ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH, "ingrid-lhotellier.html.ejs"), {
+        ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH,
+            getEscapedOsteopathName(consultation.osteopath)+".html.ejs"), {
                 patient: patient,
                 consultation: consultation,
                 assetsPath: "file://" + INVOICES_ASSETS_PATH
@@ -170,7 +172,7 @@ router.post('/:id/consultations/:consultationId/invoice', function (req, res, ne
 });
 
 function sendInvoiceByMail(res, patient, consultation, invoiceFilePath, invoiceFileName) {
-    ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH, "mail.html.ejs"), {
+    ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH, getEscapedOsteopathName(consultation.osteopath)+"-mail.html.ejs"), {
             patient: patient,
             consultation: consultation
         },
@@ -190,7 +192,7 @@ function sendInvoiceByMail(res, patient, consultation, invoiceFilePath, invoiceF
                 });
 
                 transporter.sendMail({
-                    from: '"Ingrid Lhotellier" <contact@ingridlhotellier.fr>',
+                    from: getOsteopathMail(consultation.osteopath),
                     to: patient.mail,
                     subject: 'Cabinet Ostéopathie - Eucalyptus - Facture',
                     text: 'Vous trouverez ci-joint votre facture d\'ostéopathie.',
@@ -231,4 +233,17 @@ function getConsultation(patientId, consultationId, next, res, cn) {
         }
     });
 }
+
+function getEscapedOsteopathName(osteopathName) {
+    return osteopathName.replace('.', '-');
+}
+
+function getOsteopathMail(osteopathName) {
+    if(osteopathName === 'ingrid.lhotellier') {
+        return '"Ingrid Lhotellier" <factures@ingridlhotellier.fr>';
+    } else {
+        return '"Elyette Baelen" <factures@ingridlhotellier.fr>';
+    }
+}
+
 module.exports = router;
