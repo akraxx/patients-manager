@@ -30,10 +30,11 @@ before_install:
   - BUILD_DATE=$(date --iso-8601=seconds)
   - sed -i "s/{VERSION_HOLDER}/$TRAVIS_BRANCH/g" frontend/src/environments/environment.prod.ts
   - sed -i "s/{BUILD_DATE_HOLDER}/$BUILD_DATE/g" frontend/src/environments/environment.prod.ts
-  - cat frontend/src/environments/environment.prod.ts
+  - sed -i "s/{VERSION_HOLDER}/$TRAVIS_BRANCH/g" backend/version.json
+  - sed -i "s/{BUILD_DATE_HOLDER}/$BUILD_DATE/g" backend/version.json
+  - cat backend/version.json
 
 script:
-  - cat frontend/src/environments/environment.prod.ts
   - npm ci --prefix backend || travis_terminate 1;
   - npm run build --prefix backend || travis_terminate 1;
   - ls -lrth backend || travis_terminate 1;
@@ -44,7 +45,7 @@ script:
   - ls -lrth $HOME/.npm
 
 after_script:
-  - DOCKER_TAG=$TRAVIS_BRANCH
+  - DOCKER_TAG=$(echo $TRAVIS_BRANCH | sed 's/\//-/g')
   - if [[ $TRAVIS_BRANCH == "master" ]]; then DOCKER_TAG="latest"; fi
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker images

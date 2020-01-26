@@ -14,5 +14,5 @@ import {environment} from '../../../../environments/environment';
 })
 export class FooterComponent {
   version: string = environment.version;
-  date: Date = environment.buildDate;
+  date: Date = new Date(environment.buildDate);
 }

@@ -25,7 +25,7 @@ app.use(i18n.init);
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 if (PRODUCTION) {
-    app.use(jwt({
+    app.use('/api', jwt({
         // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
         secret: jwksRsa.expressJwtSecret({
             cache: true,
@@ -43,6 +43,8 @@ if (PRODUCTION) {
 app.use(router);
 const apiRouter = require('./routes/patients');
 app.use('/api/patients', apiRouter);
+const apiVersion = require('./routes/version');
+app.use('/version', apiVersion);
 
 
 db.on('connecting', function() {
