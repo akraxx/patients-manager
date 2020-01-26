@@ -28,9 +28,10 @@ before_install:
   # Load cached docker images
   - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
   - BUILD_DATE=$(date --iso-8601=seconds)
-  - sed -i "s/{VERSION_HOLDER}/$TRAVIS_BRANCH/g" frontend/src/environments/environment.prod.ts
+  - VERSION=$(echo $TRAVIS_BRANCH | sed 's/\//-/g')
+  - sed -i "s/{VERSION_HOLDER}/$VERSION/g" frontend/src/environments/environment.prod.ts
   - sed -i "s/{BUILD_DATE_HOLDER}/$BUILD_DATE/g" frontend/src/environments/environment.prod.ts
-  - sed -i "s/{VERSION_HOLDER}/$TRAVIS_BRANCH/g" backend/version.json
+  - sed -i "s/{VERSION_HOLDER}/$VERSION/g" backend/version.json
   - sed -i "s/{BUILD_DATE_HOLDER}/$BUILD_DATE/g" backend/version.json
   - cat backend/version.json
 
