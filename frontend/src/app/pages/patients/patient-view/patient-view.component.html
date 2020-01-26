@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="float-right">
-          <button class="btn btn-xs" [ngClass]="{'btn-success': !patientSaved}"
+          <button class="btn btn-xs pointer" [ngClass]="{'btn-success': !patientSaved}"
                   [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving"
                                                                               [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i
             *ngIf="!patientSaving">Sauvegarder</i></button>
@@ -244,7 +244,7 @@
                 <div class="col-md-12">
                   <div class="space"></div>
                   <div class="text-center">
-                    <button class="btn btn-primary pull-right" (click)="newConsultation()">
+                    <button class="btn btn-primary pull-right pointer" (click)="newConsultation()">
                       <i class="fa fa-plus"></i> Nouvelle consultation
                     </button>
                   </div>
@@ -266,14 +266,19 @@
                           </span>
                         </nb-card-header>
                         <div class="row">
-                          <div class="col-md-7">
+                          <div class="col-md-2">
+                            <button type="button" class="btn btn-primary pointer" (click)="downloadInvoice(group)">
+                              Facture
+                            </button>
+                          </div>
+                          <div class="col-md-6">
                             <div class="form-group">
                               <input type="text" placeholder="Motif de consultation" name="consultationReason"
                                      class="form-control"
                                      [(ngModel)]="group.title" (ngModelChange)="patientChanged()" #spy/>
                             </div>
                           </div>
-                          <div class="col-md-5">
+                          <div class="col-md-4">
                             <div class="input-group">
                               <span class="input-group-addon fa-icon"><i class="fa fa-calendar"></i></span>
                               <input type="text"

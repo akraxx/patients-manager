@@ -21,6 +21,7 @@ services:
       - mongodb
     environment:
       MONGO_HOST: mongodb
+      ASSETS_PATH: /app/data/
     labels:
     - "traefik.docker.network=reverse-proxy"
     - "traefik.enable=true"

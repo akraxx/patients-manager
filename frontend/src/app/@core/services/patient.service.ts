@@ -47,4 +47,12 @@ export class PatientService {
 
     return this.http.get<Patient[]>(`/api/patients`, {params: params});
   }
+
+  downloadInvoice(id: string, consultationId: number) {
+    return this.http.get(`/api/patients/${id}/consultations/${consultationId}/invoice`, { responseType: 'blob' });
+  }
+
+  sendInvoice(id: string, consultationId: number) {
+    return this.http.post(`/api/patients/${id}/consultations/${consultationId}/invoice`, {});
+  }
 }

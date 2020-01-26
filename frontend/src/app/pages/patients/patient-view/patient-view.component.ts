@@ -13,6 +13,8 @@ import 'ckeditor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ModalConfirmComponent} from '../../ui-features/modals/modal-confirm/modal-confirm.component';
 import {KeycloakService} from 'keycloak-angular';
+import {DatePipe} from '@angular/common';
+import {PatientInvoiceModalComponent} from './patient-invoice-modal/patient-invoice-modal.component';
 
 
 @Component({
@@ -43,7 +45,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               private patientService: PatientService,
               private toasterService: ToasterService,
               private modalService: NgbModal,
-              private keycloakService: KeycloakService) {
+              private keycloakService: KeycloakService,
+              private datepipe: DatePipe) {
     this.localeService.use('fr');
 
     this.templateAntecedents = [
@@ -301,6 +304,14 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
         this.patientChanged();
       }
     });
+  }
+
+  downloadInvoice(consultation: Consultation) {
+    this.savePatient(this.patient);
+
+    const modal = this.modalService.open(PatientInvoiceModalComponent, {size: 'lg', container: 'nb-layout'});
+
+    modal.componentInstance.init(this.patient, consultation);
   }
 
 }
