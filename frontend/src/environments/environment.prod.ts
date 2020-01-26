@@ -16,4 +16,6 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: true,
   keycloak: keycloakConfig,
+  version: '{VERSION_HOLDER}',
+  buildDate: '{BUILD_DATE_HOLDER}',
 };
