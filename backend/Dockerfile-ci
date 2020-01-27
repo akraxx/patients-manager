@@ -9,9 +9,12 @@ RUN apk update && apk add --no-cache wget && apk --no-cache add openssl wget && 
 RUN wget -qO- "https://github.com/dustinblackman/phantomized/releases/download/2.1.1a/dockerized-phantomjs.tar.gz" | tar xz -C / \
     && npm config set user 0 \
     && npm install -g phantomjs-prebuilt
+    && npm install -g phantomjs
 
 # Add fonts required by phantomjs to render html correctly
 RUN apk add --update ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family && rm -rf /var/cache/apk/*
+
+RUN mkdir -p /usr/local/phantomjs/bin && ln -s /usr/local/bin/phantomjs /usr/local/phantomjs/bin/phantomjs
 
 # Copy builded source from the upper builder stage
 COPY . /app
