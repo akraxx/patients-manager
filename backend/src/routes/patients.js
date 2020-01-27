@@ -113,7 +113,8 @@ router.get('/:id/consultations/:consultationId/invoice', function (req, res, nex
                 } else {
                     let options = {
                         "format": "A3",
-                        "orientation": "portrait"
+                        "orientation": "portrait",
+                        "phantomPath": "./node_modules/phantomjs/bin/phantomjs"
                     };
                     pdf.create(data, options).toStream(function (err, stream) {
                         if (err) {
@@ -151,7 +152,8 @@ router.post('/:id/consultations/:consultationId/invoice', function (req, res, ne
                 } else {
                     let options = {
                         "format": "A3",
-                        "orientation": "portrait"
+                        "orientation": "portrait",
+                        "phantomPath": "./node_modules/phantomjs/bin/phantomjs"
                     };
                     const filename = patient.lastName.toUpperCase()
                         + '_' + patient.firstName.toLowerCase()
