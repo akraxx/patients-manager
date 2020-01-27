@@ -1,5 +1,5 @@
 # STEP 1 build static website
-FROM node:10.11-alpine as builder
+FROM node:13-alpine as builder
 RUN apk update && apk add --no-cache git
 
 # Create app directory
@@ -16,7 +16,7 @@ RUN cd /app && npm run build
 ###############################################################################
 # Step 2 : Run image
 #
-FROM node:10.11-alpine
+FROM node:13-alpine
 ENV NODE_ENV=production
 WORKDIR /app
 
