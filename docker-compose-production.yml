@@ -83,6 +83,7 @@ services:
       MAIL_PORT: ${MAIL_PORT}
       MAIL_USER: ${MAIL_USER}
       MAIL_PASSWORD: ${MAIL_PASSWORD}
+      TZ: "Europe/Paris"
     volumes:
       - "${PWD}/backend/data:/app/data"
     labels:
