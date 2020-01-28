@@ -1,0 +1,94 @@
+<div class="modal-header">
+  <span>
+    Facture pour {{ patient.firstName }} {{ patient.lastName }}
+    du {{ consultation.date | date:'longDate' }}
+  </span>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      Une facture va être automatiquement éditée avec les champs suivants :
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col-md-6">
+      <b>Obligatoires</b>
+      <ul>
+        <li>
+          <span [class]="getFieldClass('date', true)"></span>
+          Date de consultation : {{ consultation.date | date:'longDate' }}
+        </li>
+        <li>
+          <span [class]="getFieldClass('sexe', true)"></span>
+          Sexe : {{ patient.sexe }}
+        </li>
+        <li>
+          <span [class]="getFieldClass('lastName', true)"></span>
+          Nom : {{ patient.lastName }}
+        </li>
+        <li><span [class]="getFieldClass('firstName', true)"></span>
+          Prénom : {{ patient.firstName }}</li>
+        <li>
+          <span [class]="getFieldClass('birthDate', true)"></span>
+          Date de naissance : {{ patient.birthDate | date:'longDate' }}
+        </li>
+        <li>
+          <span [class]="getFieldClass('paymentType', true)"></span>
+          Paiement : {{ getPaymentTypeLabel(consultation.paymentType) }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <b>Facultatifs</b>
+      <ul>
+        <li>
+          <span [class]="getFieldClass('address', false)"></span>
+          Adresse : {{ patient.address }}
+        </li>
+        <li>
+          <span [class]="getFieldClass('zipCode', false)"></span>
+          Code Postal : {{ patient.zipCode }}
+        </li>
+        <li>
+          <span [class]="getFieldClass('city', false)"></span>
+          Ville : {{ patient.city }}
+        </li>
+        <li>
+          <span [class]="getFieldClass('socialSecurityNumber', false)"></span>
+          Numéro SS : {{ patient.socialSecurityNumber }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal-footer" *ngIf="hasMissingMandatoryFields()">
+  <p class="text-danger">
+    Il y a un ou plusieurs champ(s) obligatoires qui n'ont pas été remplis. L'édition de facture ne sera disponible
+    qu'une fois que ceux ci auront une valeur valide.
+  </p>
+</div>
+<div class="modal-footer" *ngIf="!hasMissingMandatoryFields()">
+  <div class="row text-center">
+    <div class="col-md-3 col-sm-12">
+      <button class="btn btn-md btn-primary" (click)="downloadInvoice()">Télécharger</button>
+    </div>
+    <div class="col-md-1 col-sm-12">
+    ou
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="btn btn-md btn-primary pointer" (click)="sendInvoice()">Envoyer par mail</button>
+        </div>
+        <input type="email" class="form-control" placeholder="Email" aria-label="Email" [value]="patient.mail" disabled>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

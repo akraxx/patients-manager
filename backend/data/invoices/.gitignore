@@ -1,0 +1,6 @@
+assets/*
+!assets/.gitkeep
+generated/*
+!generated/.gitkeep
+templates/*
+!templates/.gitkeep

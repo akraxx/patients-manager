@@ -8,7 +8,7 @@ services:
     build:
       context: frontend
     volumes:
-    - "${PWD}/frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+    - "./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
     labels:
     - "traefik.docker.network=reverse-proxy"
     - "traefik.enable=true"
@@ -19,8 +19,11 @@ services:
       context: backend
     links:
       - mongodb
+    volumes:
+    - "./backend/data:/app/data"
     environment:
       MONGO_HOST: mongodb
+      ASSETS_PATH: /app/data/
     labels:
     - "traefik.docker.network=reverse-proxy"
     - "traefik.enable=true"

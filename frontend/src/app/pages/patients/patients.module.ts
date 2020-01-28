@@ -13,6 +13,8 @@ import {MiscellaneousModule} from '../miscellaneous/miscellaneous.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {CKEditorModule} from 'ng2-ckeditor';
 import {ModalConfirmComponent} from '../ui-features/modals/modal-confirm/modal-confirm.component';
+import {DatePipe} from '@angular/common';
+import {PatientInvoiceModalComponent} from './patient-view/patient-invoice-modal/patient-invoice-modal.component';
 
 @NgModule({
   imports: [
@@ -28,16 +30,19 @@ import {ModalConfirmComponent} from '../ui-features/modals/modal-confirm/modal-c
   declarations: [
     ...routedComponents,
     ModalConfirmComponent,
+    PatientInvoiceModalComponent,
     PatientAntecedentComponent,
     GroupByPipe,
     AgePipe,
   ],
   entryComponents: [
     ModalConfirmComponent,
+    PatientInvoiceModalComponent,
   ],
   providers: [
     PatientService,
     PendingChangesGuard,
+    DatePipe,
   ],
 })
 export class PatientsModule {

@@ -3,6 +3,9 @@
 help: ## prints help
 	@cat $(MAKEFILE_LIST) | grep -e "^[a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+include .env
+export $(shell sed 's/=.*//' .env)
+
 dev-frontend: 	## frontend development with livereload
 	cd frontend && ng serve --poll 1000
 
