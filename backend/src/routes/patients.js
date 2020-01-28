@@ -105,6 +105,8 @@ router.get('/:id/consultations/:consultationId/invoice', function (req, res, nex
             getEscapedOsteopathName(consultation.osteopath)+".html.ejs"), {
                 patient: patient,
                 consultation: consultation,
+                dateConsultation: consultation.date.toLocaleDateString('fr-FR'),
+                dateBirthday: patient.birthDate.toLocaleDateString('fr-FR'),
                 assetsPath: "file://" + INVOICES_ASSETS_PATH
             },
             (err, data) => {
@@ -143,6 +145,8 @@ router.post('/:id/consultations/:consultationId/invoice', function (req, res, ne
             getEscapedOsteopathName(consultation.osteopath)+".html.ejs"), {
                 patient: patient,
                 consultation: consultation,
+                dateConsultation: consultation.date.toLocaleDateString('fr-FR'),
+                dateBirthday: patient.birthDate.toLocaleDateString('fr-FR'),
                 assetsPath: "file://" + INVOICES_ASSETS_PATH
             },
             (err, data) => {
