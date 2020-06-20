@@ -74,11 +74,6 @@ const routes: Routes = [{
         .then(m => m.PatientsModule),
     },
     {
-      path: 'offices',
-      loadChildren: () => import('./offices/offices.module')
-        .then(m => m.OfficesModule),
-    },
-    {
       path: '',
       redirectTo: 'patients',
       pathMatch: 'full',

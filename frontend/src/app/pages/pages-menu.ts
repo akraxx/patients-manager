@@ -9,12 +9,4 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
     link: '/pages/patients/list',
   },
-  {
-    title: 'Cabinets',
-    icon: {
-      icon: 'building',
-      pack: 'fa',
-    },
-    link: '/pages/offices/list',
-  },
 ];
