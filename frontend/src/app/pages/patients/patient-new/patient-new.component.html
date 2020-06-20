@@ -4,57 +4,60 @@
     <nb-card>
       <nb-card-header>Enregistrer un nouveau patient</nb-card-header>
       <nb-card-body>
-        <toaster-container [toasterconfig]="config"></toaster-container>
-
         <div class="row">
-          <div class="col-md-12">
-            <nb-card-body>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Nom :</label>
-                    <input type="text" placeholder="Nom" #lastName="ngModel" name="lastName" class="form-control"
-                           autocomplete="patient_doNotAutoCompleteLastName"
-                           [ngClass]="{'form-control-danger': !lastName || lastName.invalid}"
-                           required [(ngModel)]="patient.lastName" #spy/>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Prénom :</label>
-                    <input type="text" placeholder="Prénom" #firstName="ngModel" name="firstName" class="form-control"
-                           autocomplete="patient_doNotAutoCompleteFirstName"
-                           [ngClass]="{'form-control-danger': !firstName || firstName.invalid}"
-                           required [(ngModel)]="patient.firstName" #spy/>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-group col-sm-6">
-                  <span class="input-group-addon fa-icon"><i class="fa fa-calendar"></i></span>
-                  <input type="text"
-                         name="birthDate"
-                         autocomplete="patient_doNotAutoCompleteBirthDate"
-                         #birthDate="ngModel"
-                         placeholder="Date de naissance"
-                         class="form-control"
-                         bsDatepicker
-                         required
-                         [ngClass]="{'form-control-danger': !birthDate || birthDate.invalid}"
-                         [(ngModel)]="patient.birthDate"
-                         placement="right"
-                         [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY'}" #spy/>
-                </div>
-                <div class="demo-radio col-sm-6">
-                  <label class="custom-control custom-radio" *ngFor="let choice of sexe | keyvalue">
-                    <input type="radio" class="custom-control-input" name="sexe"
-                           [value]="choice.key" [(ngModel)]="patient.sexe" #spy>
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">{{ choice.value }}</span>
-                  </label>
-                </div>
-              </div>
-            </nb-card-body>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputLastName" class="label">Nom</label>
+              <input type="search" id="inputLastName" nbInput fullWidth placeholder="Nom" #lastName="ngModel" name="lastName" class="form-control"
+                     autocomplete="patient_doNotAutoCompleteLastName"
+                     [status]="!lastName || lastName.invalid ? 'danger' : 'success'"
+                     required [(ngModel)]="patient.lastName" #spy/>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName" class="label">Prénom</label>
+              <input type="search" nbInput fullWidth id="inputFirstName" placeholder="Prénom" #firstName="ngModel" name="firstName" class="form-control"
+                     autocomplete="patient_doNotAutoCompleteFirstName"
+                     [status]="!firstName || firstName.invalid ? 'danger' : 'success'"
+                     required [(ngModel)]="patient.firstName" #spy/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+            <label for="birthDate" class="label">Date de naissance</label>
+            <nb-form-field>
+              <nb-icon nbPrefix icon="calendar" pack="fa"></nb-icon>
+              <input nbInput
+                     type="search"
+                     fullWidth
+                     name="birthDate"
+                     id="birthDate"
+                     autocomplete="off"
+                     #birthDate="ngModel"
+                     placeholder="Date de naissance"
+                     class="form-control"
+                     bsDatepicker
+                     required
+                     [(ngModel)]="patient.birthDate"
+                     [status]="!birthDate || birthDate.invalid ? 'danger' : 'success'"
+                     placement="right"
+                     [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY'}" #spy>
+            </nb-form-field>
+            </div>
+          </div>
+          <div class="demo-radio col-sm-6">
+            <div class="form-group">
+              <label for="sexe" class="label">Sexe</label>
+              <nb-radio-group [(value)]="patient.sexe" id="sexe" class="horizontal">
+                <nb-radio *ngFor="let choice of sexe | keyvalue"
+                          [value]="choice.key" #spy>
+                  {{ choice.value }}
+                </nb-radio>
+              </nb-radio-group>
+            </div>
           </div>
         </div>
       </nb-card-body>

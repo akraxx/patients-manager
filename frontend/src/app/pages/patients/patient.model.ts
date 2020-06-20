@@ -24,6 +24,7 @@ export enum PaymentType {
   None = 'Aucun',
   Check = 'Chèque',
   Cash = 'Liquide',
+  Card = 'CB',
 }
 
 export class Consultation {

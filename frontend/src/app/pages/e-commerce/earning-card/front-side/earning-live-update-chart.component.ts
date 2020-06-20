@@ -1,7 +1,7 @@
 import { delay, takeWhile } from 'rxjs/operators';
 import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { LayoutService } from '../../../../@core/data/layout.service';
+import { LayoutService } from '../../../../@core/utils/layout.service';
 
 @Component({
   selector: 'ngx-earning-live-update-chart',
@@ -23,7 +23,7 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
-    this.layoutService.onChangeLayoutSize()
+    this.layoutService.onSafeChangeLayoutSize()
       .pipe(
         takeWhile(() => this.alive),
       )

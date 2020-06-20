@@ -111,6 +111,7 @@ router.get('/:id/consultations/:consultationId/invoice', function (req, res, nex
             },
             (err, data) => {
                 if (err) {
+                    console.log(err);
                     res.send(err);
                 } else {
                     let options = {
@@ -119,6 +120,7 @@ router.get('/:id/consultations/:consultationId/invoice', function (req, res, nex
                     };
                     pdf.create(data, options).toStream(function (err, stream) {
                         if (err) {
+                            console.log(err);
                             res.send(err);
                         } else {
                             var filename = "invoice.pdf";

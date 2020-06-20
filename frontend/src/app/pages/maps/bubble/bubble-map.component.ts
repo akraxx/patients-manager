@@ -2,18 +2,16 @@ import { Component, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { combineLatest } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
-import { NgxEchartsService } from 'ngx-echarts';
 import { NbThemeService } from '@nebular/theme';
+import { registerMap } from 'echarts';
 
 @Component({
   selector: 'ngx-bubble-map',
   styleUrls: ['./bubble-map.component.scss'],
   template: `
     <nb-card>
-    <nb-card-header>Bubble Maps</nb-card-header>
-      <nb-card-body>
-        <div echarts [options]="options" class="echarts"></div>
-      </nb-card-body>
+      <nb-card-header>Bubble Maps</nb-card-header>
+      <div echarts [options]="options" class="echarts"></div>
     </nb-card>
   `,
 })
@@ -31,8 +29,7 @@ export class BubbleMapComponent implements OnDestroy {
   private alive = true;
 
   constructor(private theme: NbThemeService,
-              private http: HttpClient,
-              private es: NgxEchartsService) {
+              private http: HttpClient) {
 
     combineLatest([
       this.http.get('assets/map/world.json'),
@@ -41,7 +38,7 @@ export class BubbleMapComponent implements OnDestroy {
       .pipe(takeWhile(() => this.alive))
       .subscribe(([map, config]: [any, any]) => {
 
-        this.es.registerMap('world', map);
+        registerMap('world', map);
 
         const colors = config.variables;
         this.bubbleTheme = config.variables.bubbleMap;
@@ -474,7 +471,7 @@ export class BubbleMapComponent implements OnDestroy {
           title: {
             text: 'World Population (2011)',
             left: 'center',
-            top: 'top',
+            top: '16px',
             textStyle: {
               color: this.bubbleTheme.titleColor,
             },

@@ -1,19 +1,18 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BsLocaleService} from 'ngx-bootstrap';
+import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 import {Antecedent} from './patient-antecedent/patient-antecedent.component';
 import {Consultation, HandOrientation, MaritalStatus, Patient, PaymentType, Sexe} from '../patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
 import {Observable, Subject} from 'rxjs/Rx';
 import {ComponentCanDeactivate} from '../../../@core/utils/pending-changes.guard';
-import 'style-loader!angular2-toaster/toaster.css';
-import {ToasterService} from 'angular2-toaster';
 import '../../editors/ckeditor/ckeditor.loader';
 import 'ckeditor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ModalConfirmComponent} from '../../ui-features/modals/modal-confirm/modal-confirm.component';
 import {KeycloakService} from 'keycloak-angular';
 import {PatientInvoiceModalComponent} from './patient-invoice-modal/patient-invoice-modal.component';
+import {NbToastrService} from '@nebular/theme';
 
 
 @Component({
@@ -42,7 +41,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   constructor(private route: ActivatedRoute,
               private localeService: BsLocaleService,
               private patientService: PatientService,
-              private toasterService: ToasterService,
+              private toasterService: NbToastrService,
               private modalService: NgbModal,
               private keycloakService: KeycloakService) {
     this.localeService.use('fr');
@@ -191,7 +190,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               });
           },
           error => {
-            this.toasterService.pop('error', 'Impossible de récupérer le patient.', error.error.message);
+            this.toasterService.danger('Impossible de récupérer le patient.', error.error.message);
           },
         );
       // In a real app: dispatch action to load the details here.
@@ -223,7 +222,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
           this.patientSaved = true;
         },
         error => {
-          this.toasterService.pop('error', 'Impossible de sauvegarder le patient.', error.error.message);
+          this.toasterService.danger('Impossible de sauvegarder le patient.', error.error.message);
         },
       );
   }

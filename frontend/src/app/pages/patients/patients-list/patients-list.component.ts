@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {PatientService} from '../../../@core/services/patient.service';
-import {ToasterService} from 'angular2-toaster';
 import {Patient} from '../patient.model';
 import {Observable} from 'rxjs/Rx';
 import {NbTabComponent} from '@nebular/theme/components/tabset/tabset.component';
 import {KeycloakService} from 'keycloak-angular';
+import {NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-patients-list',
@@ -18,7 +18,7 @@ export class PatientsListComponent implements OnInit {
   loggedUser: string = 'unknown';
 
   constructor(private patientService: PatientService,
-              private toasterService: ToasterService,
+              private toasterService: NbToastrService,
               private keycloakService: KeycloakService) {
   }
 
@@ -35,8 +35,7 @@ export class PatientsListComponent implements OnInit {
         this.patients = patients;
       },
       error => {
-        this.toasterService.pop('error',
-          'Impossible de chercher les patients avec le nom ' + name,
+        this.toasterService.danger('Impossible de chercher les patients avec le nom ' + name,
           error.error.message);
       });
   }
