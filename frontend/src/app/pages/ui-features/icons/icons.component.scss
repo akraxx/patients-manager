@@ -1,25 +1,17 @@
-.icon {
-  display: inline-block;
-  width: 4rem;
-  padding: 1.25rem 0;
-  text-align: center;
-  font-size: 1.25rem;
+@import '../../../@theme/styles/themes';
 
-  i:hover {
-    opacity: 0.8;
-    cursor: pointer;
+@include nb-install-component() {
+  nb-card-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
-}
 
-.nb-icons .icon {
-  padding: 0.75rem 0;
-  font-size: 1.75rem;
-}
+  nb-icon {
+    margin: 1rem;
+  }
 
-nb-card-body {
-  padding: 0;
-}
-
-nb-card-footer {
-  text-align: right;
+  nb-card-footer {
+    text-align: right;
+  }
 }

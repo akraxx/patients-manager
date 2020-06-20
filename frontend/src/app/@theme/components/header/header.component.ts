@@ -1,28 +1,26 @@
-import {Component, Input, OnInit} from '@angular/core';
-
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NbMenuService, NbSidebarService} from '@nebular/theme';
-import {LayoutService} from '../../../@core/data/layout.service';
+import {LayoutService} from '../../../@core/utils';
+import {Subject} from 'rxjs';
 import {KeycloakService} from 'keycloak-angular';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  @Input() position = 'normal';
-
+  private destroy$: Subject<void> = new Subject<void>();
+  userPictureOnly: boolean = false;
   user: any;
 
-  userMenu = [{ title: 'Log out' }];
+  userMenu = [{ title: 'Se déconnecter' }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private keycloakService: KeycloakService,
               private layoutService: LayoutService,
-              private router: Router) {
+              private keycloakService: KeycloakService) {
   }
 
   ngOnInit() {
@@ -33,8 +31,13 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   onItemSelection( title ) {
-    if ( title === 'Log out' ) {
+    if ( title === 'Se déconnecter') {
       // Do something on Log out
       this.keycloakService.logout('https://ingridlhotellier.fr');
     }
@@ -47,15 +50,8 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
-  goToHome() {
+  navigateHome() {
     this.menuService.navigateHome();
-  }
-
-  startSearch() {
-    this.router.navigate(['/pages/patients/list']);
-  }
-
-  newPatient() {
-    this.router.navigate(['/pages/patients/new']);
+    return false;
   }
 }

@@ -1,16 +1,17 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {PatientService} from '../../../../@core/services/patient.service';
-import {ToasterService} from 'angular2-toaster';
 import {Consultation, Patient, PaymentType} from '../../patient.model';
 import {DatePipe} from '@angular/common';
-import {BsLocaleService} from 'ngx-bootstrap';
+import {BsLocaleService} from 'ngx-bootstrap/datepicker';
+import {NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-patient-invoice-modal',
   styleUrls: ['./patient-invoice-modal.component.scss'],
   templateUrl: 'patient-invoice-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [PatientService, BsLocaleService],
 })
 export class PatientInvoiceModalComponent {
 
@@ -25,7 +26,7 @@ export class PatientInvoiceModalComponent {
 
   constructor(private activeModal: NgbActiveModal,
               private patientService: PatientService,
-              private toasterService: ToasterService,
+              private toasterService: NbToastrService,
               private localeService: BsLocaleService,
               private datepipe: DatePipe) {
     this.localeService.use('fr');
@@ -80,9 +81,9 @@ export class PatientInvoiceModalComponent {
   public sendInvoice(): void {
     this.patientService.sendInvoice(this.patient._id, this.consultation.id)
       .subscribe(
-        () => this.toasterService.pop('success', 'La facture a été envoyée par mail au patient'),
+        () => this.toasterService.success('La facture a été envoyée par mail au patient'),
         error => {
-          this.toasterService.pop('error', 'Impossible de télécharger la facture.', error.error.message);
+          this.toasterService.danger('Impossible de télécharger la facture.', error.error.message);
         },
       );
   }
@@ -121,11 +122,11 @@ export class PatientInvoiceModalComponent {
             link.remove();
           }, 100);
 
-          this.toasterService.pop('success', 'La facture a été générée et téléchargée');
+          this.toasterService.success('La facture a été générée et téléchargée');
 
         },
         error => {
-          this.toasterService.pop('error', 'Impossible de télécharger la facture.', error.error.message);
+          this.toasterService.danger( 'Impossible de télécharger la facture.', error.error.message);
         },
       );
   }

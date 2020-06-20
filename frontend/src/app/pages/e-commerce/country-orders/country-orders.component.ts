@@ -1,12 +1,13 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpoint, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators';
+import { CountryOrderData } from '../../../@core/data/country-order';
 
 @Component({
   selector: 'ngx-country-orders',
   styleUrls: ['./country-orders.component.scss'],
   template: `
-    <nb-card [size]="breakpoint.width >= breakpoints.md ? 'medium' : 'xxlarge'">
+    <nb-card [size]="breakpoint.width >= breakpoints.md ? 'medium' : 'giant'">
       <nb-card-header>Country Orders Statistics</nb-card-header>
       <nb-card-body>
         <ngx-country-orders-map (select)="selectCountryById($event)"
@@ -21,37 +22,43 @@ import { takeWhile } from 'rxjs/operators';
     </nb-card>
   `,
 })
-export class CountryOrdersComponent implements OnDestroy {
+export class CountryOrdersComponent implements OnInit, OnDestroy {
 
   private alive = true;
 
-  private getRandomData(nPoints: number): number[] {
-    return Array.from(Array(nPoints)).map(() => {
-      return Math.round(Math.random() * 20);
-    });
-  }
-
   countryName = '';
-  countryData = [];
-  countriesCategories = ['Sofas', 'Furniture', 'Lighting', 'Tables', 'Textiles'];
+  countryData: number[] = [];
+  countriesCategories: string[];
   breakpoint: NbMediaBreakpoint = { name: '', width: 0 };
   breakpoints: any;
 
   constructor(private themeService: NbThemeService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private countryOrderService: CountryOrderData) {
     this.breakpoints = this.breakpointService.getBreakpointsMap();
+  }
+
+  ngOnInit() {
     this.themeService.onMediaQueryChange()
       .pipe(takeWhile(() => this.alive))
       .subscribe(([oldValue, newValue]) => {
         this.breakpoint = newValue;
       });
+    this.countryOrderService.getCountriesCategories()
+      .pipe(takeWhile(() => this.alive))
+      .subscribe((countriesCategories) => {
+        this.countriesCategories = countriesCategories;
+      });
   }
 
   selectCountryById(countryName: string) {
-    const nPoint = this.countriesCategories.length;
-
     this.countryName = countryName;
-    this.countryData = this.getRandomData(nPoint);
+
+    this.countryOrderService.getCountriesCategoriesData(countryName)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe((countryData) => {
+        this.countryData = countryData;
+      });
   }
 
   ngOnDestroy() {

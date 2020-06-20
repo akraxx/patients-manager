@@ -2,8 +2,8 @@ import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/
 import { NbThemeService } from '@nebular/theme';
 import { delay, takeWhile } from 'rxjs/operators';
 
-import { OrdersChart } from '../../../../@core/data/orders-chart.service';
-import { LayoutService } from '../../../../@core/data/layout.service';
+import { OrdersChart } from '../../../../@core/data/orders-chart';
+import { LayoutService } from '../../../../@core/utils/layout.service';
 
 @Component({
   selector: 'ngx-orders-chart',
@@ -11,6 +11,7 @@ import { LayoutService } from '../../../../@core/data/layout.service';
   template: `
     <div echarts
          [options]="option"
+         [merge]="option"
          class="echart"
          (chartInit)="onChartInit($event)">
     </div>
@@ -34,7 +35,7 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
-    this.layoutService.onChangeLayoutSize()
+    this.layoutService.onSafeChangeLayoutSize()
       .pipe(
         takeWhile(() => this.alive),
       )
@@ -80,7 +81,7 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         position: 'top',
         backgroundColor: eTheme.tooltipBg,
         borderColor: eTheme.tooltipBorderColor,
-        borderWidth: 3,
+        borderWidth: 1,
         formatter: (params) => {
           return Math.round(parseInt(params.value, 10));
         },

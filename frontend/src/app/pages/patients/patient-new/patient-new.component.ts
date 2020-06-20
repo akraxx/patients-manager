@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Patient, Sexe} from '../patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
-import {BsLocaleService} from 'ngx-bootstrap';
-import {ToasterConfig, ToasterService} from 'angular2-toaster';
 
 import 'style-loader!angular2-toaster/toaster.css';
 import {Router} from '@angular/router';
 import {KeycloakService} from 'keycloak-angular';
+import {BsLocaleService} from 'ngx-bootstrap/datepicker';
+import {NbDateService, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-patient-new',
@@ -15,16 +15,18 @@ import {KeycloakService} from 'keycloak-angular';
 })
 export class PatientNewComponent implements OnInit {
   sexe = Sexe;
-  patient: Patient = new Patient();
-  config: ToasterConfig;
+  patient: Patient;
   loggedUser: string = 'unknown';
+  max: Date;
 
   constructor(private patientService: PatientService,
               private localeService: BsLocaleService,
-              private toasterService: ToasterService,
+              private toasterService: NbToastrService,
               private keycloakService: KeycloakService,
+              protected dateService: NbDateService<Date>,
               private router: Router) {
     this.localeService.use('fr');
+    this.max = this.dateService.today();
   }
 
   savePatient() {
@@ -34,12 +36,12 @@ export class PatientNewComponent implements OnInit {
       .subscribe(
         result => {
           // Handle result
-          this.toasterService.pop('success', result.firstName + ' '
+          this.toasterService.success(result.firstName + ' '
             + result.lastName + ' a été enregistré.');
           this.router.navigate(['/pages/patients/' + result._id]);
         },
         error => {
-          this.toasterService.pop('error', 'Impossible d\'enregistrer le patient.');
+          this.toasterService.danger('Impossible d\'enregistrer le patient.');
         },
       );
   }
@@ -49,6 +51,7 @@ export class PatientNewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.resetForm();
     this.keycloakService.isLoggedIn()
       .then(result => {
         if (result) {
