@@ -12,6 +12,7 @@
   "include": [
     "../src/*.ts",
     "../src/**/*.ts",
-    "../node_modules/@nebular/**/*.ts"
+    "../node_modules/@nebular/**/*.ts",
+    "../../common/*.ts"
   ]
 }

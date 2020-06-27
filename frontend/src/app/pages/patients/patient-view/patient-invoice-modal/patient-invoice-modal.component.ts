@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {PatientService} from '../../../../@core/services/patient.service';
-import {Consultation, Patient, PaymentType} from '../../patient.model';
+import {Consultation, Patient, PaymentType} from '../../../../../../../common/patient.model';
 import {DatePipe} from '@angular/common';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 import {NbToastrService} from '@nebular/theme';
@@ -10,7 +10,7 @@ import {NbToastrService} from '@nebular/theme';
   selector: 'ngx-patient-invoice-modal',
   styleUrls: ['./patient-invoice-modal.component.scss'],
   templateUrl: 'patient-invoice-modal.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [PatientService, BsLocaleService],
 })
 export class PatientInvoiceModalComponent {
@@ -20,6 +20,7 @@ export class PatientInvoiceModalComponent {
   modalContent: string;
   patient: Patient;
   consultation: Consultation;
+  processingInvoice = false;
   badFields: number = 0;
   mandatoryFields: Map<string, boolean> = new Map<string, boolean>();
   optionalFields: Map<string, boolean> = new Map<string, boolean>();
@@ -79,18 +80,21 @@ export class PatientInvoiceModalComponent {
   }
 
   public sendInvoice(): void {
+    this.processingInvoice = true;
     this.patientService.sendInvoice(this.patient._id, this.consultation.id)
+      .finally(() => this.processingInvoice = false)
       .subscribe(
         () => this.toasterService.success('La facture a été envoyée par mail au patient'),
         error => {
-          this.toasterService.danger('Impossible de télécharger la facture.', error.error.message);
+          this.toasterService.danger(error.error.message, 'Impossible d\'envoyer la facture.');
         },
       );
   }
 
   public downloadInvoice(): void {
-
+    this.processingInvoice = true;
     this.patientService.downloadInvoice(this.patient._id, this.consultation.id)
+      .finally(() => this.processingInvoice = false)
       .subscribe(
         x => {
           const newBlob = new Blob([x], {type: 'application/pdf'});
@@ -126,7 +130,7 @@ export class PatientInvoiceModalComponent {
 
         },
         error => {
-          this.toasterService.danger( 'Impossible de télécharger la facture.', error.error.message);
+          this.toasterService.danger(error.error.message, 'Impossible de télécharger la facture.');
         },
       );
   }

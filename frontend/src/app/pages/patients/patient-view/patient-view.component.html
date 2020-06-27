@@ -23,213 +23,221 @@
         <nb-tabset>
           <nb-tab tabTitle="Détails">
             <form #patientForm="ngForm">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-6 right-col-border">
-                    <nb-card-body>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label">Nom</label>
-                            <input nbInput fullWidth type="text" placeholder="Nom" name="lastName" class="form-control"
-                                   [(ngModel)]="patient.lastName" (ngModelChange)="patientChanged()" #spy/>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label">Prénom</label>
-                            <input nbInput fullWidth type="text" placeholder="Prénom" name="firstName" class="form-control"
-                                   [(ngModel)]="patient.firstName" (ngModelChange)="patientChanged()" #spy/>
-                          </div>
+              <div class="row">
+                <div class="col-md-6 right-col-border">
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label">Nom</label>
+                          <input nbInput fullWidth type="text" placeholder="Nom" name="lastName" class="form-control"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.lastName" (ngModelChange)="patientChanged()" #spy/>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="form-group col-sm-6">
-                          <label class="label">Date de naissance</label>
-                          <nb-form-field>
-                            <nb-icon nbPrefix icon="calendar" pack="fa"></nb-icon>
-                            <input nbInput
-                                   type="search"
-                                   fullWidth
-                                   name="birthDate"
-                                   id="birthDate"
-                                   autocomplete="off"
-                                   #birthDate="ngModel"
-                                   placeholder="Date de naissance"
-                                   class="form-control"
-                                   bsDatepicker
-                                   required
-                                   [(ngModel)]="patient.birthDate"
-                                   placement="right"
-                                   [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY'}" #spy>
-                          </nb-form-field>
-                        </div>
-                        <div class="demo-radio col-sm-6">
-                          <label for="sexe" class="label">Sexe</label>
-                          <nb-radio-group class="horizontal" [(value)]="patient.sexe" id="sexe" (valueChange)="patientChanged()">
-                            <nb-radio *ngFor="let choice of sexe | keyvalue"
-                                      [value]="choice.key" #spy>
-                              {{ choice.value }}
-                            </nb-radio>
-                          </nb-radio-group>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label">Prénom</label>
+                          <input nbInput fullWidth type="text" placeholder="Prénom" name="firstName" class="form-control"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.firstName" (ngModelChange)="patientChanged()" #spy/>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="form-group col-sm-6">
-                          <label class="label">Mobile</label>
-                          <nb-form-field>
-                            <nb-icon nbPrefix icon="mobile" pack="fa"></nb-icon>
-                            <input nbInput fullWidth type="text" placeholder="Téléphone Mobile" class="form-control"
-                                   [(ngModel)]="patient.mobilePhone" (ngModelChange)="patientChanged()" name="mobile"
-                                   #spy/>
-                          </nb-form-field>
-                        </div>
-                        <div class="form-group col-sm-6">
-                          <label class="label">Fixe</label>
-                          <nb-form-field>
-                            <nb-icon nbPrefix icon="phone" pack="fa"></nb-icon>
-                            <input nbInput fullWidth type="text" placeholder="Téléphone Fixe" class="form-control"
-                                   [(ngModel)]="patient.phone" (ngModelChange)="patientChanged()" name="phone" #spy/>
-                          </nb-form-field>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label class="label">Date de naissance</label>
+                        <nb-form-field>
+                          <nb-icon nbPrefix icon="calendar" pack="fa"></nb-icon>
+                          <input nbInput
+                                 type="search"
+                                 fullWidth
+                                 name="birthDate"
+                                 id="birthDate"
+                                 autocomplete="{{timestamp}}"
+                                 #birthDate="ngModel"
+                                 placeholder="Date de naissance"
+                                 class="form-control"
+                                 bsDatepicker
+                                 required
+                                 (ngModelChange)="patientChanged()"
+                                 [(ngModel)]="patient.birthDate"
+                                 placement="right"
+                                 [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY'}" #spy>
+                        </nb-form-field>
+                      </div>
+                      <div class="demo-radio col-sm-6">
+                        <label for="sexe" class="label">Sexe</label>
+                        <nb-radio-group name="sexe" class="horizontal" [(value)]="patient.sexe" id="sexe" (valueChange)="patientChanged()">
+                          <nb-radio *ngFor="let choice of sexe | keyvalue"
+                                    [value]="choice.key" #spy>
+                            {{ choice.value }}
+                          </nb-radio>
+                        </nb-radio-group>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                        <label class="label">Mobile</label>
+                        <nb-form-field>
+                          <nb-icon nbPrefix icon="mobile" pack="fa"></nb-icon>
+                          <input nbInput fullWidth type="text" placeholder="Téléphone Mobile" class="form-control"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.mobilePhone" (ngModelChange)="patientChanged()" name="mobile"
+                                 #spy/>
+                        </nb-form-field>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label class="label">Fixe</label>
+                        <nb-form-field>
+                          <nb-icon nbPrefix icon="phone" pack="fa"></nb-icon>
+                          <input nbInput fullWidth type="text" placeholder="Téléphone Fixe" class="form-control"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.phone" (ngModelChange)="patientChanged()" name="phone" #spy/>
+                        </nb-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-8">
+                        <label class="label">Email</label>
+                        <nb-form-field>
+                          <nb-icon nbPrefix icon="at" pack="fa"></nb-icon>
+                          <input nbInput fullWidth type="email" placeholder="Email" class="form-control"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.mail" (ngModelChange)="patientChanged()" name="email" #spy/>
+                        </nb-form-field>
+                      </div>
+                      <div class="col-sm-4">
+                        <label class="label">Décédé(e)</label>
+                        <div class="center checkbox" fullWidth>
+                          <nb-checkbox [(ngModel)]="patient.deceased" (ngModelChange)="patientChanged()" name="deceased" #spy></nb-checkbox>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="form-group col-sm-8">
-                          <label class="label">Email</label>
-                          <nb-form-field>
-                            <nb-icon nbPrefix icon="at" pack="fa"></nb-icon>
-                            <input nbInput fullWidth type="email" placeholder="Email" class="form-control"
-                                   [(ngModel)]="patient.mail" (ngModelChange)="patientChanged()" name="email" #spy/>
-                          </nb-form-field>
-                        </div>
-                        <div class="col-sm-4">
-                          <label class="label">Décédé(e)</label>
-                          <div class="center checkbox" fullWidth>
-                            <nb-checkbox [(ngModel)]="patient.deceased" (ngModelChange)="patientChanged()" name="deceased" #spy></nb-checkbox>
-                          </div>
-                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-12">
+                        <label class="label">Adresse</label>
+                        <nb-form-field>
+                          <nb-icon nbPrefix icon="map-marker-alt" pack="fa"></nb-icon>
+                          <input fullWidth nbInput type="text" placeholder="Adresse" class="form-control" name="address"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.address" (ngModelChange)="patientChanged()" #spy/>
+                        </nb-form-field>
                       </div>
-                      <div class="row">
-                        <div class="form-group col-sm-12">
-                          <label class="label">Adresse</label>
-                          <nb-form-field>
-                            <nb-icon nbPrefix icon="map-marker-alt" pack="fa"></nb-icon>
-                            <input fullWidth nbInput type="text" placeholder="Adresse" class="form-control" name="address"
-                                   [(ngModel)]="patient.address" (ngModelChange)="patientChanged()" #spy/>
-                          </nb-form-field>
-                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-4">
+                        <nb-form-field>
+                          <nb-icon nbPrefix icon="map-marker" pack="fa"></nb-icon>
+                          <input nbInput fullWidth type="text" placeholder="Code postal" class="form-control" name="zipCode"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.zipCode" (ngModelChange)="patientChanged()" #spy/>
+                        </nb-form-field>
                       </div>
-                      <div class="row">
-                        <div class="form-group col-sm-4">
-                          <nb-form-field>
-                            <nb-icon nbPrefix icon="map-marker" pack="fa"></nb-icon>
-                            <input nbInput fullWidth type="text" placeholder="Code postal" class="form-control" name="zipCode"
-                                   [(ngModel)]="patient.zipCode" (ngModelChange)="patientChanged()" #spy/>
-                          </nb-form-field>
-                        </div>
-                        <div class="form-group col-sm-8">
-                          <nb-form-field>
-                            <nb-icon nbPrefix icon="map-marker" pack="fa"></nb-icon>
-                            <input nbInput fullWidth type="text" placeholder="Ville" class="form-control" name="city"
-                                   [(ngModel)]="patient.city" (ngModelChange)="patientChanged()" #spy/>
-                          </nb-form-field>
-                        </div>
+                      <div class="form-group col-sm-8">
+                        <nb-form-field>
+                          <nb-icon nbPrefix icon="map-marker" pack="fa"></nb-icon>
+                          <input nbInput fullWidth type="text" placeholder="Ville" class="form-control" name="city"
+                                 autocomplete="{{timestamp}}"
+                                 [(ngModel)]="patient.city" (ngModelChange)="patientChanged()" #spy/>
+                        </nb-form-field>
                       </div>
-                    </nb-card-body>
-                  </div>
-                  <div class="col-md-6">
-                    <nb-card-body>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label" for="maritalStatus">Statut marital</label>
-                            <nb-select fullWidth id="maritalStatus" name="maritalStatus" [(ngModel)]="patient.maritalStatus" (ngModelChange)="patientChanged()" #spy>
-                              <nb-option *ngFor="let maritalStatus of maritalStatuses | keyvalue"
-                                      [value]="maritalStatus.key" [selected]="maritalStatus == patient.maritalStatus">
-                                {{maritalStatus.value}}
-                              </nb-option>
-                            </nb-select>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label" for="numberChildren">Nombre d'enfants</label>
-                            <input nbInput fullWidth type="number" id="numberChildren" name="numberChildren" value="0"
-                                   [(ngModel)]="patient.children" (ngModelChange)="patientChanged()"
-                                   class="form-control" #spy/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label" for="job">Profession / Scolarité</label>
-                            <input nbInput fullWidth type="text" id="job" name="job" placeholder="Profession"
-                                   [(ngModel)]="patient.job" (ngModelChange)="patientChanged()" class="form-control"
-                                   #spy/>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label" for="hobbies">Loisirs</label>
-                            <input nbInput fullWidth type="text" id="hobbies" name="hobbies" placeholder="Loisirs"
-                                   [(ngModel)]="patient.hobbies" (ngModelChange)="patientChanged()" class="form-control"
-                                   #spy/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label" for="doctor">Médecin traitant</label>
-                            <input nbInput fullWidth type="text" id="doctor" name="doctor" placeholder="Médecin traitant"
-                                   [(ngModel)]="patient.doctor" (ngModelChange)="patientChanged()" class="form-control"
-                                   #spy/>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label" for="complementary-health">Mutuelle</label>
-                            <input nbInput fullWidth type="text" id="complementary-health" name="complementary-health"
-                                   placeholder="Mutuelle santé"
-                                   [(ngModel)]="patient.complementaryHealth" (ngModelChange)="patientChanged()"
-                                   class="form-control" #spy/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="label" for="social-security">Numéro Sécurité Sociale</label>
-                            <input nbInput fullWidth type="text" id="social-security" name="social-security"
-                                   [(ngModel)]="patient.socialSecurityNumber" (ngModelChange)="patientChanged()"
-                                   placeholder="Numéro sécurité sociale" class="form-control" #spy/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label class="label" for="sender">Envoyé par</label>
-                            <input nbInput fullWidth type="text" id="sender" name="sender" placeholder="Envoyé par"
-                                   [(ngModel)]="patient.sentBy" (ngModelChange)="patientChanged()" class="form-control"
-                                   #spy/>
-                          </div>
-                        </div>
-                        <div class="demo-radio col-sm-6">
-                          <label for="handOrientation" class="label">Orientation</label>
-                          <nb-radio-group class="horizontal" [(value)]="patient.handOrientation" id="handOrientation" (valueChange)="patientChanged()">
-                            <nb-radio *ngFor="let choice of handOrientation | keyvalue"
-                                      [value]="choice.key" #spy>
-                              {{ choice.value }}
-                            </nb-radio>
-                          </nb-radio-group>
-                        </div>
-                      </div>
-                    </nb-card-body>
-                  </div>
+                    </div>
+                  </nb-card-body>
                 </div>
-                <div class="row">
+                <div class="col-md-6">
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label" for="maritalStatus">Statut marital</label>
+                          <nb-select fullWidth id="maritalStatus" name="maritalStatus" [(ngModel)]="patient.maritalStatus" (ngModelChange)="patientChanged()" #spy>
+                            <nb-option *ngFor="let maritalStatus of maritalStatuses | keyvalue"
+                                    [value]="maritalStatus.key" [selected]="maritalStatus == patient.maritalStatus">
+                              {{maritalStatus.value}}
+                            </nb-option>
+                          </nb-select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label" for="numberChildren">Nombre d'enfants</label>
+                          <input nbInput fullWidth type="number" id="numberChildren" name="numberChildren" value="0"
+                                 [(ngModel)]="patient.children" (ngModelChange)="patientChanged()"
+                                 class="form-control" #spy/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label" for="job">Profession / Scolarité</label>
+                          <input nbInput fullWidth type="text" id="job" name="job" placeholder="Profession"
+                                 [(ngModel)]="patient.job" (ngModelChange)="patientChanged()" class="form-control"
+                                 #spy/>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label" for="hobbies">Loisirs</label>
+                          <input nbInput fullWidth type="text" id="hobbies" name="hobbies" placeholder="Loisirs"
+                                 [(ngModel)]="patient.hobbies" (ngModelChange)="patientChanged()" class="form-control"
+                                 #spy/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label" for="doctor">Médecin traitant</label>
+                          <input nbInput fullWidth type="text" id="doctor" name="doctor" placeholder="Médecin traitant"
+                                 [(ngModel)]="patient.doctor" (ngModelChange)="patientChanged()" class="form-control"
+                                 #spy/>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label" for="complementary-health">Mutuelle</label>
+                          <input nbInput fullWidth type="text" id="complementary-health" name="complementary-health"
+                                 placeholder="Mutuelle santé"
+                                 [(ngModel)]="patient.complementaryHealth" (ngModelChange)="patientChanged()"
+                                 class="form-control" #spy/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label class="label" for="social-security">Numéro Sécurité Sociale</label>
+                          <input nbInput fullWidth type="text" id="social-security" name="social-security"
+                                 [(ngModel)]="patient.socialSecurityNumber" (ngModelChange)="patientChanged()"
+                                 placeholder="Numéro sécurité sociale" class="form-control" #spy/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label class="label" for="sender">Envoyé par</label>
+                          <input nbInput fullWidth type="text" id="sender" name="sender" placeholder="Envoyé par"
+                                 [(ngModel)]="patient.sentBy" (ngModelChange)="patientChanged()" class="form-control"
+                                 #spy/>
+                        </div>
+                      </div>
+                      <div class="demo-radio col-sm-6">
+                        <label for="handOrientation" class="label">Orientation</label>
+                        <nb-radio-group name="handOrientation" class="horizontal" [(value)]="patient.handOrientation" id="handOrientation" (valueChange)="patientChanged()">
+                          <nb-radio *ngFor="let choice of handOrientation | keyvalue"
+                                    [value]="choice.key" #spy>
+                            {{ choice.value }}
+                          </nb-radio>
+                        </nb-radio-group>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </div>
+              </div>
+              <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="label" for="remarks">Remarques</label>
@@ -239,13 +247,11 @@
                     </div>
                   </div>
                 </div>
-              </div>
             </form>
           </nb-tab>
           <nb-tab tabTitle="Antécédents" [badgeText]="getNumberOfAntecedents()" badgeStatus="danger">
             <form>
-              <div class="container">
-                <div class="row">
+              <div class="row">
                   <div class="col-md-6" *ngFor="let categorizedAntecedents of patient.antecedents | groupBy:'category'">
                     <nb-card-body>
                       <div>
@@ -258,7 +264,6 @@
                       </div>
                     </nb-card-body>
                   </div>
-                </div>
               </div>
             </form>
           </nb-tab>

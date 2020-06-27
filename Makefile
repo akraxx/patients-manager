@@ -22,10 +22,6 @@ deploy-production: ## deploy using docker images from docker hub
 	./scripts/set-version.sh
 	VERSION=`cat .version` docker-compose -f docker-compose.yml -f docker-compose-production.yml up -d
 
-deploy-production: ## deploy using docker images from docker hub
-	./scripts/set-version.sh
-	VERSION=`cat .version` docker-compose -f docker-compose.yml -f docker-compose-production.yml up -d
-
 logs-production: ## follow logs in production
 	./scripts/set-version.sh
 	VERSION=`cat .version` docker-compose -f docker-compose.yml -f docker-compose-production.yml logs --tail=5 -f

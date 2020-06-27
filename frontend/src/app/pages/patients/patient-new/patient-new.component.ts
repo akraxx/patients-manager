@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Patient, Sexe} from '../patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
 
-import 'style-loader!angular2-toaster/toaster.css';
 import {Router} from '@angular/router';
 import {KeycloakService} from 'keycloak-angular';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 import {NbDateService, NbToastrService} from '@nebular/theme';
+import {Patient, Sexe} from '../../../../../../common/patient.model';
 
 @Component({
   selector: 'ngx-patient-new',

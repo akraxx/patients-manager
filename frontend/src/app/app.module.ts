@@ -26,7 +26,7 @@ import {defineLocale} from 'ngx-bootstrap/chronos';
 import {frLocale} from 'ngx-bootstrap/locale';
 import localeFr from '@angular/common/locales/fr';
 import {APP_BASE_HREF, registerLocaleData} from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 defineLocale('fr', frLocale);
 registerLocaleData(localeFr, 'fr');
@@ -43,7 +43,11 @@ registerLocaleData(localeFr, 'fr');
     NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
-    NbToastrModule.forRoot(),
+    NbToastrModule.forRoot({
+      duration: 10000,
+      limit: 4,
+      preventDuplicates: true,
+    }),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
