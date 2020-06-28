@@ -93,6 +93,10 @@ export class PatientsService {
     public getPatientById(id: string): Promise<Patient> {
         logger.info(`getting patient with id ${id}`);
         return this.patientDao.findById(id)
+            .populate({
+                path: 'consultations.office',
+                model: 'Office'
+            })
             .then(d => d)
             .catch((e: Error) => {
                 logger.error(`could not get patient with id ${id} got error ${e.message}`)

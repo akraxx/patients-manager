@@ -4,6 +4,7 @@ import {inject, injectable} from 'inversify';
 import {TYPES} from '../constants/types';
 import {MongoOptions} from './mongo.options';
 import {PatientSchema, PatientType} from '../models/patient.dao';
+import {OfficeSchema, OfficeType} from '../models/office.dao';
 
 export type MongoServiceProvider = () => Promise<MongoService>;
 
@@ -61,6 +62,11 @@ export class MongoService {
     public async patient(): Promise<mongoose.Model<PatientType>> {
         return this._mongoose
             .then(m => m.model<PatientType>('Patient', PatientSchema))
+    }
+
+    public async office(): Promise<mongoose.Model<OfficeType>> {
+        return this._mongoose
+            .then(m => m.model<OfficeType>('Office', OfficeSchema))
     }
 
 }

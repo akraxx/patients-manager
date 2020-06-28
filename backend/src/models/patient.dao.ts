@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import {Patient} from '../../../common/patient.model';
+import {Schema} from 'mongoose';
 
 var AntecedentSchema = new mongoose.Schema({
     title: {
@@ -30,6 +31,8 @@ var ConsultationSchema = new mongoose.Schema({
     description: String,
     date: Date,
     osteopath: String,
+    price: Number,
+    office: { type: Schema.Types.ObjectId, ref: 'Office' },
 });
 
 export const PatientSchema = new mongoose.Schema({
@@ -69,7 +72,7 @@ export const PatientSchema = new mongoose.Schema({
     handOrientation: String,
     remarks: String,
     antecedents: [AntecedentSchema],
-    consultations: [ConsultationSchema]
+    consultations: [ConsultationSchema],
 }, { timestamps: true });
 
 export type PatientType = Patient & mongoose.Document;

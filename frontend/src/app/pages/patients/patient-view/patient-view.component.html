@@ -62,7 +62,6 @@
                                  required
                                  (ngModelChange)="patientChanged()"
                                  [(ngModel)]="patient.birthDate"
-                                 placement="right"
                                  [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY'}" #spy>
                         </nb-form-field>
                       </div>
@@ -291,7 +290,7 @@
                       <nb-accordion-item-header>
                         <div class="title">
                           <div class="pull-left float-left">
-                            Le {{group.date | date:'longDate'}} par {{group.osteopath}} : {{group.title}}
+                            Le {{group.date | date:'longDate'}} par {{group.osteopath}} à {{group.office.name}} : {{group.title}}
                           </div>
                           <span class="float-right pull-right">
                             <i class="fa fa-euro-sign"></i> :
@@ -301,24 +300,33 @@
                       </nb-accordion-item-header>
                       <nb-accordion-item-body>
                         <div class="row">
-                          <div class="col-md-2">
-                            <button type="button" class="btn btn-primary pointer" (click)="downloadInvoice(group)">
-                              Facture
-                            </button>
+                          <div class="col-md-4">
+                            <nb-select fullWidth placeholder="Cabinet" [selected]="group.office._id" (selectedChange)="officeChanged(group, $event)" #spy>
+                              <nb-option *ngFor="let office of offices" [value]="office._id">{{office.name}}</nb-option>
+                            </nb-select>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-5">
                             <div class="form-group">
                               <input nbInput fullWidth type="text" placeholder="Motif de consultation" name="consultationReason"
                                      class="form-control"
                                      [(ngModel)]="group.title" (ngModelChange)="patientChanged()" #spy/>
                             </div>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-2">
+                            <button type="button" class="btn btn-primary pointer" (click)="downloadInvoice(group)">
+                              Facture
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-4">
                             <div class="form-group">
+                              <label class="label" for="consultationDate">Date :</label>
                               <nb-form-field>
                                 <nb-icon nbPrefix icon="calendar" pack="fa"></nb-icon>
                                 <input nbInput fullWidth type="text"
                                        name="consultationDate"
+                                       id="consultationDate"
                                        placeholder="Date de consultation"
                                        class="form-control"
                                        bsDatepicker
@@ -329,27 +337,36 @@
                               </nb-form-field>
                             </div>
                           </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="label" for="price">Tarif</label>
+                              <nb-form-field>
+                                <nb-icon nbPrefix icon="euro-sign" pack="fa"></nb-icon>
+                                <input type="number" nbInput fullWidth rows="5" placeholder="Tarif" id="price" name="price"
+                                          [(ngModel)]="group.price" (ngModelChange)="patientChanged()"
+                                          class="form-control" #spy />
+                              </nb-form-field>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
                             <div class="form-group">
                               <label class="label" for="paymentType">Moyen de paiement :</label>
                               <nb-select fullWidth id="paymentType" name="paymentType"
-                                      [(ngModel)]="group.paymentType" (ngModelChange)="patientChanged()" #spy>
+                                         [(ngModel)]="group.paymentType" (ngModelChange)="patientChanged()" #spy>
                                 <nb-option *ngFor="let paymentType of paymentTypes | keyvalue" [value]="paymentType.key">
                                   {{paymentType.value}}
                                 </nb-option>
                               </nb-select>
                             </div>
                           </div>
-                          <div class="col-md-6" *ngIf="group.paymentType === 'Check'">
+                          <div class="col-lg-8" *ngIf="group.paymentType === 'Check'">
                             <div class="form-group">
                               <label class="label" for="paymentType">Numéro de chèque :</label>
                               <input nbInput fullWidth type="text" placeholder="Numéro de chèque" name="checkNumber" class="form-control"
                                      [(ngModel)]="group.checkNumber" (ngModelChange)="patientChanged()" #spy/>
                             </div>
                           </div>
-                          <div class="col-md-2" *ngIf="group.paymentType === 'Check'">
+                          <div class="col-lg-4" *ngIf="group.paymentType === 'Check'">
                             <div class="form-group">
                               <label class="label" for="paymentType">Rapproché :</label>
                               <div class="center" fullWidth>

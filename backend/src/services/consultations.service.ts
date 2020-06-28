@@ -1,9 +1,10 @@
 import {inject, injectable} from 'inversify';
 import {TYPES} from '../constants/types';
 import {PatientsService} from './patients.service';
-import {Consultation, Patient} from '../../../common/patient.model';
+import {Patient} from '../../../common/patient.model';
 import {NotFoundError} from '../error/NotFoundError';
 import {logger} from '../logger/logger';
+import {Consultation} from '../../../common/consultation.model';
 
 @injectable()
 export class ConsultationsService {

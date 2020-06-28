@@ -2,12 +2,9 @@ import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from 
 import {ActivatedRoute} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 import {
-  Antecedent,
-  Consultation,
   HandOrientation,
   MaritalStatus,
   Patient,
-  PaymentType,
   Sexe,
 } from '../../../../../../common/patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
@@ -20,6 +17,12 @@ import {PatientConfirmComponent} from '../patient-confirm/patient-confirm.compon
 import {KeycloakService} from 'keycloak-angular';
 import {PatientInvoiceModalComponent} from './patient-invoice-modal/patient-invoice-modal.component';
 import {NbToastrService} from '@nebular/theme';
+import {PaymentType} from '../../../../../../common/payment.model';
+import {Antecedent, DEFAULT_ANTECEDENTS} from '../../../../../../common/antecedent.model';
+import {Consultation} from '../../../../../../common/consultation.model';
+import {OfficeService} from '../../../@core/services/office.service';
+import {Office} from '../../../../../../common/office.model';
+import {EnumValue} from '@angular/compiler-cli/src/ngtsc/partial_evaluator';
 
 
 @Component({
@@ -31,6 +34,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   id: string;
   @ViewChild('patientForm') patientForm: ElementRef;
   patient: Patient;
+  offices: Office[];
   sexe = Sexe;
   handOrientation = HandOrientation;
   maritalStatuses = MaritalStatus;
@@ -50,121 +54,13 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   constructor(private route: ActivatedRoute,
               private localeService: BsLocaleService,
               private patientService: PatientService,
+              private officeService: OfficeService,
               private toasterService: NbToastrService,
               private modalService: NgbModal,
               private keycloakService: KeycloakService) {
     this.localeService.use('fr');
 
-    this.templateAntecedents = [
-      {
-        title: 'Médecine',
-        category: 'Actuellement',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Psychologie',
-        category: 'Actuellement',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Traitement médical',
-        category: 'Actuellement',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Décès',
-        category: 'Antécédents familiaux',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Accouchements',
-        category: 'Antécédents familiaux',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Autre',
-        category: 'Antécédents familiaux',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Entorse',
-        category: 'Antécédents traumas',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Fracture',
-        category: 'Antécédents traumas',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Luxation',
-        category: 'Antécédents traumas',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'AVP',
-        category: 'Antécédents traumas',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Chutes',
-        category: 'Antécédents traumas',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Chirurgicaux',
-        category: 'Antécédents traumas',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Orthopédique',
-        category: 'Systèmique',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Tete',
-        category: 'Systèmique',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Thorax',
-        category: 'Systèmique',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Abdomen',
-        category: 'Systèmique',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'Gynéco/uro',
-        category: 'Systèmique',
-        important: false,
-        value: '',
-      },
-      {
-        title: 'ORL',
-        category: 'Systèmique',
-        important: false,
-        value: '',
-      },
-    ];
+    this.templateAntecedents = DEFAULT_ANTECEDENTS;
   }
 
   patientChanged() {
@@ -183,7 +79,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
             this.templateAntecedents
               .forEach(antecedent => {
                 if (this.patient.antecedents
-                    .find(existingAntecedent => existingAntecedent.title === antecedent.title) === undefined) {
+                  .find(existingAntecedent => existingAntecedent.title === antecedent.title) === undefined) {
                   this.patient.antecedents.push(antecedent);
                 }
               });
@@ -196,6 +92,9 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               .forEach(consultation => {
                 consultation.date = new Date(consultation.date);
                 consultation.isOpen = false;
+                if (!consultation.office) {
+                  consultation.office = this.offices[0];
+                }
               });
           },
           error => {
@@ -205,6 +104,11 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
       // In a real app: dispatch action to load the details here.
     });
 
+    this.officeService.getOffices()
+      .subscribe(
+        result => this.offices = result,
+        error => this.toasterService.danger(error.error.message, 'Impossible de récupérer les cabinets.'),
+      );
     // Automatically save every 5 seconds if there are some changes
     this.patientUpdate
       .debounceTime(5000)
@@ -291,8 +195,9 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
     consultation.id = this.patient.consultations.length;
     consultation.osteopath = this.loggedUser;
     consultation.isOpen = true;
+    consultation.office = this.offices[0];
+    consultation.price = consultation.office.price;
     this.patient.consultations.unshift(consultation);
-    this.patientChanged();
   }
 
   removeConsultation(consultation: Consultation) {
@@ -320,4 +225,10 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
     modal.componentInstance.init(this.patient, consultation);
   }
 
+  officeChanged(consultation: Consultation, event: string) {
+    const office = this.offices.find((o: Office) => event === o._id);
+    consultation.office = office;
+    consultation.price = office.price;
+    this.patientChanged();
+  }
 }

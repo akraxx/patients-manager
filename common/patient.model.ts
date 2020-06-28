@@ -1,14 +1,5 @@
-export class Antecedent {
-    title: string;
-    category?: string;
-    important: boolean;
-    value: string;
-}
-
-export class AntecedentCategory {
-    title: string;
-    antecedents: Antecedent[];
-}
+import {Consultation} from './consultation.model';
+import {Antecedent} from './antecedent.model';
 
 export enum Sexe {
     F = 'Femme',
@@ -28,29 +19,6 @@ export enum MaritalStatus {
 export enum HandOrientation {
     Right = 'Droitier',
     Left = 'Gaucher',
-}
-
-export enum PaymentType {
-    None = 'Aucun',
-    Check = 'Chèque',
-    Cash = 'Liquide',
-    Card = 'CB',
-    Oops = 'Other',
-}
-
-export class Consultation {
-    id: number;
-    title: string = '';
-    content: string;
-    paymentType: string = 'None';
-    clearedCheck: boolean = null;
-    checkNumber: string;
-    description: string = `
-    <h1>Tests Medicaux</h1><p></p><h1>Tra&icirc;tement</h1><p></p><h1>Pour la prochaine s&eacute;ance</h1><p></p>
-  `;
-    date: Date = new Date();
-    isOpen: boolean = false;
-    osteopath: string;
 }
 
 export class Patient {

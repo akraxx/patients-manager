@@ -48,3 +48,5 @@ Thumbs.db
 .version
 acme.json
 playbook.retry
+
+migration-*

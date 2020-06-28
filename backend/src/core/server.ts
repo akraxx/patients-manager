@@ -5,7 +5,7 @@ import {ConsultationsService} from '../services/consultations.service';
 import {InversifyExpressServer} from 'inversify-express-utils';
 import expressWinston from 'express-winston';
 import winston from 'winston';
-import {Request, Response} from 'express';
+import {Application, NextFunction, Request, Response} from 'express';
 import {WebServiceError} from '../error/WebServiceError';
 import {customFormat, logger} from '../logger/logger';
 import bodyParser from 'body-parser';
@@ -17,12 +17,16 @@ import {ServerOptions} from './server.options';
 import '../controllers/version.controller';
 import '../controllers/patients.controller';
 import '../controllers/consulations.controller';
+import '../controllers/offices.controller';
 import '../error/WebServiceError'
 import {InvoicesService} from '../services/invoices.service';
 import {MailerOptions} from '../mail/mailer.options';
 import {MailerService} from '../mail/mailer.service';
 import {MongoService, MongoServiceProvider} from '../db/mongo.service';
 import {MongoOptions} from '../db/mongo.options';
+import {JWTAuthProvider} from '../auth/auth.provider';
+import {AuthOptions} from '../auth/auth.options';
+import {OfficesService} from '../services/offices.service';
 
 export class Server {
 
@@ -51,6 +55,11 @@ export class Server {
             db: this.opts.mongoDatabase,
         });
 
+        container.bind<AuthOptions>(TYPES.AuthOptions).toConstantValue({
+            keycloakHost: this.opts.keycloakHost,
+            enabled: this.opts.production
+        });
+
         container.bind<MailerService>(TYPES.MailerService).to(MailerService);
         container.bind<MongoService>(TYPES.MongoService).to(MongoService);
 
@@ -69,6 +78,7 @@ export class Server {
         container.bind<PatientsService>(TYPES.PatientsService).to(PatientsService);
         container.bind<ConsultationsService>(TYPES.ConsultationsService).to(ConsultationsService);
         container.bind<InvoicesService>(TYPES.InvoicesService).to(InvoicesService);
+        container.bind<OfficesService>(TYPES.OfficesService).to(OfficesService);
 
 
         return container
@@ -85,8 +95,8 @@ export class Server {
         Server.initLanguage()
         const container = this.initContainer()
 
-        new InversifyExpressServer(container)
-            .setConfig((app) => {
+        new InversifyExpressServer(container, null, null, null, JWTAuthProvider)
+            .setConfig((app: Application) => {
                 // language
                 app.use(i18n.init);
 
@@ -113,24 +123,7 @@ export class Server {
                         ignoreRoute: function (req, res) { return false; } // optional: allows to skip some log messages based on request and/or response
                     })
                 )
-                // auth
-                if (this.opts.production) {
-                    app.use('/api', jwt({
-                        // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
-                        secret: jwksRsa.expressJwtSecret({
-                            cache: true,
-                            rateLimit: true,
-                            jwksRequestsPerMinute: 5,
-                            jwksUri: `${this.opts.keycloakHost}/auth/realms/patients-manager/protocol/openid-connect/certs`
-                        }),
-
-                        // Validate the audience and the issuer.
-                        audience: 'frontend',
-                        issuer: `${this.opts.keycloakHost}/auth/realms/patients-manager`,
-                        algorithms: ['RS256']
-                    }));
-                }
-            }).setErrorConfig(app => {
+            }).setErrorConfig((app: Application) => {
             app.use((req: Request, res: Response) => {
                 res.status(404).json({message: "Not found"})
             });

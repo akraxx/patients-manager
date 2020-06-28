@@ -1,6 +1,6 @@
 import {inject, injectable} from 'inversify';
 import {TYPES} from '../constants/types';
-import {Consultation, Patient} from '../../../common/patient.model';
+import {Patient} from '../../../common/patient.model';
 import {logger} from '../logger/logger';
 import {ConsultationsService} from './consultations.service';
 import {ReadStream} from 'fs';
@@ -12,6 +12,9 @@ import {VError} from 'verror'
 import {MailerService} from '../mail/mailer.service';
 import {SentMessageInfo} from 'nodemailer/lib/smtp-transport';
 import {UserResponse} from '../../../common/user-response.model';
+import {Consultation} from '../../../common/consultation.model';
+import {Office} from '../../../common/office.model';
+import {OfficesService} from './offices.service';
 
 const DATA_PATH = process.env.ASSETS_PATH || '/home/max/Documents/workspace/patients-manager/backend/data/';
 const INVOICES_GENERATED_PATH = process.env.INVOICES_DIRECTORY || DATA_PATH + 'invoices/generated/';
@@ -23,6 +26,7 @@ export class InvoicesService {
 
     constructor(@inject(TYPES.ConsultationsService) private consultationsService: ConsultationsService,
                 @inject(TYPES.PatientsService) private patientsService: PatientsService,
+                @inject(TYPES.OfficesService) private officesService: OfficesService,
                 @inject(TYPES.MailerService) private mailerService: MailerService) {
 
     }
@@ -50,7 +54,9 @@ export class InvoicesService {
         logger.info(`download invoice of consultation ${consultationId} of patient ${patientId}`);
         const patient = await this.patientsService.getPatientById(patientId);
         const consultation = await this.consultationsService.getConsultation(patientId, consultationId, patient);
-        return this.renderPdfInvoice(patient, consultation)
+        const office = await this.officesService.getOfficeById(consultation.office);
+
+        return this.renderPdfInvoice(patient, consultation, office)
             .then(data => {
                 return new Promise((resolve, reject) => {
                     pdf.create(data, {
@@ -68,6 +74,7 @@ export class InvoicesService {
         logger.info(`send invoice of consultation ${consultationId} to patient ${patientId}`);
         const patient = await this.patientsService.getPatientById(patientId);
         const consultation = await this.consultationsService.getConsultation(patientId, consultationId, patient);
+        const office = await this.officesService.getOfficeById(consultation.office);
 
         const filename = patient.lastName.toUpperCase()
             + '_' + patient.firstName.toLowerCase()
@@ -75,7 +82,7 @@ export class InvoicesService {
             + '.pdf';
         const absoluteFilePath = INVOICES_GENERATED_PATH + filename;
 
-        const fileInfo: FileInfo = await this.renderPdfInvoice(patient, consultation)
+        const fileInfo: FileInfo = await this.renderPdfInvoice(patient, consultation, office)
             .then(data => {
                 return new Promise((resolve, reject) => {
                     pdf.create(data, {
@@ -99,12 +106,13 @@ export class InvoicesService {
             });
     }
 
-    private async renderPdfInvoice(patient: Patient, consultation: Consultation): Promise<string> {
+    private async renderPdfInvoice(patient: Patient, consultation: Consultation, office: Office): Promise<string> {
         logger.info(`rendering pdf invoice of consultation ${consultation.id} for patient ${patient._id}`);
         return ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH,
             InvoicesService.getEscapedOsteopathName(consultation.osteopath) + ".html.ejs"), {
             patient: patient,
             consultation: consultation,
+            office: office,
             dateConsultation: consultation.date.toLocaleDateString('fr-FR'),
             dateBirthday: patient.birthDate.toLocaleDateString('fr-FR'),
             assetsPath: "file://" + INVOICES_ASSETS_PATH
@@ -119,7 +127,8 @@ export class InvoicesService {
         logger.info(`rendering mail invoice of consultation ${consultation.id} for patient ${patient._id}`);
         return ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH, InvoicesService.getEscapedOsteopathName(consultation.osteopath) + "-mail.html.ejs"), {
             patient: patient,
-            consultation: consultation
+            consultation: consultation,
+            dateConsultation: consultation.date.toLocaleDateString('fr-FR'),
         })
             .catch(e => {
                 throw new VError(e, 'could not generate mail invoice for consultation %d for patient %s %s',

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Antecedent} from '../../../../../../../common/patient.model';
+import {Antecedent} from '../../../../../../../common/antecedent.model';
 
 @Component({
   selector: 'ngx-patient-antecedent',

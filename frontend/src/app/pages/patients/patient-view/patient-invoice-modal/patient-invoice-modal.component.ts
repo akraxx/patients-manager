@@ -1,10 +1,12 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {PatientService} from '../../../../@core/services/patient.service';
-import {Consultation, Patient, PaymentType} from '../../../../../../../common/patient.model';
+import {Patient} from '../../../../../../../common/patient.model';
 import {DatePipe} from '@angular/common';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 import {NbToastrService} from '@nebular/theme';
+import {Consultation} from '../../../../../../../common/consultation.model';
+import {PaymentType} from '../../../../../../../common/payment.model';
 
 @Component({
   selector: 'ngx-patient-invoice-modal',
@@ -45,6 +47,7 @@ export class PatientInvoiceModalComponent {
     this.mandatoryFields.set('birthDate', this.isValidField(patient.birthDate));
     this.mandatoryFields.set('paymentType', this.isValidField(consultation.paymentType, 'None'));
     this.mandatoryFields.set('date', this.isValidField(consultation.date));
+    this.mandatoryFields.set('office', this.isValidField(consultation.office));
 
     // optional fields
     this.optionalFields.set('address', this.isValidField(patient.address));
