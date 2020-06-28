@@ -3,7 +3,12 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">Gestionnaire<span> de Patients</span></a>
+    <a class="logo" href="#" (click)="navigateHome()">
+      <nb-icon pack="fa" icon="stethoscope" status="primary"></nb-icon>
+      <div class="d-none d-md-inline">
+        Gestionnaire<span> de Patients</span>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -12,7 +17,7 @@
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                onlyPicture="false"
-               [name]="user">
+               [name]="user" responsive>
       </nb-user>
     </nb-action>
   </nb-actions>
