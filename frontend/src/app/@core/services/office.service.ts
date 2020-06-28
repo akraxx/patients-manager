@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
-import {Patient} from '../../../../../common/patient.model';
-import {throwError} from 'rxjs';
 import {Office} from '../../../../../common/office.model';
 
 const BASE_PATH: string = `/api/offices`;

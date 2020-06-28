@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PaymentType} from '../../../../../../../common/payment.model';
-import {Office, OfficeMember, OfficeRole} from '../../../../../../../common/office.model';
+import {Office, OfficeRole} from '../../../../../../../common/office.model';
 
 @Component({
   selector: 'ngx-offices-view-details',

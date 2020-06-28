@@ -1,12 +1,7 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
-import {
-  HandOrientation,
-  MaritalStatus,
-  Patient,
-  Sexe,
-} from '../../../../../../common/patient.model';
+import {HandOrientation, MaritalStatus, Patient, Sexe} from '../../../../../../common/patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
 import {Observable, Subject} from 'rxjs/Rx';
 import {ComponentCanDeactivate} from '../../../@core/utils/pending-changes.guard';
@@ -22,7 +17,6 @@ import {Antecedent, DEFAULT_ANTECEDENTS} from '../../../../../../common/antecede
 import {Consultation} from '../../../../../../common/consultation.model';
 import {OfficeService} from '../../../@core/services/office.service';
 import {Office} from '../../../../../../common/office.model';
-import {EnumValue} from '@angular/compiler-cli/src/ngtsc/partial_evaluator';
 
 
 @Component({
