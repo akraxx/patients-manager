@@ -6,7 +6,8 @@ services:
   #######################################
   patients-manager-web:
     build:
-      context: frontend
+      context: .
+      dockerfile: Dockerfile.frontend
     volumes:
     - "./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
     labels:
@@ -16,7 +17,8 @@ services:
     - "traefik.frontend.rule=PathPrefix:/"
   patients-manager-api:
     build:
-      context: backend
+      context: .
+      dockerfile: Dockerfile.backend
     links:
       - mongodb
     volumes:
@@ -29,3 +31,10 @@ services:
     - "traefik.enable=true"
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"
+  mongodb:
+    image: "mongo:4"
+    restart: always
+    ports:
+    - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db

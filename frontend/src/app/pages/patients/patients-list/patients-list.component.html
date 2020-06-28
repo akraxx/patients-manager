@@ -9,58 +9,66 @@
           <button class="btn btn-primary pull-right" [routerLink]="['/pages/patients/new']"><i class="fa fa-plus"></i> Ajouter un nouveau patient</button>
         </div>
         <nb-tabset (changeTab)="tabChanged($event)">
-          <nb-tab tabTitle="Recherche">
+          <nb-tab tabTitle="Recherche" [tabIcon]="{pack: 'fa', icon: 'search'}"  responsive>
 
             <div class="container">
               <div class="row">
                 <div class="col-md-8 offset-md-2">
                   <nb-card-body>
-                    <div class="input-group">
-                      <input type="text" class="form-control"
-                             [(ngModel)]="patientSearch" placeholder="Rechercher un patient par nom ou prénom"
-                             (keyup.enter)="searchPatientsByName(patientSearch)">
-                      <span class="input-group-append">
-                          <button class="btn btn-primary input-group-text" (click)="searchPatientsByName(patientSearch)">
-                            Rechercher
-                          </button>
-                      </span>
+                    <div class="form-group">
+                      <nb-form-field>
+                        <button nbSuffix nbButton ghost (click)="searchPatientsByName(patientSearch)">
+                          <nb-icon icon="search" pack="fa"></nb-icon>
+                        </button>
+                        <input nbInput type="text" fullWidth class="form-control"
+                               [(ngModel)]="patientSearch" placeholder="Rechercher un patient par nom ou prénom"
+                               (keyup.enter)="searchPatientsByName(patientSearch)">
+                      </nb-form-field>
                     </div>
                   </nb-card-body>
                 </div>
               </div>
             </div>
           </nb-tab>
-          <nb-tab tabTitle="Mes patients">
+          <nb-tab tabTitle="Mes patients" [tabIcon]="{pack: 'fa', icon: 'stethoscope'}" responsive>
           </nb-tab>
-          <nb-tab tabTitle="Derniers enregistrés">
+          <nb-tab tabTitle="Derniers enregistrés" [tabIcon]="{pack: 'fa', icon: 'save'}" responsive>
           </nb-tab>
-          <nb-tab tabTitle="Tous" (click)="searchPatients()">
+          <nb-tab tabTitle="Tous" (click)="searchPatients()" [tabIcon]="{pack: 'fa', icon: 'user-md'}" responsive>
           </nb-tab>
         </nb-tabset>
-        <table class="table table-striped table-hover">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-blue">
           <thead>
           <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Age</th>
-            <th>Dernière consultation</th>
-            <th>Date de création</th>
-            <th>Visionner</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Age</th>
+            <th class="d-none d-md-table-cell" scope="col">Dernière consultation</th>
+            <th class="d-none d-lg-table-cell" scope="col">Date de création</th>
+            <th class="d-none d-lg-table-cell" scope="col">Visionner</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let patient of patients | paginate: { itemsPerPage: 10, currentPage: page }" [routerLink]="['/pages/patients', patient._id]" style="cursor:pointer;">
             <td>{{patient.lastName}}</td>
             <td>{{patient.firstName}}</td>
-            <td>{{patient.birthDate | age}} ans ({{patient.birthDate | date:'longDate'}})</td>
-            <td>{{getLastConsultationDate(patient) | date:'longDate'}}</td>
-            <td>{{patient.createdAt | date:'medium'}}</td>
-            <td><i class="fa fa-eye"></i></td>
+            <td scope="col">
+              <div class="d-md-none">
+                {{patient.birthDate | date:'shortDate'}}
+              </div>
+              <div class="d-none d-md-table-cell">
+                {{patient.birthDate | age}} ans ({{patient.birthDate | date:'longDate'}})
+              </div>
+            </td>
+            <td class="d-none d-md-table-cell" scope="col">{{getLastConsultationDate(patient) | date:'longDate'}}</td>
+            <td class="d-none d-lg-table-cell" scope="col">{{patient.createdAt | date:'medium'}}</td>
+            <td class="d-none d-lg-table-cell" scope="col"><i class="fa fa-eye"></i></td>
           </tr>
           </tbody>
           <tfoot>
           <tr>
-            <td colspan="5">
+            <td colspan="100%">
               <div class="text-center">
                 <pagination-controls
                   autoHide="true"
@@ -73,6 +81,7 @@
           </tr>
           </tfoot>
         </table>
+        </div>
       </nb-card-body>
     </nb-card>
   </div>

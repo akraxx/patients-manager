@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { PatientsComponent } from './patients.component';
-import { PatientsListComponent } from './patients-list/patients-list.component';
-import { PatientNewComponent} from './patient-new/patient-new.component';
+import {PatientsComponent} from './patients.component';
+import {PatientsListComponent} from './patients-list/patients-list.component';
+import {PatientNewComponent} from './patient-new/patient-new.component';
 import {PatientViewComponent} from './patient-view/patient-view.component';
 import {PendingChangesGuard} from '../../@core/utils/pending-changes.guard';
 import {NotFoundComponent} from '../miscellaneous/not-found/not-found.component';

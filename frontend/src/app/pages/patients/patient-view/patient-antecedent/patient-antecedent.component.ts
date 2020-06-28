@@ -1,16 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-
-export class Antecedent {
-  title: string;
-  category?: string;
-  important: boolean;
-  value: string;
-}
-
-export class AntecedentCategory {
-  title: string;
-  antecedents: Antecedent[];
-}
+import {Antecedent} from '../../../../../../../common/patient.model';
 
 @Component({
   selector: 'ngx-patient-antecedent',

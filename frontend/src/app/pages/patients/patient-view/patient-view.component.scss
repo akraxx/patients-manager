@@ -1,25 +1,34 @@
-nb-radio-group.horizontal {
-  display: block;
+@import '../../../@theme/styles/themes';
 
-  nb-radio {
-    display: inline;
+@include nb-install-component() {
+  nb-radio-group.horizontal {
+    display: block;
+
+    nb-radio {
+      display: inline;
+    }
   }
-}
 
-.tiny {
-  font-size: 0.6rem;
-}
+  .tiny {
+    font-size: 0.6rem;
+  }
 
-.pointer {
-  cursor: pointer;
-}
+  .pointer {
+    cursor: pointer;
+  }
 
-.center {
-  text-align: center;
-}
+  .center {
+    text-align: center;
+  }
 
-nb-accordion-item-header .title {
-  width: 80%;
+  nb-accordion-item-header .title {
+    width: 80%;
+  }
+
+  nb-tab {
+    overflow: hidden;
+  }
+
 }
 
 

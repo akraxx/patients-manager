@@ -74,7 +74,10 @@
 <div class="modal-footer" *ngIf="!hasMissingMandatoryFields()">
   <div class="row text-center">
     <div class="col-md-3 col-sm-12">
-      <button class="btn btn-md btn-primary" (click)="downloadInvoice()">Télécharger</button>
+      <button class="btn btn-md btn-primary" (click)="downloadInvoice()" [disabled]="processingInvoice">
+        <i *ngIf="processingInvoice" class="fa fa-spinner fa-spin"></i>
+        <span *ngIf="!processingInvoice">Télécharger</span>
+      </button>
     </div>
     <div class="col-md-1 col-sm-12">
     ou
@@ -82,7 +85,10 @@
     <div class="col-md-8 col-sm-12">
       <div class="input-group">
         <div class="input-group-prepend">
-          <button class="btn btn-md btn-primary pointer" (click)="sendInvoice()">Envoyer par mail</button>
+          <button class="btn btn-md btn-primary pointer" (click)="sendInvoice()" [disabled]="processingInvoice">
+            <i *ngIf="processingInvoice" class="fa fa-spinner fa-spin"></i>
+            <span *ngIf="!processingInvoice">Envoyer par mail</span>
+          </button>
         </div>
         <input type="email" class="form-control" placeholder="Email" aria-label="Email" [value]="patient.mail" disabled>
         <div class="input-group-append">

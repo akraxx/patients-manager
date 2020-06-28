@@ -1,15 +1,22 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
-import {Antecedent} from './patient-antecedent/patient-antecedent.component';
-import {Consultation, HandOrientation, MaritalStatus, Patient, PaymentType, Sexe} from '../patient.model';
+import {
+  Antecedent,
+  Consultation,
+  HandOrientation,
+  MaritalStatus,
+  Patient,
+  PaymentType,
+  Sexe,
+} from '../../../../../../common/patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
 import {Observable, Subject} from 'rxjs/Rx';
 import {ComponentCanDeactivate} from '../../../@core/utils/pending-changes.guard';
 import '../../editors/ckeditor/ckeditor.loader';
 import 'ckeditor';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ModalConfirmComponent} from '../../ui-features/modals/modal-confirm/modal-confirm.component';
+import {PatientConfirmComponent} from '../patient-confirm/patient-confirm.component';
 import {KeycloakService} from 'keycloak-angular';
 import {PatientInvoiceModalComponent} from './patient-invoice-modal/patient-invoice-modal.component';
 import {NbToastrService} from '@nebular/theme';
@@ -37,6 +44,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   patientUpdate = new Subject<Patient>();
   patientSaved = true;
   patientSaving = false;
+
+  timestamp = new Date().getUTCMilliseconds();
 
   constructor(private route: ActivatedRoute,
               private localeService: BsLocaleService,
@@ -222,7 +231,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
           this.patientSaved = true;
         },
         error => {
-          this.toasterService.danger('Impossible de sauvegarder le patient.', error.error.message);
+          this.toasterService.danger(error.error.message, 'Impossible de sauvegarder le patient.');
         },
       );
   }
@@ -287,7 +296,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   }
 
   removeConsultation(consultation: Consultation) {
-    const modal = this.modalService.open(ModalConfirmComponent, {size: 'lg', container: 'nb-layout'});
+    const modal = this.modalService.open(PatientConfirmComponent, {size: 'lg', container: 'nb-layout'});
     modal.componentInstance.modalHeader = 'Supprimer la consultation';
     modal.componentInstance.modalContent = `
       Êtes vous sur de vouloir supprimer la consultation effectuée sur

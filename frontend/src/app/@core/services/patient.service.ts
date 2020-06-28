@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Patient} from '../../pages/patients/patient.model';
 import {Observable} from 'rxjs/Rx';
+import {Patient} from '../../../../../common/patient.model';
+import {throwError} from 'rxjs';
 
 @Injectable()
 export class PatientService {
@@ -49,7 +50,14 @@ export class PatientService {
   }
 
   downloadInvoice(id: string, consultationId: number) {
-    return this.http.get(`/api/patients/${id}/consultations/${consultationId}/invoice`, { responseType: 'blob' });
+    return this.http.get(`/api/patients/${id}/consultations/${consultationId}/invoice`,
+      { responseType: 'arraybuffer' })
+      .map(res => new Blob([res]))
+      .catch( res => {
+        const decoder = new TextDecoder('utf-8');
+        res.error = JSON.parse(decoder.decode(res.error));
+        return throwError(res);
+      });
   }
 
   sendInvoice(id: string, consultationId: number) {

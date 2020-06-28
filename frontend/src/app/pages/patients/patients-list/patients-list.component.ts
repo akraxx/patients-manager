@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {PatientService} from '../../../@core/services/patient.service';
-import {Patient} from '../patient.model';
 import {Observable} from 'rxjs/Rx';
 import {NbTabComponent} from '@nebular/theme/components/tabset/tabset.component';
 import {KeycloakService} from 'keycloak-angular';
 import {NbToastrService} from '@nebular/theme';
+import {Patient} from '../../../../../../common/patient.model';
 
 @Component({
   selector: 'ngx-patients-list',
