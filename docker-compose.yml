@@ -56,8 +56,6 @@ services:
       POSTGRES_PASSWORD: password
   mongodb:
     image: "mongo:4"
-    ports:
-      - "27017:27017"
     restart: always
     volumes:
       - mongodb_data:/data/db

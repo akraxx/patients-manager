@@ -45,5 +45,6 @@ Thumbs.db
 # patients-manager
 .env
 .version.env
+.version
 acme.json
 playbook.retry

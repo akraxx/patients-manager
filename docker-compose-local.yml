@@ -31,3 +31,10 @@ services:
     - "traefik.enable=true"
     - "traefik.port=4000"
     - "traefik.frontend.rule=PathPrefix:/api"
+  mongodb:
+    image: "mongo:4"
+    restart: always
+    ports:
+    - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
