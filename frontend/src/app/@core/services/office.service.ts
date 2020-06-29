@@ -11,7 +11,7 @@ export class OfficeService {
   constructor(private http: HttpClient) {}
 
   getOffices(): Observable<Office[]> {
-    return this.http.get<Office[]>(`${BASE_PATH}`);
+    return this.http.get<Office[]>(`/api/offices`);
   }
 
   getOfficeById(id: string): Observable<Office> {

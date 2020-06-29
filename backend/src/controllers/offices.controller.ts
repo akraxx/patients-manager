@@ -24,7 +24,7 @@ export class OfficesController implements interfaces.Controller {
     }
 
     @httpGet("/")
-    private async list(@principal() user: Principal, @request() req: express.Request): Promise<Office[]> {
+    private list(@request() req: express.Request): Promise<Office[]> {
         logger.info(`get list of offices`)
         return this.officesService.getOffices();
     }

@@ -3,6 +3,7 @@ import {OfficeService} from '../../../@core/services/office.service';
 import {Office} from '../../../../../../common/office.model';
 import {NbToastrService} from '@nebular/theme';
 import {PaymentType} from '../../../../../../common/payment.model';
+import {KeycloakService} from 'keycloak-angular';
 
 @Component({
   selector: 'ngx-offices-list',
@@ -13,7 +14,8 @@ export class OfficesListComponent implements OnInit {
   offices: Office[];
 
   constructor(private officeService: OfficeService,
-              private toasterService: NbToastrService) {
+              private toasterService: NbToastrService,
+              private keycloakService: KeycloakService) {
   }
 
   public paymentTypeLabels(paymentTypes: string[]): string {
@@ -21,11 +23,16 @@ export class OfficesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.officeService.getOffices()
-      .subscribe(r => this.offices = r,
-        error => {
-          this.toasterService.danger(error.error.message, 'Impossible de récupérer les cabinets.');
-        },
-      );
+    this.keycloakService.isLoggedIn()
+      .then(result => {
+        if (result) {
+          this.officeService.getOffices()
+            .subscribe(r => this.offices = r,
+              error => {
+                this.toasterService.danger(error.error.message, 'Impossible de récupérer les cabinets.');
+              },
+            );
+        }
+      });
   }
 }

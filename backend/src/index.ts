@@ -5,7 +5,7 @@ import {ServerOptions} from './core/server.options';
 
 new Server({
     port: process.env.APP_PORT || 4000,
-    production: process.env.PRODUCTION || false,
+    production: process.env.PRODUCTION || true,
     keycloakHost: process.env.KEYCLOAK_HOST || 'http://localhost',
 
     mailerHost: process.env.MAIL_SERVER,

@@ -10,17 +10,15 @@ const routes: Routes = [{
   children: [
     {
       path: 'patients',
-      loadChildren: () => import('./patients/patients.module')
-        .then(m => m.PatientsModule),
+      loadChildren: './patients/patients.module#PatientsModule',
     },
     {
       path: 'offices',
-      loadChildren: () => import('./offices/offices.module')
-        .then(m => m.OfficesModule),
+      loadChildren: './offices/offices.module#OfficesModule',
     },
     {
       path: '',
-      redirectTo: 'patients',
+      redirectTo: 'offices',
       pathMatch: 'full',
     },
     {

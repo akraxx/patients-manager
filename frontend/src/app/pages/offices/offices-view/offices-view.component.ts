@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OfficeService} from '../../../@core/services/office.service';
 import {ActivatedRoute} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
-import { Office } from '../../../../../../common/office.model';
+import {Office} from '../../../../../../common/office.model';
 
 @Component({
   selector: 'ngx-offices-view',
