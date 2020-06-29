@@ -10,11 +10,13 @@ const routes: Routes = [{
   children: [
     {
       path: 'patients',
-      loadChildren: './patients/patients.module#PatientsModule',
+      loadChildren: () => import('./patients/patients.module')
+        .then(m => m.PatientsModule),
     },
     {
       path: 'offices',
-      loadChildren: './offices/offices.module#OfficesModule',
+      loadChildren: () => import('./offices/offices.module')
+        .then(m => m.OfficesModule),
     },
     {
       path: '',

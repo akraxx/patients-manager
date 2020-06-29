@@ -8,6 +8,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       pack: 'fa',
     },
     link: '/pages/patients/list',
+    home: true,
   },
   {
     title: 'Cabinets',
