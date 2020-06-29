@@ -15,6 +15,7 @@ import {Patient, Sexe} from '../../../../../../common/patient.model';
 export class PatientNewComponent implements OnInit {
   sexe = Sexe;
   patient: Patient;
+  creating: boolean;
   loggedUser: string = 'unknown';
   max: Date;
 
@@ -31,7 +32,9 @@ export class PatientNewComponent implements OnInit {
   savePatient() {
     this.patient.createdBy = this.loggedUser;
     this.patient.updatedBy = this.loggedUser;
+    this.creating = true;
     this.patientService.addPatient(this.patient)
+      .finally(() => this.creating = false)
       .subscribe(
         result => {
           // Handle result
