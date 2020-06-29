@@ -21,6 +21,17 @@ export enum HandOrientation {
     Left = 'Gaucher',
 }
 
+export class PatientResultSet {
+    total: number;
+    patients: Patient[];
+
+
+    constructor(total: number, patients: Patient[]) {
+        this.total = total;
+        this.patients = patients;
+    }
+}
+
 export class Patient {
     _id: string;
     firstName: string;

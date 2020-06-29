@@ -1,4 +1,4 @@
-import {controller, httpGet, httpPost, interfaces, requestParam, response} from 'inversify-express-utils';
+import {controller, httpGet, httpPost, interfaces, queryParam, requestParam, response} from 'inversify-express-utils';
 import {inject} from 'inversify';
 import {TYPES} from '../constants/types';
 import {ConsultationsService} from '../services/consultations.service';

@@ -1,4 +1,4 @@
-import {Patient} from '../../../common/patient.model';
+import {Patient, PatientResultSet} from '../../../common/patient.model';
 
 import {inject, injectable} from 'inversify';
 import {logger} from '../logger/logger';
@@ -21,23 +21,30 @@ export class PatientsService {
         return (sortType === 'desc') ? -1 : 1;
     }
 
-    public getPatients(options: PatientSearchOptions): Promise<Patient[]> {
-        logger.info(`searching for patients with options ${JSON.stringify(options)}`);
+    public getPatients(searchTerms: string[], sort: string, sortType: string, limit: number, offset: number): Promise<PatientResultSet> {
+        logger.info(`searching for patients with terms ${searchTerms}, sort ${sort}:${sortType}, limit ${limit}, offset ${offset}`);
+
+        if (!searchTerms) {
+            searchTerms = []
+        }
+
+        const options: PatientSearchOptions = {}
+
+        searchTerms
+            .forEach(term => {
+                const t = term.split('=')
+                options[t[0]] = t[1]
+            });
 
         let operator = "$or";
         let filters: any[] = [];
 
-        let specialFilters = ['sort', 'sortType'];
 
         Object.keys(options).forEach(function (key) {
-            if (specialFilters.indexOf(key) < 0) {
-                const filterRegex = {
-                    "$regex": new RegExp(options[key].toString().toLowerCase(), 'i')
-                };
-                filters.push({[key]: filterRegex})
-            } else {
-                logger.debug(`${key} can not be used as search parameter`)
-            }
+            const filterRegex = {
+                "$regex": new RegExp(options[key].toString().toLowerCase(), 'i')
+            };
+            filters.push({[key]: filterRegex})
         });
 
         let condition = {};
@@ -45,18 +52,27 @@ export class PatientsService {
             condition = {[operator]: filters}
         }
 
-        let sort: {} = {'createdAt': -1};
-        if (options.sort) {
-            if (options.sortType) {
-                sort = {[options.sort.toString()]: this.sortTypeToNumber(options.sortType.toString())}
-            }
-        }
+
+
+
 
         return this.patientDao.find(condition)
+            .populate({
+                path: 'consultations.office',
+                model: 'Office'
+            })
             .collation({locale: "fr", strength: 1})
-            .sort(sort)
+            .sort({[sort]: this.sortTypeToNumber(sortType)})
+            .skip(offset)
+            .limit(limit)
             .exec()
-            .then(patients => patients)
+            .then(patients => {
+                return this.patientDao.countDocuments(condition)
+                    .then(c => {
+                        logger.debug(`number of matching documents ${c}`)
+                        return new PatientResultSet(c, patients);
+                    });
+            })
             .catch(e => {
                 console.error('could not get patients, got error', e)
                throw e;

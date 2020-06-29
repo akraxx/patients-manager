@@ -72,9 +72,9 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
             this.patient = result;
             this.templateAntecedents
               .forEach(antecedent => {
-                if (this.patient.antecedents
+                if (result.antecedents
                   .find(existingAntecedent => existingAntecedent.title === antecedent.title) === undefined) {
-                  this.patient.antecedents.push(antecedent);
+                  this.patient.antecedents.push(Object.assign({}, antecedent));
                 }
               });
             this.patient.birthDate = new Date(this.patient.birthDate);

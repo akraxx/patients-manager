@@ -1,8 +1,17 @@
 import * as express from 'express'
-import {controller, httpGet, httpPost, httpPut, interfaces, request, requestParam} from 'inversify-express-utils';
+import {
+    controller,
+    httpGet,
+    httpPost,
+    httpPut,
+    interfaces,
+    queryParam,
+    request,
+    requestParam,
+} from 'inversify-express-utils';
 import {inject} from 'inversify';
 import {PatientSearchOptions, PatientsService} from '../services/patients.service';
-import {Patient} from '../../../common/patient.model';
+import {Patient, PatientResultSet} from '../../../common/patient.model';
 import {TYPES} from '../constants/types';
 
 @controller('/api/patients')
@@ -13,8 +22,12 @@ export class PatientController implements interfaces.Controller {
     }
 
     @httpGet("/")
-    private list(@request() req: express.Request): Promise<Patient[]> {
-        return this.patientsService.getPatients(req.query as PatientSearchOptions);
+    private list(@request() req: express.Request,
+                 @queryParam("sort") sort: string = "createdAt",
+                 @queryParam("sortType") sortType: string = "desc",
+                 @queryParam("limit") limit: string,
+                 @queryParam("offset") offset: string): Promise<PatientResultSet> {
+        return this.patientsService.getPatients(req.query.search as string[], sort, sortType, +limit, +offset);
     }
 
     @httpPost("/")
