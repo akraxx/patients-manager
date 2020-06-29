@@ -1,6 +1,5 @@
 import {controller, httpGet, httpPost, interfaces, requestParam, response} from 'inversify-express-utils';
 import {inject} from 'inversify';
-import {Consultation} from '../../../common/patient.model';
 import {TYPES} from '../constants/types';
 import {ConsultationsService} from '../services/consultations.service';
 import * as express from 'express';
@@ -8,6 +7,7 @@ import {InvoicesService} from '../services/invoices.service';
 import {ReadStream} from 'fs';
 import {logger} from '../logger/logger';
 import {UserResponse} from '../../../common/user-response.model';
+import {Consultation} from '../../../common/consultation.model';
 
 @controller('/api/patients/:patientId/consultations')
 export class ConsultationController implements interfaces.Controller {

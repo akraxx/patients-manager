@@ -13,7 +13,6 @@ import {MailerService} from '../mail/mailer.service';
 import {SentMessageInfo} from 'nodemailer/lib/smtp-transport';
 import {UserResponse} from '../../../common/user-response.model';
 import {Consultation} from '../../../common/consultation.model';
-import {Office} from '../../../common/office.model';
 import {OfficesService} from './offices.service';
 
 const DATA_PATH = process.env.ASSETS_PATH || '/home/max/Documents/workspace/patients-manager/backend/data/';
@@ -54,9 +53,8 @@ export class InvoicesService {
         logger.info(`download invoice of consultation ${consultationId} of patient ${patientId}`);
         const patient = await this.patientsService.getPatientById(patientId);
         const consultation = await this.consultationsService.getConsultation(patientId, consultationId, patient);
-        const office = await this.officesService.getOfficeById(consultation.office);
 
-        return this.renderPdfInvoice(patient, consultation, office)
+        return this.renderPdfInvoice(patient, consultation)
             .then(data => {
                 return new Promise((resolve, reject) => {
                     pdf.create(data, {
@@ -74,7 +72,6 @@ export class InvoicesService {
         logger.info(`send invoice of consultation ${consultationId} to patient ${patientId}`);
         const patient = await this.patientsService.getPatientById(patientId);
         const consultation = await this.consultationsService.getConsultation(patientId, consultationId, patient);
-        const office = await this.officesService.getOfficeById(consultation.office);
 
         const filename = patient.lastName.toUpperCase()
             + '_' + patient.firstName.toLowerCase()
@@ -82,7 +79,7 @@ export class InvoicesService {
             + '.pdf';
         const absoluteFilePath = INVOICES_GENERATED_PATH + filename;
 
-        const fileInfo: FileInfo = await this.renderPdfInvoice(patient, consultation, office)
+        const fileInfo: FileInfo = await this.renderPdfInvoice(patient, consultation)
             .then(data => {
                 return new Promise((resolve, reject) => {
                     pdf.create(data, {
@@ -106,13 +103,13 @@ export class InvoicesService {
             });
     }
 
-    private async renderPdfInvoice(patient: Patient, consultation: Consultation, office: Office): Promise<string> {
+    private async renderPdfInvoice(patient: Patient, consultation: Consultation): Promise<string> {
         logger.info(`rendering pdf invoice of consultation ${consultation.id} for patient ${patient._id}`);
         return ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH,
             InvoicesService.getEscapedOsteopathName(consultation.osteopath) + ".html.ejs"), {
             patient: patient,
             consultation: consultation,
-            office: office,
+            office: consultation.office,
             dateConsultation: consultation.date.toLocaleDateString('fr-FR'),
             dateBirthday: patient.birthDate.toLocaleDateString('fr-FR'),
             assetsPath: "file://" + INVOICES_ASSETS_PATH

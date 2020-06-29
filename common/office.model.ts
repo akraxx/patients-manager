@@ -1,4 +1,3 @@
-import {PaymentType} from './payment.model';
 import {User} from './user.model';
 
 export enum OfficeRole {
