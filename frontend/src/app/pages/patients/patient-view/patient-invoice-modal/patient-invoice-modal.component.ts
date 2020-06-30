@@ -115,10 +115,7 @@ export class PatientInvoiceModalComponent {
 
           const link = document.createElement('a');
           link.href = data;
-          link.download = this.patient.lastName.toUpperCase()
-            + '_' + this.patient.firstName.toLowerCase()
-            + '_' + this.datepipe.transform(this.consultation.date, 'dd-MM-yyyy')
-            + '.pdf';
+          link.download = Consultation.invoiceFileName(this.consultation, this.patient);
 
           // this is necessary as link.click() does not work on the latest firefox
           link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));

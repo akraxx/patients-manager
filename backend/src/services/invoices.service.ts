@@ -44,8 +44,8 @@ export class InvoicesService {
             attachments: [{
                 filename: path.basename(fileInfo.filename),
                 path: fileInfo.filename,
-                contentType: 'application/pdf'
-            }]
+                contentType: 'application/pdf',
+            }],
         };
     }
 
@@ -58,8 +58,8 @@ export class InvoicesService {
             .then(data => {
                 return new Promise((resolve, reject) => {
                     pdf.create(data, {
-                        format: "A3",
-                        orientation: "portrait"
+                        format: 'A3',
+                        orientation: 'portrait',
                     }).toStream((err: Error, stream: ReadStream) => {
                         if (err) return reject(err)
                         resolve(stream)
@@ -73,18 +73,15 @@ export class InvoicesService {
         const patient = await this.patientsService.getPatientById(patientId);
         const consultation = await this.consultationsService.getConsultation(patientId, consultationId, patient);
 
-        const filename = patient.lastName.toUpperCase()
-            + '_' + patient.firstName.toLowerCase()
-            + '_' + consultation.date.toLocaleDateString().split('/').join('-')
-            + '.pdf';
+        const filename = Consultation.invoiceFileName(consultation, patient);
         const absoluteFilePath = INVOICES_GENERATED_PATH + filename;
 
         const fileInfo: FileInfo = await this.renderPdfInvoice(patient, consultation)
             .then(data => {
                 return new Promise((resolve, reject) => {
                     pdf.create(data, {
-                        format: "A3",
-                        orientation: "portrait"
+                        format: 'A3',
+                        orientation: 'portrait',
                     }).toFile(absoluteFilePath, (err: Error, fileInfo: FileInfo) => {
                         if (err) return reject(err);
                         resolve(fileInfo);
@@ -96,7 +93,7 @@ export class InvoicesService {
 
         logger.info(`sending mail with invoice of consultation ${consultation.id} to patient ${patient._id}...`);
         return this.mailerService.send(InvoicesService.buildMailOptions(patient, mailTemplate, fileInfo))
-            .then((s: SentMessageInfo) => new UserResponse("invoice has been sent by email", s))
+            .then((s: SentMessageInfo) => new UserResponse('invoice has been sent by email', s))
             .catch(e => {
                 throw new VError(e, 'could not send mail for consultation %d for patient %s %s',
                     consultation.id, patient.firstName, patient.lastName);
@@ -106,13 +103,13 @@ export class InvoicesService {
     private async renderPdfInvoice(patient: Patient, consultation: Consultation): Promise<string> {
         logger.info(`rendering pdf invoice of consultation ${consultation.id} for patient ${patient._id}`);
         return ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH,
-            InvoicesService.getEscapedOsteopathName(consultation.osteopath) + ".html.ejs"), {
+            InvoicesService.getEscapedOsteopathName(consultation.osteopath) + '.html.ejs'), {
             patient: patient,
             consultation: consultation,
             office: consultation.office,
             dateConsultation: consultation.date.toLocaleDateString('fr-FR'),
             dateBirthday: patient.birthDate.toLocaleDateString('fr-FR'),
-            assetsPath: "file://" + INVOICES_ASSETS_PATH
+            assetsPath: 'file://' + INVOICES_ASSETS_PATH,
         })
             .catch(e => {
                 throw new VError(e, 'could not generate pdf invoice for consultation %d for patient %s %s',
@@ -122,7 +119,7 @@ export class InvoicesService {
 
     private async renderMailInvoice(patient: Patient, consultation: Consultation): Promise<string> {
         logger.info(`rendering mail invoice of consultation ${consultation.id} for patient ${patient._id}`);
-        return ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH, InvoicesService.getEscapedOsteopathName(consultation.osteopath) + "-mail.html.ejs"), {
+        return ejs.renderFile(path.join(INVOICES_TEMPLATES_PATH, InvoicesService.getEscapedOsteopathName(consultation.osteopath) + '-mail.html.ejs'), {
             patient: patient,
             consultation: consultation,
             dateConsultation: consultation.date.toLocaleDateString('fr-FR'),
