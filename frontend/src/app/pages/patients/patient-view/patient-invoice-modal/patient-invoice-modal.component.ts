@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {PatientService} from '../../../../@core/services/patient.service';
 import {Patient} from '../../../../../../../common/patient.model';
-import {DatePipe} from '@angular/common';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 import {NbToastrService} from '@nebular/theme';
 import {Consultation} from '../../../../../../../common/consultation.model';
@@ -30,8 +29,7 @@ export class PatientInvoiceModalComponent {
   constructor(private activeModal: NgbActiveModal,
               private patientService: PatientService,
               private toasterService: NbToastrService,
-              private localeService: BsLocaleService,
-              private datepipe: DatePipe) {
+              private localeService: BsLocaleService) {
     this.localeService.use('fr');
   }
 
