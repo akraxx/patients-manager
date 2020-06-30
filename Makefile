@@ -6,11 +6,23 @@ help: ## prints help
 include .env
 export $(shell sed 's/=.*//' .env)
 
-dev-frontend: 	## frontend development with livereload
+deps-frontend: 	## download frontend dependencies
+	npm ci --prefix frontend
+
+deps-backend: 	## download backend dependencies
+	npm ci --prefix backend
+
+run-frontend: 	## frontend development with livereload
 	cd frontend && ng serve --poll 1000
 
-dev-backend: 	## bakend development with livereload
+run-backend: 	## backend development with livereload
 	npm run dev --prefix backend
+
+build-frontend: 	## frontend build
+	npm run build:prod --prefix frontend
+
+build-backend: 	## backend build
+	npm run build --prefix backend
 
 deploy-dev: 	## deploy mongodb and keycloak only
 	docker-compose up -d

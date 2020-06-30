@@ -35,11 +35,12 @@ before_install:
   - cat backend/version.json
 
 script:
-  - npm ci --prefix backend || travis_terminate 1;
-  - npm run build --prefix backend || travis_terminate 1;
+  - make deps-backend || travis_terminate 1;
+  - make build-backend || travis_terminate 1;
+  - npm prune --production --prefix backend || travis_terminate 1;
   - ls -lrth backend || travis_terminate 1;
-  - npm ci --prefix frontend || travis_terminate 1;
-  - npm run build:prod --prefix frontend || travis_terminate 1;
+  - make deps-frontend || travis_terminate 1;
+  - make build-frontend || travis_terminate 1;
   - docker build --tag patients-manager-api -f backend/Dockerfile-ci backend || travis_terminate 1;
   - docker build --tag patients-manager-web -f frontend/Dockerfile-ci frontend || travis_terminate 1;
   - ls -lrth $HOME/.npm
