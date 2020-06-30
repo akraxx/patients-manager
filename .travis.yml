@@ -35,6 +35,7 @@ before_install:
   - cat backend/version.json
 
 script:
+  - touch .env
   - make deps-backend || travis_terminate 1;
   - make build-backend || travis_terminate 1;
   - npm prune --production --prefix backend || travis_terminate 1;
