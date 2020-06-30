@@ -43,7 +43,6 @@
                      required
                      [(ngModel)]="patient.birthDate"
                      [status]="!birthDate || birthDate.invalid ? 'danger' : 'success'"
-                     placement="right"
                      [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY'}" #spy>
             </nb-form-field>
             </div>
@@ -67,7 +66,7 @@
             <button class="btn btn-danger" (click)="resetForm()">Réinitialiser</button>
           </div>
           <div class="col-md-6">
-            <button class="btn btn-success" (click)="savePatient()" [disabled]="patientForm.form.invalid">Enregistrer</button>
+            <button class="btn btn-success" (click)="savePatient()" [disabled]="patientForm.form.invalid || creating">Enregistrer</button>
           </div>
         </div>
       </nb-card-footer>

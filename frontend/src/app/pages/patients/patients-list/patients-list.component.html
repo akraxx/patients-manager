@@ -34,7 +34,7 @@
           </nb-tab>
           <nb-tab tabTitle="Derniers enregistrés" [tabIcon]="{pack: 'fa', icon: 'save'}" responsive>
           </nb-tab>
-          <nb-tab tabTitle="Tous" (click)="searchPatients()" [tabIcon]="{pack: 'fa', icon: 'user-md'}" responsive>
+          <nb-tab tabTitle="Tous" [tabIcon]="{pack: 'fa', icon: 'user-md'}" responsive>
           </nb-tab>
         </nb-tabset>
         <div class="table-responsive">
@@ -50,7 +50,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let patient of patients | paginate: { itemsPerPage: 10, currentPage: page }" [routerLink]="['/pages/patients', patient._id]" style="cursor:pointer;">
+          <tr *ngFor="let patient of patients | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }" [routerLink]="['/pages/patients', patient._id]" style="cursor:pointer;">
             <td>{{patient.lastName}}</td>
             <td>{{patient.firstName}}</td>
             <td scope="col">
@@ -75,7 +75,7 @@
                   responsive="true"
                   previousLabel="Précédent"
                   nextLabel="Suivant"
-                  (pageChange)="page = $event"></pagination-controls>
+                  (pageChange)="getPage($event)"></pagination-controls>
               </div>
             </td>
           </tr>

@@ -10,7 +10,11 @@ import {
 } from '@nebular/auth';
 
 const routes: Routes = [
-  { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
+  {
+    path: 'pages',
+    loadChildren: () => import('./pages/pages.module')
+      .then(m => m.PagesModule),
+  },
   {
     path: 'auth',
     component: NbAuthComponent,

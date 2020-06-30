@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import {NbTabComponent} from '@nebular/theme/components/tabset/tabset.component';
 import {KeycloakService} from 'keycloak-angular';
 import {NbToastrService} from '@nebular/theme';
-import {Patient} from '../../../../../../common/patient.model';
+import {Patient, PatientResultSet} from '../../../../../../common/patient.model';
 
 @Component({
   selector: 'ngx-patients-list',
@@ -14,25 +14,26 @@ import {Patient} from '../../../../../../common/patient.model';
 export class PatientsListComponent implements OnInit {
   patientSearch: string;
   patients: Patient[];
+  total: number = 0;
   page: number = 1;
   loggedUser: string = 'unknown';
+  activeTab: NbTabComponent;
+  searchValue: string;
 
   constructor(private patientService: PatientService,
               private toasterService: NbToastrService,
               private keycloakService: KeycloakService) {
   }
 
-  searchPatients() {
-    this.processPatients(this.patientService.getPatients());
+  searchPatientsByName(value: string) {
+    this.searchValue = value;
+    this.updatePatients();
   }
 
-  searchPatientsByName(name: string) {
-    this.processPatients(this.patientService.searchPatientByName(name));
-  }
-
-  processPatients(patientsObservable: Observable<Patient[]>) {
-    patientsObservable.subscribe((patients) => {
-        this.patients = patients;
+  processPatients(patientsObservable: Observable<PatientResultSet>) {
+    patientsObservable.subscribe((r) => {
+        this.patients = r.patients;
+        this.total = r.total;
       },
       error => {
         this.toasterService.danger('Impossible de chercher les patients avec le nom ' + name,
@@ -41,14 +42,20 @@ export class PatientsListComponent implements OnInit {
   }
 
   tabChanged(tab: NbTabComponent) {
-    if (tab.tabTitle === 'Tous') {
-      this.processPatients(this.patientService.getPatients('lastName', 'asc'));
-    } else if (tab.tabTitle === 'Derniers enregistrés') {
-      this.processPatients(this.patientService.getPatients('createdAt', 'desc'));
-    } else if (tab.tabTitle === 'Mes patients') {
-      this.processPatients(this.patientService.searchPatientByOsteopath(this.loggedUser));
+    this.activeTab = tab;
+    this.page = 1;
+    this.updatePatients();
+  }
+
+  updatePatients() {
+    if (this.activeTab.tabTitle === 'Tous') {
+      this.processPatients(this.patientService.getPatients('lastName', 'asc', 10, (this.page - 1) * 10));
+    } else if (this.activeTab.tabTitle === 'Derniers enregistrés') {
+      this.processPatients(this.patientService.getPatients('createdAt', 'desc', 10, (this.page - 1) * 10));
+    } else if (this.activeTab.tabTitle === 'Mes patients') {
+      this.processPatients(this.patientService.searchPatientByOsteopath(this.loggedUser, 10, (this.page - 1) * 10));
     } else {
-      this.patients = [];
+      this.processPatients(this.patientService.searchPatientByName(this.searchValue));
     }
   }
 
@@ -67,6 +74,11 @@ export class PatientsListComponent implements OnInit {
           this.loggedUser = this.keycloakService.getUsername();
         }
       });
+  }
+
+  getPage(page: number) {
+    this.page = page;
+    this.updatePatients();
   }
 
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
-import {Patient} from '../../../../../common/patient.model';
+import {Patient, PatientResultSet} from '../../../../../common/patient.model';
 import {throwError} from 'rxjs';
 
 @Injectable()
@@ -9,12 +9,15 @@ export class PatientService {
 
   constructor(private http: HttpClient) {}
 
-  getPatients(sort: string = 'lastName', sortType: string = 'desc'): Observable<Patient[]> {
+  getPatients(sort: string = 'lastName', sortType: string = 'desc',
+              limit: number = 10, offset: number = 0): Observable<PatientResultSet> {
     const params = new HttpParams()
       .set('sortType', sortType)
-      .set('sort', sort);
+      .set('sort', sort)
+      .set('limit', limit.toString())
+      .set('offset', offset.toString());
 
-    return this.http.get<Patient[]>(`/api/patients`, {params: params});
+    return this.http.get<PatientResultSet>(`/api/patients`, {params: params});
   }
 
   addPatient(patient: Patient): Observable<Patient> {
@@ -29,24 +32,26 @@ export class PatientService {
     return this.http.get<Patient>(`/api/patients/${id}`);
   }
 
-  searchPatientByOsteopath(osteopath: string): Observable<Patient[]> {
+  searchPatientByOsteopath(osteopath: string, limit: number = 10, offset: number = 0): Observable<PatientResultSet> {
     const params = new HttpParams()
       .set('sort', 'lastName')
       .set('sortType', 'asc')
-      .set('createdBy', osteopath)
-      .set('consultations.osteopath', osteopath);
+      .set('limit', limit.toString())
+      .set('offset', offset.toString())
+      .append('search', 'createdBy=' + osteopath)
+      .append('search', 'consultations.osteopath=' + osteopath);
 
-    return this.http.get<Patient[]>(`/api/patients`, {params: params});
+    return this.http.get<PatientResultSet>(`/api/patients`, {params: params});
   }
 
-  searchPatientByName(name: string): Observable<Patient[]> {
+  searchPatientByName(name: string): Observable<PatientResultSet> {
     const params = new HttpParams()
       .set('sort', 'lastName')
       .set('sortType', 'asc')
-      .set('firstName', name)
-      .set('lastName', name);
+      .append('search', 'firstName=' + name)
+      .append('search', 'lastName=' + name);
 
-    return this.http.get<Patient[]>(`/api/patients`, {params: params});
+    return this.http.get<PatientResultSet>(`/api/patients`, {params: params});
   }
 
   downloadInvoice(id: string, consultationId: number) {

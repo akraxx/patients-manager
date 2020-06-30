@@ -1,0 +1,17 @@
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:last-child {
+    margin-bottom: 5px;
+  }
+
+  .office-role {
+    min-width: 200px;
+  }
+}

@@ -1,0 +1,92 @@
+<div class="row" *ngIf="office">
+  <div class="col-sm-12 col-md-6">
+    <nb-card>
+      <nb-card-header>Général</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label class="label">Nom</label>
+            <input nbInput fullWidth placeholder="Nom" name="officeName" [(ngModel)]="office.name" #spy/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label class="label">Adresse</label>
+            <nb-form-field>
+              <nb-icon nbPrefix icon="map-marker-alt" pack="fa"></nb-icon>
+              <input fullWidth nbInput type="text" placeholder="Adresse" class="form-control" name="address"
+                     [(ngModel)]="office.address" />
+            </nb-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-4">
+            <nb-form-field>
+              <nb-icon nbPrefix icon="map-marker" pack="fa"></nb-icon>
+              <input nbInput fullWidth type="text" placeholder="Code postal" class="form-control"
+                     [(ngModel)]="office.zipCode"/>
+            </nb-form-field>
+          </div>
+          <div class="form-group col-sm-8">
+            <nb-form-field>
+              <nb-icon nbPrefix icon="map-marker" pack="fa"></nb-icon>
+              <input nbInput fullWidth type="text" placeholder="Ville" class="form-control" name="city"
+                     [(ngModel)]="office.city"/>
+            </nb-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-4">
+            <label class="label">Tarif</label>
+            <nb-form-field>
+              <nb-icon nbPrefix icon="euro-sign" pack="fa"></nb-icon>
+              <input nbInput fullWidth type="number" placeholder="Tarif" class="form-control" name="price"
+                     [(ngModel)]="office.price"/>
+            </nb-form-field>
+          </div>
+          <div class="form-group col-sm-8">
+            <label class="label">Moyens de paiement</label>
+            <div class="center checkbox" fullWidth>
+              <nb-select multiple placeholder="Role" [(selected)]="office.paymentTypes">
+                <nb-option *ngFor="let paymentType of paymentTypes | keyvalue" [value]="paymentType.key">{{paymentType.value}}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Facture</nb-card-header>
+      <nb-card-body class="text-center">
+        <button nbButton status="primary">Générer une facture d'exemple</button>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <nb-card>
+      <nb-card-header>Logo</nb-card-header>
+      <nb-card-body>
+        <angular-file-uploader
+          [config]="afuConfig">
+        </angular-file-uploader>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Membres</nb-card-header>
+      <nb-card-body>
+        <nb-list>
+          <nb-list-item class="contact" *ngFor="let p of office.members">
+            <nb-user [name]="p.member.userName" title="Ostéopathe D.O" size="large"></nb-user>
+            <nb-select multiple placeholder="Role" [(selected)]="p.roles" class="office-role">
+              <nb-option *ngFor="let officeRole of officeRoles | keyvalue" [value]="officeRole.value">{{officeRole.value}}</nb-option>
+            </nb-select>
+            <button nbButton ghost status="danger"><nb-icon icon="trash"></nb-icon></button>
+          </nb-list-item>
+        </nb-list>
+        <div class="text-center">
+          <button nbButton status="primary"><nb-icon icon="plus"></nb-icon> Ajouter un membre</button>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

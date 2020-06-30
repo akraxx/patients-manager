@@ -30,6 +30,7 @@ import {
 } from '@nebular/theme';
 import {FormsModule} from '@angular/forms';
 import {PatientConfirmComponent} from './patient-confirm/patient-confirm.component';
+import {OfficeService} from '../../@core/services/office.service';
 
 @NgModule({
   imports: [
@@ -69,6 +70,7 @@ import {PatientConfirmComponent} from './patient-confirm/patient-confirm.compone
   ],
   providers: [
     PatientService,
+    OfficeService,
     PendingChangesGuard,
     DatePipe,
   ],
