@@ -55,7 +55,11 @@ export class PatientsListComponent implements OnInit {
     } else if (this.activeTab.tabTitle === 'Mes patients') {
       this.processPatients(this.patientService.searchPatientByOsteopath(this.loggedUser, 10, (this.page - 1) * 10));
     } else {
-      this.processPatients(this.patientService.searchPatientByName(this.searchValue));
+      if (this.searchValue) {
+        this.processPatients(this.patientService.searchPatientByName(this.searchValue));
+      } else {
+        this.patients = [];
+      }
     }
   }
 

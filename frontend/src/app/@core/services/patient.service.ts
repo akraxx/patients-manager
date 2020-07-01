@@ -7,7 +7,8 @@ import {throwError} from 'rxjs';
 @Injectable()
 export class PatientService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getPatients(sort: string = 'lastName', sortType: string = 'desc',
               limit: number = 10, offset: number = 0): Observable<PatientResultSet> {
@@ -45,20 +46,23 @@ export class PatientService {
   }
 
   searchPatientByName(name: string): Observable<PatientResultSet> {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('sort', 'lastName')
-      .set('sortType', 'asc')
-      .append('search', 'firstName=' + name)
-      .append('search', 'lastName=' + name);
+      .set('sortType', 'asc');
+
+    if (name) {
+      params = params.append('search', 'firstName=' + name)
+        .append('search', 'lastName=' + name);
+    }
 
     return this.http.get<PatientResultSet>(`/api/patients`, {params: params});
   }
 
   downloadInvoice(id: string, consultationId: number) {
     return this.http.get(`/api/patients/${id}/consultations/${consultationId}/invoice`,
-      { responseType: 'arraybuffer' })
+      {responseType: 'arraybuffer'})
       .map(res => new Blob([res]))
-      .catch( res => {
+      .catch(res => {
         const decoder = new TextDecoder('utf-8');
         res.error = JSON.parse(decoder.decode(res.error));
         return throwError(res);
