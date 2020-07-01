@@ -21,5 +21,5 @@ export const environment = {
   production: true,
   keycloak: keycloakConfig,
   version: 'dev',
-  buildDate: 'dev',
+  buildDate: undefined,
 };
