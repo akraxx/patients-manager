@@ -51,7 +51,7 @@
     &.down {
       color: nb-theme(color-danger-default);
 
-      .difference:before {
+      .difference::before {
         content: '-';
       }
     }
@@ -59,7 +59,7 @@
     &.up {
       color: nb-theme(color-success-default);
 
-      .difference:before {
+      .difference::before {
         content: '+';
       }
     }
