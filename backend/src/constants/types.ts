@@ -15,4 +15,5 @@ export const TYPES = {
     ConsultationsService: Symbol.for("ConsultationsService"),
     InvoicesService: Symbol.for("InvoicesService"),
     OfficesService: Symbol.for("OfficesService"),
+    StatisticsService: Symbol.for("StatisticsService"),
 };

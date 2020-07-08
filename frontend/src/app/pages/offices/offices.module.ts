@@ -11,6 +11,7 @@ import {
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbListModule,
   NbMenuModule,
   NbRadioModule,
   NbSelectModule,
@@ -27,6 +28,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {CKEditorModule} from 'ng2-ckeditor';
 import {KeycloakBearerInterceptor} from 'keycloak-angular';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {OfficesViewStatsComponent} from './offices-view/offices-view-stats/offices-view-stats.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {ChartModule} from 'angular2-chartjs';
+import {ComparisonBarComponent} from './offices-view/offices-view-stats/comparison-bar/comparison-bar.component';
+import {SalesOfficeViewStatsComponent} from './offices-view/offices-view-stats/sales-offices-view-stats.component';
+import {
+  ConsultationsOfficesViewStatsComponent,
+} from './offices-view/offices-view-stats/consultations-offices-view-stats.component';
+import {StatisticService} from '../../@core/services/statistic.service';
 
 @NgModule({
   imports: [
@@ -52,15 +62,22 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
     NbIconModule,
     NbAccordionModule,
     AngularFileUploaderModule,
+    NgxChartsModule,
+    ChartModule,
+    NbListModule,
   ],
   declarations: [
     ...routedComponents,
     OfficesViewDetailsComponent,
+    OfficesViewStatsComponent,
+    SalesOfficeViewStatsComponent,
+    ConsultationsOfficesViewStatsComponent,
+    ComparisonBarComponent,
   ],
-  entryComponents: [
-  ],
+  entryComponents: [],
   providers: [
     OfficeService,
+    StatisticService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: KeycloakBearerInterceptor,

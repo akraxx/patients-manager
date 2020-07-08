@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-lg-12 select-year">
+    <nb-select fullWidth [(ngModel)]="selectedYear" (ngModelChange)="updateStatistics()">
+      <nb-option [value]="year" *ngFor="let year of availableYears">{{ year }}</nb-option>
+    </nb-select>
+  </div>
+</div>
+<div class="row" *ngIf="selectedYearStatistics && selectedLastYearStatistics">
+  <div class="col-md-12 col-lg-8">
+    <nb-flip-card>
+      <nb-card-front>
+        <nb-card>
+          <nb-card-header><nb-icon icon="euro-sign" pack="fa"></nb-icon> Evolution du chiffre d'affaire</nb-card-header>
+          <nb-card-body>
+            <ngx-chartjs-multiple-xaxis [selectedLastYearStatistics]="selectedLastYearStatistics"
+                                        [selectedYearStatistics]="selectedYearStatistics"></ngx-chartjs-multiple-xaxis>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-front>
+      <nb-card-back>
+        <nb-card>
+          <nb-card-header><nb-icon icon="stethoscope" pack="fa"></nb-icon> Evolution des consultations</nb-card-header>
+          <nb-card-body>
+            <ngx-consultations-offices-view-stats [selectedLastYearStatistics]="selectedLastYearStatistics"
+                                                  [selectedYearStatistics]="selectedYearStatistics"></ngx-consultations-offices-view-stats>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-back>
+    </nb-flip-card>
+  </div>
+  <div class="col-md-12 col-lg-4">
+    <div class="row">
+      <div class="col-md-6 col-lg-12">
+        <nb-card>
+          <nb-card-header>
+            <nb-icon icon="euro-sign" pack="fa"></nb-icon>
+            Chiffre d'affaire
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-md-8">
+                <h1>{{ selectedYearStatistics.ca | currency:'EUR' }}</h1>
+                <span class="delta ca" [class.up]="getCaToDateEvolution() > 0" [class.down]="getCaToDateEvolution() < 0">
+                  <span>
+                    <nb-icon [icon]="getCaToDateEvolution() > 0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+                    {{ getCaToDateEvolution() | number:'2.2-2' }}%
+                  </span>
+                  <span>
+                    <b class="difference"> {{ getCaToDateDifference() | currency:'EUR' }}</b>
+                  </span>
+                </span>
+              </div>
+              <div class="col-md-4">
+                <ngx-comparison-bar [style.height.%]="100"
+                                    [barData]="{ prevDate: previousYear().toString(), prevValue: selectedLastYearStatistics.caToDate, nextDate: selectedYear.toString(), nextValue: selectedYearStatistics.ca }">
+                </ngx-comparison-bar>
+              </div>
+            </div>
+          </nb-card-body>
+          <nb-card-footer>
+            <p><i>Comparaison au même jour ({{ today | date:'dd MMM' }}) en {{ previousYear() }}</i></p>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-md-6 col-lg-12">
+        <nb-card>
+          <nb-card-header>
+            3 Patients les plus vus
+          </nb-card-header>
+          <nb-card-body>
+            <nb-list>
+              <nb-list-item class="contact" *ngFor="let topPatient of selectedYearStatistics.topPatients">
+                <nb-user [name]="(topPatient.firstName | titlecase) + ' ' + (topPatient.lastName | uppercase)" [title]="topPatient.consultations + ' consultations'" size="large"></nb-user>
+              </nb-list-item>
+            </nb-list>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="selectedYearStatistics && selectedLastYearStatistics">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <nb-list>
+          <nb-list-item class="item" *ngFor="let bucket of displayableBuckets(); index as i">
+            <span>{{ bucket.date | date:'MMMM y' }}</span>
+            <span><b>{{ bucket.ca | currency:'EUR' }}</b></span>
+            <span class="delta" [class.up]="getBucketEvolution(i) > 0" [class.down]="getBucketEvolution(i) < 0">
+                <nb-icon [icon]="getBucketEvolution(i) > 0 ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+                {{ getBucketEvolution(i) | number:'2.2-2' }}%
+            </span>
+            <ngx-comparison-bar
+              [barData]="{ prevDate: selectedLastYearStatistics.buckets[i].date | date:'MMMM y', prevValue: selectedLastYearStatistics.buckets[i].ca, nextDate: bucket.date | date:'MMMM y', nextValue: bucket.ca }">
+            </ngx-comparison-bar>
+          </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

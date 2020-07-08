@@ -18,6 +18,7 @@ import '../controllers/version.controller';
 import '../controllers/patients.controller';
 import '../controllers/consulations.controller';
 import '../controllers/offices.controller';
+import '../controllers/statistics.controller';
 import '../error/WebServiceError'
 import {InvoicesService} from '../services/invoices.service';
 import {MailerOptions} from '../mail/mailer.options';
@@ -27,6 +28,7 @@ import {MongoOptions} from '../db/mongo.options';
 import {JWTAuthProvider} from '../auth/auth.provider';
 import {AuthOptions} from '../auth/auth.options';
 import {OfficesService} from '../services/offices.service';
+import {StatisticsService} from '../services/statistics.service';
 
 export class Server {
 
@@ -79,7 +81,7 @@ export class Server {
         container.bind<ConsultationsService>(TYPES.ConsultationsService).to(ConsultationsService);
         container.bind<InvoicesService>(TYPES.InvoicesService).to(InvoicesService);
         container.bind<OfficesService>(TYPES.OfficesService).to(OfficesService);
-
+        container.bind<StatisticsService>(TYPES.StatisticsService).to(StatisticsService);
 
         return container
     }
