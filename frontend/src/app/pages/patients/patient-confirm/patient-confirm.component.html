@@ -8,6 +8,6 @@
   {{ modalContent }}
 </div>
 <div class="modal-footer">
-  <button class="btn btn-md btn-primary" (click)="onModalConfirmed()">{{confirmationLabel}}</button>
-  <button class="btn btn-md btn-default" (click)="closeModal()">Retour</button>
+  <button nbButton [status]="btnStatus" (click)="onModalConfirmed()">{{confirmationLabel}}</button>
+  <button nbButton (click)="closeModal()">Retour</button>
 </div>

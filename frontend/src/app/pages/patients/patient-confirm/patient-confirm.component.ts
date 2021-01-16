@@ -11,6 +11,7 @@ export class PatientConfirmComponent {
   confirmationLabel: string;
   modalHeader: string;
   modalContent: string;
+  btnStatus: string = 'danger';
 
   constructor(private activeModal: NgbActiveModal) {
   }

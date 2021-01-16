@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 import {HandOrientation, MaritalStatus, Patient, Sexe} from '../../../../../../common/patient.model';
 import {PatientService} from '../../../@core/services/patient.service';
@@ -42,6 +42,7 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
   patientUpdate = new Subject<Patient>();
   patientSaved = true;
   patientSaving = false;
+  patientDeleting = false;
 
   timestamp = new Date().getUTCMilliseconds();
 
@@ -51,7 +52,8 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
               private officeService: OfficeService,
               private toasterService: NbToastrService,
               private modalService: NgbModal,
-              private keycloakService: KeycloakService) {
+              private keycloakService: KeycloakService,
+              private router: Router) {
     this.localeService.use('fr');
 
     this.templateAntecedents = DEFAULT_ANTECEDENTS;
@@ -132,6 +134,36 @@ export class PatientViewComponent implements OnInit, OnDestroy, ComponentCanDeac
           this.toasterService.danger(error.error.message, 'Impossible de sauvegarder le patient.');
         },
       );
+  }
+
+  deletePatient() {
+    const modal = this.modalService.open(PatientConfirmComponent, {size: 'lg', container: 'nb-layout'});
+    modal.componentInstance.modalHeader = 'Supprimer un patient';
+    modal.componentInstance.modalContent = `
+      Êtes vous sur de vouloir supprimer le patient
+      ${this.patient.firstName} ${this.patient.lastName} ?
+    `;
+    modal.componentInstance.confirmationLabel = 'Supprimer';
+
+    modal.result.then(result => {
+      if (!result) {
+        return;
+      }
+
+      this.patientDeleting = true;
+      this.patientService.deletePatient(this.id)
+        .finally(() => this.patientDeleting = false)
+        .subscribe(
+          p => {
+            this.toasterService.success(`${p.firstName} ${p.lastName} a été supprimé de la base de données.`,
+              'Patient supprimé.');
+            this.router.navigate(['/pages/patients']);
+          },
+          error => {
+            this.toasterService.danger(error.error.message, 'Impossible de supprimer le patient.');
+          },
+        );
+    });
   }
 
   antecedentChanged(antecedent: Antecedent) {

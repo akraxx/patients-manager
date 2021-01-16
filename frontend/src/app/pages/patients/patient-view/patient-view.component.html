@@ -387,7 +387,7 @@
                         <div class="spacer"></div>
                         <div class="row">
                           <div class="col-md-12 text-center">
-                            <button class="btn btn-danger" (click)="removeConsultation(group)">Supprimer</button>
+                            <button nbButton [status]="'danger'" (click)="removeConsultation(group)">Supprimer la consultation</button>
                           </div>
                         </div>
                       </nb-accordion-item-body>
@@ -406,6 +406,9 @@
                 [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving"
                                                                             [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i
           *ngIf="!patientSaving">Sauvegarder</i></button>
+        <button *ngIf="patient.createdBy === loggedUser" nbButton [status]="'danger'" (click)="deletePatient()" class="btn-patient-delete"><i *ngIf="patientSaving"
+                                                                            [ngClass]="{'fa fa-spinner fa-spin': patientDeleting}"></i><i
+          *ngIf="!patientDeleting">Supprimer le patient</i></button>
       </nb-card-footer>
     </nb-card>
   </div>
