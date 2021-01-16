@@ -35,6 +35,8 @@ export class StatisticsService {
         }
 
         let filters: any = {}
+        // skip hidden consultations
+        filters["consultations.hidden"] = { "$not": { "$eq": true } }
         if (officeId) {
             filters["consultations.office"] = new Types.ObjectId(officeId)
         }

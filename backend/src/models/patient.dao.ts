@@ -27,6 +27,7 @@ var ConsultationSchema = new mongoose.Schema({
     content: String,
     paymentType: String,
     clearedCheck: Boolean,
+    hidden: Boolean,
     checkNumber: String,
     description: String,
     date: Date,

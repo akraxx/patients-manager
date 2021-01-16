@@ -21,6 +21,18 @@
     text-align: center;
   }
 
+  .consultation-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
   nb-accordion-item-header .title {
     width: 80%;
   }

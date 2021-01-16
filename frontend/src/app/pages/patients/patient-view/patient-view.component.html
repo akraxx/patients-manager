@@ -290,6 +290,7 @@
                       <nb-accordion-item-header>
                         <div class="title">
                           <div class="pull-left float-left">
+                            <i *ngIf="group.hidden" class="fa fa-eye-slash text-warning"></i>
                             Le {{group.date | date:'longDate'}} par {{group.osteopath}} à {{group.office.name}} : {{group.title}}
                           </div>
                           <span class="float-right pull-right">
@@ -386,8 +387,9 @@
                         </div>
                         <div class="spacer"></div>
                         <div class="row">
-                          <div class="col-md-12 text-center">
-                            <button class="btn btn-danger" (click)="removeConsultation(group)">Supprimer</button>
+                          <div class="col-md-12 text-center consultation-actions">
+                            <nb-toggle status="warning" [(ngModel)]="group.hidden" (ngModelChange)="patientChanged()">Cacher</nb-toggle>
+                            <button nbButton status="danger" (click)="removeConsultation(group)">Supprimer</button>
                           </div>
                         </div>
                       </nb-accordion-item-body>
