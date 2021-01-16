@@ -4,8 +4,11 @@
       <nb-card-header><h4>{{ office.name }}</h4></nb-card-header>
       <nb-card-body>
         <nb-tabset>
-          <nb-tab tabTitle="Détails">
+          <nb-tab tabTitle="Détails" [tabIcon]="{pack: 'fa', icon: 'info'}" responsive>
             <ngx-offices-view-details [office]="office"></ngx-offices-view-details>
+          </nb-tab>
+          <nb-tab tabTitle="Stats" [tabIcon]="{pack: 'fa', icon: 'chart-bar'}" responsive>
+            <ngx-offices-view-stats [office]="office"></ngx-offices-view-stats>
           </nb-tab>
         </nb-tabset>
       </nb-card-body>

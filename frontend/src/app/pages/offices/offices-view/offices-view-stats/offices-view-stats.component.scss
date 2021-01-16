@@ -1,0 +1,73 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  ngx-chartjs-pie,
+  ngx-chartjs-bar,
+  ngx-chartjs-line,
+  ngx-chartjs-multiple-xaxis,
+  ngx-consultations-offices-view-stats,
+  ngx-chartjs-radar {
+    display: block;
+    height: nb-theme(card-height-medium);
+    width: 100%;
+
+    ::ng-deep chart {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  overflow: auto;
+
+  .select-year {
+    margin-bottom: 1rem;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > * {
+      flex: 1;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  .delta {
+    display: flex;
+    align-items: center;
+
+    &.ca {
+      justify-content: space-evenly;
+    }
+
+    &.down {
+      color: nb-theme(color-danger-default);
+
+      .difference::before {
+        content: '-';
+      }
+    }
+
+    &.up {
+      color: nb-theme(color-success-default);
+
+      .difference::before {
+        content: '+';
+      }
+    }
+  }
+
+  @include media-breakpoint-down(is) {
+    ngx-comparison-bar {
+      display: none;
+    }
+  }
+}
