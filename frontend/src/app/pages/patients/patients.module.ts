@@ -27,6 +27,7 @@ import {
   NbSelectModule,
   NbTabsetModule,
   NbUserModule,
+  NbToggleModule,
 } from '@nebular/theme';
 import {FormsModule} from '@angular/forms';
 import {PatientConfirmComponent} from './patient-confirm/patient-confirm.component';
@@ -55,6 +56,7 @@ import {OfficeService} from '../../@core/services/office.service';
     NbSelectModule,
     NbIconModule,
     NbAccordionModule,
+    NbToggleModule,
   ],
   declarations: [
     ...routedComponents,

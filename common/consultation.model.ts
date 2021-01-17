@@ -14,6 +14,7 @@ export class Consultation {
     date: Date = new Date();
     isOpen: boolean = false;
     osteopath: string;
+    hidden: boolean = false;
     price: number;
     office: Office;
 
