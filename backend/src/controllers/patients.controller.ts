@@ -1,10 +1,10 @@
 import * as express from 'express'
 import {
-    controller,
+    controller, httpDelete,
     httpGet,
     httpPost,
     httpPut,
-    interfaces,
+    interfaces, principal,
     queryParam,
     request,
     requestParam,
@@ -13,6 +13,8 @@ import {inject} from 'inversify';
 import {PatientSearchOptions, PatientsService} from '../services/patients.service';
 import {Patient, PatientResultSet} from '../../../common/patient.model';
 import {TYPES} from '../constants/types';
+import {Principal} from '../auth/principal';
+import {logger} from '../logger/logger';
 
 @controller('/api/patients')
 export class PatientController implements interfaces.Controller {
@@ -43,6 +45,12 @@ export class PatientController implements interfaces.Controller {
     @httpGet("/:id")
     private getById(@requestParam("id") id: string): Promise<Patient> {
         return this.patientsService.getPatientById(id);
+    }
+
+    @httpDelete("/:id")
+    private delete(@principal() user: Principal, @requestParam("id") id: string): Promise<Patient> {
+        logger.info(`${user.userName} delete patient with id ${id}`)
+        return this.patientsService.deletePatient(id, user.userName);
     }
 
 }

@@ -108,16 +108,40 @@ export class PatientsService {
 
     public getPatientById(id: string): Promise<Patient> {
         logger.info(`getting patient with id ${id}`);
-        return this.patientDao.findById(id)
+        return this.patientDao.findOne({_id: id})
             .populate({
                 path: 'consultations.office',
                 model: 'Office'
             })
-            .then(d => d)
+            .then(patient => {
+                if(!patient) {
+                    throw new Error(`no patient with id ${id}`)
+                }
+
+                return patient;
+            })
             .catch((e: Error) => {
                 logger.error(`could not get patient with id ${id} got error ${e.message}`)
                 throw e;
             });
+    }
+
+    public deletePatient(id: string, deletedBy: string): Promise<Patient> {
+        logger.info(`deleting patient with id ${id} by ${deletedBy}`);
+        return this.getPatientById(id)
+            .then(patient => {
+                if(patient.createdBy !== deletedBy) {
+                    throw new Error(`patient has been created by ${patient.createdBy}, could not delete it`);
+                }
+
+                return this.patientDao.findOneAndDelete({_id: id});
+            })
+            .then(d => d)
+            .catch((e: Error) => {
+                logger.error(`could not get patient with id ${id} got error ${e.message}`);
+                throw e;
+            });
+
     }
 
 }
