@@ -51,6 +51,7 @@
                           <nb-icon nbPrefix icon="calendar" pack="fa"></nb-icon>
                           <input nbInput
                                  type="search"
+                                 onkeydown="return false;"
                                  fullWidth
                                  name="birthDate"
                                  id="birthDate"
@@ -326,6 +327,7 @@
                               <nb-form-field>
                                 <nb-icon nbPrefix icon="calendar" pack="fa"></nb-icon>
                                 <input nbInput fullWidth type="text"
+                                       onkeydown="return false;"
                                        name="consultationDate"
                                        id="consultationDate"
                                        placeholder="Date de consultation"
@@ -408,6 +410,9 @@
                 [disabled]="patientSaved" (click)="savePatient(patient)"><i *ngIf="patientSaving"
                                                                             [ngClass]="{'fa fa-spinner fa-spin': patientSaving}"></i><i
           *ngIf="!patientSaving">Sauvegarder</i></button>
+        <button *ngIf="patient.createdBy === loggedUser" nbButton [status]="'danger'" (click)="deletePatient()" class="btn-patient-delete"><i *ngIf="patientSaving"
+                                                                            [ngClass]="{'fa fa-spinner fa-spin': patientDeleting}"></i><i
+          *ngIf="!patientDeleting">Supprimer le patient</i></button>
       </nb-card-footer>
     </nb-card>
   </div>
