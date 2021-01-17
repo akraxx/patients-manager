@@ -34,9 +34,15 @@ export class InvoicesService {
         return osteopathName.replace('.', '-');
     }
 
-    private static buildMailOptions(patient: Patient, mailTemplate: string, fileInfo: FileInfo) {
+    private static getPrettyOsteopathName(osteopathName: string): string {
+        return osteopathName.split('.')
+            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(' ');
+    }
+
+    private static buildMailOptions(patient: Patient, osteopathName: string, mailTemplate: string, fileInfo: FileInfo) {
         return {
-            from: '"Ingrid Lhotellier" <factures@ingridlhotellier.fr>',
+            from: `"${osteopathName} - Ostéopathe" <factures@ingridlhotellier.fr>`,
             to: patient.mail,
             subject: 'Cabinet Ostéopathie - Eucalyptus - Facture',
             text: 'Vous trouverez ci-joint votre facture d\'ostéopathie.',
@@ -92,7 +98,8 @@ export class InvoicesService {
         const mailTemplate = await this.renderMailInvoice(patient, consultation);
 
         logger.info(`sending mail with invoice of consultation ${consultation.id} to patient ${patient._id}...`);
-        return this.mailerService.send(InvoicesService.buildMailOptions(patient, mailTemplate, fileInfo))
+        const mailOpts = InvoicesService.buildMailOptions(patient, InvoicesService.getPrettyOsteopathName(consultation.osteopath), mailTemplate, fileInfo);
+        return this.mailerService.send(mailOpts)
             .then((s: SentMessageInfo) => new UserResponse('invoice has been sent by email', s))
             .catch(e => {
                 throw new VError(e, 'could not send mail for consultation %d for patient %s %s',
