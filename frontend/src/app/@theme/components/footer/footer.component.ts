@@ -6,7 +6,7 @@ import {environment} from '../../../../environments/environment';
   styleUrls: ['./footer.component.scss'],
   template: `
     <span class="created-by">
-      Created with ♥ by <b>Max</b> 2020
+      Created with ♥ by <b>Max</b> 2021
     </span>
     <div class="pull-right">
       Version : {{ version }} ( {{ date | date:'medium' }} )
